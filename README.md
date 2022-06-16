@@ -1,6 +1,6 @@
 # Group8_Project
-#PRJ301-EightShoes
-Project PRJ301 team 5
+PRJ301-EightShoes
+
 
 ## Thành viên
 - Bá Quân
