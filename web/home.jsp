@@ -38,8 +38,8 @@
                     <div class="row">
                         <div class="col-md-6"></div>
                         <div class="col-md-6 col-sm-12">
-                            Hotline: <a href="tel: 123456789" style="font-weight: bold">0123456789</a> | <a href=""><i
-                                    class="fa-solid fa-lock"></i> Đăng ký</a> | <a href=""><i class="fa-solid fa-user"></i>
+                            Hotline: <a href="tel: 123456789" style="font-weight: bold">0123456789</a> | <a href="CreateAccount.jsp"><i
+                                    class="fa-solid fa-lock"></i> Đăng ký</a> | <a href="Login.jsp"><i class="fa-solid fa-user"></i>
                                 Đăng
                                 nhập</a>
                         </div>
