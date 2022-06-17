@@ -5,27 +5,27 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=1,initial-scale=1,user-scalable=1" />
-        meta name="viewport" content="width=1,initial-scale=1,user-scalable=1" />
+        <meta name="viewport" content="width=1,initial-scale=1,user-scalable=1" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/home.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="js/home.js"></script>
-    <title>EightShoes</title>
-    <link href="images/icon.png" rel="icon">
-    <script src="https://kit.fontawesome.com/72eb2ee2e2.js" crossorigin="anonymous"></script>
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/header.js"></script>
+        <script src="js/home.js"></script>
+        <title>Đăng ký tài khoản</title>
+        <link href="images/icon.png" rel="icon">
+        <script src="https://kit.fontawesome.com/72eb2ee2e2.js" crossorigin="anonymous"></script>
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/header.js"></script>
 
 
         <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css" />
@@ -34,7 +34,7 @@
 
     </head>
     <body>
-        
+
         <header>
             <div class="top-header">
                 <div class="container">
@@ -84,12 +84,12 @@
                 <div class="container">
                     <div class="row">
                         <div class="menu">
-                            <nav><a href="">CONVERSE</a></nav>
-                            <nav><a href="">VANS</a></nav>
-                            <nav><a href="">PUMA</a></nav>
-                            <nav><a href="">ADIDAS</a></nav>
-                            <nav><a href="">NIKE</a></nav>
-                            <nav><a href="">BITIS</a></nav>
+                            <nav><a href="converse.jsp">CONVERSE</a></nav>
+                            <nav><a href="vans.jsp">VANS</a></nav>
+                            <nav><a href="puma.jsp">PUMA</a></nav>
+                            <nav><a href="adidas.jsp">ADIDAS</a></nav>
+                            <nav><a href="nike.jsp">NIKE</a></nav>
+                            <nav><a href="bitis.jsp">BITIS</a></nav>
                             <nav><a style="color: red" href="">KHUYẾN MÃI</a></nav>
                             <nav><a href="">CỬA HÀNG</a></nav>
                         </div>
@@ -101,6 +101,7 @@
                 </div>
             </div>
         </header>
+        
         <section class="container">
             <section class="login-form">
                 <form method="post" action="CreateController" role="login">
@@ -165,7 +166,7 @@
                 </form>
             </section>
         </section>
-    <footer>
+        <footer>
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">

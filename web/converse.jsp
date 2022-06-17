@@ -1,12 +1,18 @@
-<!DOCTYPE html>
+<%-- 
+    Document   : converse
+    Created on : Jun 17, 2022, 1:46:02 PM
+    Author     : vuman
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=1,initial-scale=1,user-scalable=1" />
+        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="css/brand.css"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -19,17 +25,11 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
         <script src="js/home.js"></script>
-        <title>Đăng nhập tài khoản</title>
+        <title>Converse</title>
         <link href="images/icon.png" rel="icon">
         <script src="https://kit.fontawesome.com/72eb2ee2e2.js" crossorigin="anonymous"></script>
         <script src="js/jquery-1.11.1.min.js"></script>
         <script src="js/header.js"></script>
-
-
-        <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="assets/css/styles.css" />
-
-
     </head>
     <body>
         <header>
@@ -99,68 +99,64 @@
             </div>
         </header>
 
-    <section class="container">
-        <section class="login-form">
-            <form method="post" action="ForgotController" role="login">
-                <h2>Quên mật khẩu??</h2>
-                <p>Nhập thông tin</p>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon"><span class="text-primary glyphicon glyphicon-envelope"></span></div>
-                        <input type="text" name="account"  value="${account}" placeholder="Tài khoản"   required class="form-control" />
+        <div class="store">
+            <div class="container">
+                <br>
+                <a href="home.jsp">Trang chủ</a>
+                >
+                <a href="converse.jsp">All converse</a>
+                <img src="images/banner2/converse-banner2.jpg">
+                
+                <div class="sort">
+                    <div class="row">
+                        <div class="col-sm-10"></div>
+                        <div class="col-sm-2">
+                            <select>
+                                <option>Sắp xếp: Mặc định</option>
+                                <option>Sắp xếp: Tên (A - Z)</option>
+                                <option>Sắp xếp: Tên (Z - A)</option>
+                                <option>Sắp xếp: Giá (Thấp > Cao)</option>
+                                <option>Sắp xếp: Giá (Cao > Thấp)</option>
+                                <option>Sắp xếp: Đánh giá (Cao nhất)</option>
+                                <option>Sắp xếp: Đánh giá (Thấp nhất)</option>
+                                <option>Sắp xếp: Kiểu (A - Z)</option>
+                                <option>Sắp xếp: Kiểu (Z - A)</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon"><span class="text-primary glyphicon glyphicon-user"></span></div>
-                        <input type="text" name="dob"  placeholder="Ngày sinh"   required class="form-control" />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-addon"><span class="text-primary glyphicon glyphicon-lock"></span></div>
-                        <input type="text" name="pass" value="${pass}" placeholder="Mật khẩu mới" readonly required class="form-control" />
-                    </div>
-                </div>
-
-
-                <button type="submit" name="go" class="btn btn-block btn-success" style="background-color: orange">Tiếp tục</button>
-                <!--                    <a href="ForgetPass.jsp" class="btn btn-block btn-default">Forgot password</a>
-                                    <a href="#" class="btn btn-block btn-default">Create an account</a>-->
-            </form>
-        </section>
-    </section>
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
-                    <span>GIỚI THIỆU</span>
-                    <ul>
-                        <a href=""><li>Về Eight Shoes</li></a>
-                        <a href=""><li>Cửa hàng</li></a>
-                        <a href=""><li>Khuyến mãi</li></a>
-                    </ul>
-                </div>
-                <div class="col-sm-4">
-                    <span>Thông tin</span>
-                    <ul>
-                        <a href=""><li>Chính sách và quy định chung</li></a>
-                        <a href=""><li>Chính sách vận chuyển và giao nhận</li></a>
-                        <a href=""><li>Chính sách bảo hành - đổi/trả</li></a>
-                        <a href=""><li>Chính sách bảo mật</li></a>
-                    </ul>
-                </div>
-                <div class="col-sm-4">
-                    <span>Hỗ trợ</span>
-                    <ul>
-                        <a href=""><li>Hỗ trợ trực tuyến</li></a>
-                        <a href=""><li>Kiểm tra đơn hàng</li></a>
-                    </ul>
                 </div>
             </div>
         </div>
-    </footer>
-</body>
+        
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span>GIỚI THIỆU</span>
+                        <ul>
+                            <a href=""><li>Về Eight Shoes</li></a>
+                            <a href=""><li>Cửa hàng</li></a>
+                            <a href=""><li>Khuyến mãi</li></a>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <span>Thông tin</span>
+                        <ul>
+                            <a href=""><li>Chính sách và quy định chung</li></a>
+                            <a href=""><li>Chính sách vận chuyển và giao nhận</li></a>
+                            <a href=""><li>Chính sách bảo hành - đổi/trả</li></a>
+                            <a href=""><li>Chính sách bảo mật</li></a>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <span>Hỗ trợ</span>
+                        <ul>
+                            <a href=""><li>Hỗ trợ trực tuyến</li></a>
+                            <a href=""><li>Kiểm tra đơn hàng</li></a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
 </html>

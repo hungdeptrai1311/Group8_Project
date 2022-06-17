@@ -1,0 +1,17 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Jun 17, 2022, 2:31:16 PM
+    Author     : vuman
+*/
+
+.store a{
+    color: black;
+}
+
+.store img{
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}

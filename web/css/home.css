@@ -131,7 +131,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 footer{
     background-color: #F2F2F2;
-    
 }
 
 footer span{
@@ -145,4 +144,8 @@ footer a{
 
 footer a:hover{
     color: red;
+}
+
+footer ul{
+    padding-bottom: 10.5vh;
 }
