@@ -129,6 +129,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     margin-bottom: 5vh;
 }
 
+.small-list img{
+    width: 115vh;
+    height: auto;
+}
+
 footer{
     background-color: #F2F2F2;
 }

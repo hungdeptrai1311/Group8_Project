@@ -12,6 +12,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .store img{
+    width: 120vh;
+}
+
+.store div:first-child{
     padding-top: 3vh;
-    padding-bottom: 3vh;
+}
+
+.store .container div{
+    width: 120vh
 }
