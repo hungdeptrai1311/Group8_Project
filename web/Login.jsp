@@ -118,7 +118,7 @@
                     </div>
                     ${result}
                     <button type="submit" name="go" class="btn btn-block btn-success" style="background-color: orange">Đăng nhập</button>
-                    <a href="FogotLogin.jsp" class="btn btn-block btn-default">Quên mật khẩu</a>
+                    <a href="FogetPassword.jsp" class="btn btn-block btn-default">Quên mật khẩu</a>
                     <a href="CreateAccount.jsp" class="btn btn-block btn-default">Tài khoản mới</a>
                     <a href="DeleteAccount.jsp" class="btn btn-block btn-default">Xóa</a>
                 </form>
