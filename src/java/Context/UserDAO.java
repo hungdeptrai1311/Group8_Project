@@ -22,7 +22,17 @@ public class UserDAO {
     Connection cnn;//kết nối đến db
     Statement stm;//thực thi các câu lệnh sql
     ResultSet rs;//lưu trữ và xử lý dữu liệu 
+    
+    private void connectDB() {
+        try {
+            cnn = (new DBContext()).getConnection();
+            System.out.println("Connect successfully");
+        } catch (Exception e) {
+            System.out.println("Connect error:" + e.getMessage());
+        }
 
+    }
+    
     public boolean checlogin(String username, String password) {
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -39,15 +49,7 @@ public class UserDAO {
         return false;
     }
 
-    private void connectDB() {
-        try {
-            cnn = (new DBContext()).getConnection();
-            System.out.println("Connect successfully");
-        } catch (Exception e) {
-            System.out.println("Connect error:" + e.getMessage());
-        }
-
-    }
+    
 
     public String getNameByAccount(String account) {
         String name = "";
