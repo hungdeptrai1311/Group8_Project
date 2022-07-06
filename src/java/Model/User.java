@@ -9,26 +9,22 @@ package Model;
  * @author baqua
  */
 public class User {
-    String userid, name, email, address, phone;
+    String  name, email, address, phone;
 
     public User() {
     }
 
-    public User(String userid, String name, String email, String address, String phone) {
-        this.userid = userid;
+    public User( String name, String email, String address, String phone) {
+        
         this.name = name;
         this.email = email;
         this.address = address;
         this.phone = phone;
     }
 
-    public String getUserid() {
-        return userid;
-    }
+    
 
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
+    
 
     public String getName() {
         return name;

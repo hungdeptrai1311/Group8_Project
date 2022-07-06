@@ -31,4 +31,33 @@ public class AccountDAO {
         }
 
     }
+    public boolean checkAdmin(String Username) {
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strSelect = "select Account.Role from Account where Account.Username = '" + Username + "'";
+            
+            rs = stm.executeQuery(strSelect);
+            while (rs.next()) {
+                return true;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Login Error:" + e.getMessage());
+        }
+        return false;
+    }
+    public String getRoleByUsername(String Username) {
+        String role = "";
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strSelect = "select Account.Role from Account where Account.Username = '" + Username + "' ";
+
+            rs = stm.executeQuery(strSelect);
+            while (rs.next()) {
+                role = rs.getString(1);
+            }
+        } catch (Exception e) {
+        }
+        return role;
+    }
 }

@@ -3,7 +3,7 @@
     Created on : Jun 10, 2022, 4:01:47 PM
     Author     : vuman
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
