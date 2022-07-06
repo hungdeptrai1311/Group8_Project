@@ -67,7 +67,7 @@ CREATE TABLE [Product] (
 	[ProductID]		INT IDENTITY (1, 1),
 	[Name]			NVARCHAR (150),
 	[Description]	NTEXT,
-	[Price]			REAL,
+	[Price]			INT,
 	[Quantity]		INT,
 	[Status]		BIT,
 	[Image]			VARCHAR(MAX),
@@ -79,6 +79,13 @@ CREATE TABLE [Product] (
 	CHECK			([Quantity] >= 0),
 );
 
+CREATE TABLE [Size](
+	[ProductID] INT,
+	[Size] VARCHAR(150),
+	[Quantity] INT
+
+	FOREIGN KEY		([ProductID])	REFERENCES [Product]([ProductID])
+);
 
 CREATE TABLE [Order](
 	[OrderID]		INT IDENTITY (1, 1),
@@ -118,3 +125,22 @@ BEGIN
 		@Phone
 	);
 END
+
+/*GO
+CREATE VIEW [ProductView]
+AS
+SELECT 
+[ProductID], [Name], [Description], [Price], 
+(SELECT * FROM [Size] WHERE [ProductID] = ProductID) AS [Quantity], 
+[Status], [Image], [BrandID]
+FROM Product;
+*/
+
+GO
+CREATE TRIGGER [shoes_quantity] ON [Size]
+FOR INSERT, UPDATE, DELETE
+AS
+	BEGIN
+		UPDATE [Product]
+		SET [Product].Quantity = (SELECT SUM([Size].Quantity) FROM [Size] WHERE [Product].ProductID = [Size].ProductID)
+	END

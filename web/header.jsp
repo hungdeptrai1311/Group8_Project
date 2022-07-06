@@ -31,9 +31,6 @@
                     </a>
                 </div>
                 <div class="col-sm-3 text-right">
-                    <a title="Danh sách yêu thích" href="">
-                        <i class="fa-solid fa-heart"></i>
-                    </a>
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
             </div>
@@ -54,12 +51,12 @@
         <div class="container">
             <div class="row">
                 <div class="menu">
-                    <nav><a href="brand?brand=converse">CONVERSE</a></nav>
-                    <nav><a href="brand?brand=vans">VANS</a></nav>
-                    <nav><a href="brand?brand=puma">PUMA</a></nav>
-                    <nav><a href="brand?brand=adidas">ADIDAS</a></nav>
-                    <nav><a href="brand?brand=nike">NIKE</a></nav>
-                    <nav><a href="brand?brand=bitis">BITIS</a></nav>
+                    <nav><a href="brand?brand=Converse">CONVERSE</a></nav>
+                    <nav><a href="brand?brand=Vans">VANS</a></nav>
+                    <nav><a href="brand?brand=Puma">PUMA</a></nav>
+                    <nav><a href="brand?brand=Adidas">ADIDAS</a></nav>
+                    <nav><a href="brand?brand=Nike">NIKE</a></nav>
+                    <nav><a href="brand?brand=Bitis">BITIS</a></nav>
                     <nav><a style="color: red" href="">KHUYẾN MÃI</a></nav>
                     <nav><a href="">CỬA HÀNG</a></nav>
                 </div>
