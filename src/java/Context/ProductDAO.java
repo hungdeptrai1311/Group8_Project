@@ -43,8 +43,87 @@ public class ProductDAO {
             while (rs.next()) {
                 int productId = rs.getInt(1);
                 String name = rs.getString(2);
-                String descrip = rs.getString(3);
-                double price = rs.getDouble(4);
+                String descrip = rs.getNString(3);
+                String price = rs.getString(4);
+                int quantity = rs.getInt(5);
+                String status = "Còn hàng";
+                if(!rs.getBoolean(6)){
+                    status = "Hét hàng";
+                }
+                String img = rs.getString(7);
+                int brandId = rs.getInt(8);
+                list.add(new Product(productId, name, descrip, price, quantity, status, img, brandId));
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return list;
+    }
+    
+    public Product getProductByBrandIdAndProductId(int brandId, int productId) {
+        Product p = new Product();
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strSelect = "SELECT * FROM Product WHERE BrandID = " + brandId + "AND ProductID = " +productId;
+
+            rs = stm.executeQuery(strSelect);
+            while (rs.next()) {
+                String name = rs.getString(2);
+                String descrip = rs.getNString(3);
+                String price = rs.getString(4);
+                int quantity = rs.getInt(5);
+                String status = "Còn hàng";
+                if(!rs.getBoolean(6)){
+                    status = "Hét hàng";
+                }
+                String img = rs.getString(7);
+                p = new Product(productId, name, descrip, price, quantity, status, img, brandId);
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return p;
+    }
+    
+    public ArrayList<Product> getProductByBrand(String brand) {
+        ArrayList<Product> list = new ArrayList<Product>();
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strSelect = "SELECT * FROM Product, Brand WHERE Product.BrandID = Brand.BrandID AND Brand.Name = '" + brand + "'";
+
+            rs = stm.executeQuery(strSelect);
+            while (rs.next()) {
+                int productId = rs.getInt(1);
+                String name = rs.getString(2);
+                String descrip = rs.getNString(3);
+                String price = rs.getString(4);
+                int quantity = rs.getInt(5);
+                String status = "Còn hàng";
+                if(!rs.getBoolean(6)){
+                    status = "Hét hàng";
+                }
+                String img = rs.getString(7);
+                int brandId = rs.getInt(8);
+                list.add(new Product(productId, name, descrip, price, quantity, status, img, brandId));
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return list;
+    }
+    
+    public ArrayList<Product> getProductByProductId(int id) {
+        ArrayList<Product> list = new ArrayList<Product>();
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strSelect = "SELECT * FROM Product WHERE ProductID = '" + id + "'";
+
+            rs = stm.executeQuery(strSelect);
+            while (rs.next()) {
+                int productId = rs.getInt(1);
+                String name = rs.getString(2);
+                String descrip = rs.getNString(3);
+                String price = rs.getString(4);
                 int quantity = rs.getInt(5);
                 String status = "Còn hàng";
                 if(!rs.getBoolean(6)){

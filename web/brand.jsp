@@ -14,7 +14,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/home.css">
-        <link rel="stylesheet" href="css/brand.css"/>
+        <link rel="stylesheet" href="css/product.css"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -27,7 +27,7 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
         <script src="js/home.js"></script>
-        <title>Converse</title>
+        <title><%= request.getParameter("brand") %></title>
         <link href="images/icon.png" rel="icon">
         <script src="https://kit.fontawesome.com/72eb2ee2e2.js" crossorigin="anonymous"></script>
         <script src="js/jquery-1.11.1.min.js"></script>
@@ -41,7 +41,7 @@
                 <br>
                 <a href="home">Trang chủ</a>
                 >
-                <a href="converse.jsp">All <%= request.getParameter("brand") %></a>
+                <a href="brand?brand=<%= request.getParameter("brand") %>">All <%= request.getParameter("brand") %></a>
                 
                 <img src="images/banner2/<%= request.getParameter("brand") %>.jpg">
                 
@@ -68,9 +68,9 @@
                     <div class="row">
                         <c:forEach items="${list}" var="x">
                             <div class="col-sm-3">
-                                <img class="img-responsive img-fluid" src="${x.getImg()}"/><br>
-                                ${x.getName()}<br>
-                                <span>Price: </span>${x.getPrice()}<span>đ</span>
+                                <a href="ProductController?productid=${x.getProductId()}&brandid=${x.getBrandId()}&brand=<%= request.getParameter("brand") %>"><img class="img-responsive img-fluid" src="${x.getImg()}"/></a><br>
+                                <p style="text-align: center; text-transform: uppercase; font-size: 15px">${x.getName()}</p>
+                                <p style="text-align: center; font-size: 14px">Price: <span style="font-size: 20px">${x.getPrice()} đ</span></p>
                             </div>
                         </c:forEach>
                     </div>
