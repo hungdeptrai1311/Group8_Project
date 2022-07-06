@@ -1,18 +1,18 @@
 <%-- 
-    Document   : Login
-    Created on : Jul 4, 2022, 9:05:36 AM
-    Author     : baqua
+    Document   : converse
+    Created on : Jun 17, 2022, 1:46:02 PM
+    Author     : vuman
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="css/brand.css"/>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -25,21 +25,11 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
         <script src="js/home.js"></script>
-        <title>Đăng Nhập</title>
+        <title>Converse</title>
         <link href="images/icon.png" rel="icon">
         <script src="https://kit.fontawesome.com/72eb2ee2e2.js" crossorigin="anonymous"></script>
         <script src="js/jquery-1.11.1.min.js"></script>
         <script src="js/header.js"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-        <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/login.css">
     </head>
     <body>
         <header>
@@ -86,6 +76,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="bottom-header">
                 <div class="container">
                     <div class="row">
@@ -108,46 +99,35 @@
             </div>
         </header>
 
-        <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+        <div class="store">
             <div class="container">
-                <div class="card login-card">
-                    <div class="row no-gutters">
-                        <div class="col-md-5">
-                            <img src="images/anh1.jpg" alt="login" class="login-card-img">
-                        </div>
-                        <div class="col-md-7">
-                            <div class="card-body">
-                                <div class="brand-wrapper">
-                                    <img src="images/logo.png" alt="logo" class="logo" style="width: 150px">
-                                </div>
-                                <p class="login-card-description">Đăng nhập </p>
-                                <div class="text-danger" style="margin-bottom: 20px">${result}</div>
-                                
-                                <form action="login" method = "post">
-                                    <div class="form-group">
-
-                                        <input type="text" name="account"  class="form-control" placeholder="Email address">
-                                    </div>
-                                    <div class="form-group mb-4">
-
-                                        <input type="password" name="pass"  class="form-control" placeholder="***********">
-                                    </div>
-                                    <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Login">
-                                </form>
-                                <a href="#!" class="forgot-password-link">Quên mật khẩu?</a>
-                                <p class="login-card-footer-text">Không có tài khoản? <a href="CreateAccount.jsp" class="text-reset">Đăng ký ngay</a></p>
-                                <nav class="login-card-footer-nav">
-                                    <a href="#!">Terms of use.</a>
-                                    <a href="#!">Privacy policy</a>
-                                </nav>
-                            </div>
+                <br>
+                <a href="home.jsp">Trang chủ</a>
+                >
+                <a href="converse.jsp">All converse</a>
+                <img src="images/banner2/converse-banner2.jpg">
+                
+                <div class="sort">
+                    <div class="row">
+                        <div class="col-sm-10"></div>
+                        <div class="col-sm-2">
+                            <select>
+                                <option>Sắp xếp: Mặc định</option>
+                                <option>Sắp xếp: Tên (A - Z)</option>
+                                <option>Sắp xếp: Tên (Z - A)</option>
+                                <option>Sắp xếp: Giá (Thấp > Cao)</option>
+                                <option>Sắp xếp: Giá (Cao > Thấp)</option>
+                                <option>Sắp xếp: Đánh giá (Cao nhất)</option>
+                                <option>Sắp xếp: Đánh giá (Thấp nhất)</option>
+                                <option>Sắp xếp: Kiểu (A - Z)</option>
+                                <option>Sắp xếp: Kiểu (Z - A)</option>
+                            </select>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>     
-
-
+        </div>
+        
         <footer>
             <div class="container">
                 <div class="row">

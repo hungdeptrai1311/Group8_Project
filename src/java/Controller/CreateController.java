@@ -5,6 +5,9 @@
 
 package Controller;
 
+import Context.UserDAO;
+import Model.User;
+import Model.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -29,7 +32,27 @@ public class CreateController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+            UserDAO ud = new UserDAO();
+
+            String username = request.getParameter("username");
+            String pass = request.getParameter("pass");
+            String name = request.getParameter("name");
+            String email = request.getParameter("email");
+            String address = request.getParameter("address");
+            String phone = request.getParameter("phone");
+
+            String result = "Tài khoản của bạn đã tồn tại, vui lòng thử lại";
+            User u = new User("", name, email, address, phone);
+            Account a = new Account("", username, pass, "2");
+
+            if (ud.checkAccount(username)) {
+                request.setAttribute("result", result);
+                request.getRequestDispatcher("CreateAccount.jsp").forward(request, response);
+
+            } else {
+                ud.addUser(u,a);
+                request.getRequestDispatcher("home.jsp").forward(request, response);
+            }
         }
     } 
 

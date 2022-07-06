@@ -1,9 +1,12 @@
 package Context;
 
+import Model.Account;
 import Model.User;
-import com.oracle.jrockit.jfr.Producer;
+import static java.lang.System.out;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,23 +24,14 @@ public class UserDAO {
 
     Connection cnn;//kết nối đến db
     Statement stm;//thực thi các câu lệnh sql
+    PreparedStatement ps;
     ResultSet rs;//lưu trữ và xử lý dữu liệu 
-    
-    private void connectDB() {
-        try {
-            cnn = (new DBContext()).getConnection();
-            System.out.println("Connect successfully");
-        } catch (Exception e) {
-            System.out.println("Connect error:" + e.getMessage());
-        }
 
-    }
-    
-    public boolean checlogin(String username, String password) {
+    public boolean checlogin(String Username, String Password) {
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "select * from Account where username ='" + username + "'and pass ='" + password + "'";
-//            String name = "select name from tblUser ";
+            String strSelect = "select * from Account where Username ='" + Username + "'and Password ='" + Password + "'";
+            
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
                 return true;
@@ -49,28 +43,37 @@ public class UserDAO {
         return false;
     }
 
-    
+    private void connectDB() {
+        try {
+            cnn = (new DBContext()).getConnection();
+            System.out.println("Connect successfully");
+        } catch (Exception e) {
+            System.out.println("Connect error:" + e.getMessage());
+        }
+
+    }
 
     public String getNameByAccount(String account) {
         String name = "";
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "select * from tblUser where account ='" + account + "'";
+            String strSelect = "select [User].Name from [User] join [Account] on [User].UserID = [Account].UserID where [Account].Username = '"+account+"' ";
 
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
-                name = rs.getString(3);
+                name = rs.getString(1);
             }
         } catch (Exception e) {
         }
         return name;
     }
 
-    public boolean checkAccount(String account) {
+    public boolean checkAccount(String username) {
+
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "select * from tblUser where account ='" + account + "'";
-            String name = "select name from tblUser ";
+            String strSelect = "select * from Account where Account.Username = '" + username + "'";
+            
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
                 return true;
@@ -98,7 +101,6 @@ public class UserDAO {
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String strSelect = "select * from tblUser where account ='" + account + "'and dateofbirth ='" + dob + "'";
-            String name = "select name from tblUser ";
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
                 return true;
@@ -110,9 +112,59 @@ public class UserDAO {
         return false;
     }
 
-    
-    
-    
-    
-    
+    public void addUser(User p, Account a) {
+
+        try {
+            stm = cnn.createStatement();
+            stm.execute("insert into [User](UserID, Name, Email, Address, Phone)"
+                    + " values('"+p.getUserid()+"','"+p.getName()+"','"+p.getEmail()+"','"+p.getAddress()+"','"+p.getPhone()+"')"
+                            + "insert into Account( Username,Password,Role) values('"+a.getUsername()+"','"+a.getPassword()+"','2')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public ArrayList<User> getAllUser() {
+        ArrayList<User> list = new ArrayList<User>();
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strSelect = "select * from tblUser ";
+
+            rs = stm.executeQuery(strSelect);
+            while (rs.next()) {
+                String account = rs.getString(1);
+                String pass = rs.getString(2);
+                String name = rs.getString(3);
+                String gender = "Male";
+                if (rs.getBoolean(4) == false) {
+                    gender = "Female";
+                }
+                String address = rs.getString(5);
+                SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyu");
+                String dob = f.format(rs.getDate(6));
+                //list.add(new User(account, pass, name, gender, address, dob));
+                for (User a : list) {
+                   // System.out.println("name:" + a.getAccount());
+
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Login Error:" + e.getMessage());
+        }
+        return list;
+    }
+
+    public void deleteResult(User n) {
+        try {
+            Statement stmt = cnn.createStatement();
+            //String sql = "delete from tblUser where account = '"+n.getAccount()+"'";
+            //stmt.executeUpdate(sql);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

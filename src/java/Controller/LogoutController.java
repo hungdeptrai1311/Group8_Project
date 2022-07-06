@@ -1,8 +1,10 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 
 package Controller;
 
-import Model.User;
-import Context.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -10,13 +12,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
 
 /**
  *
  * @author baqua
  */
-public class LoginController extends HttpServlet {
+public class LogoutController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -29,45 +30,9 @@ public class LoginController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            // Nhận thông tin từ View
-            String account =request.getParameter("account");
-            String pass =request.getParameter("pass");
-            // nhờ model xử lý 
-            String result = "";
-            UserDAO u = new UserDAO();
-            
-            if(u.checlogin(account, pass)){
-                //login thanh cong
-                
-                ArrayList<User> list =new ArrayList<User>();
-                String name = u.getNameByAccount(account);
-                
-                HttpSession session = request.getSession();
-                session.setAttribute("account", account);
-                session.setAttribute("name", name);
-                
-                request.getRequestDispatcher("home.jsp").forward(request, response);
-                
-                
-            }
-            else{
-                if(u.checkAccount(account)){ // account ton tai nhung pass sai 
-                    result = "Wrong password, please try again!";
-                    request.setAttribute("result", result);
-                    request.getRequestDispatcher("Login.jsp").forward(request, response);
-                    //request.getRequestDispatcher("ForgetPass.jsp").forward(request, response);
-                  
-                }
-                else{
-                //that bai
-                result = "Login Failed, your account does not exist!!";
-                request.setAttribute("result", result);
-                
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
-                }
-                
-           }
-            
+            HttpSession session = request.getSession();
+            session.removeAttribute("account");
+            response.sendRedirect("home.jsp");
         }
     } 
 

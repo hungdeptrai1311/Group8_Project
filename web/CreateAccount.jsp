@@ -1,14 +1,18 @@
+<%-- 
+    Document   : Login
+    Created on : Jul 4, 2022, 9:05:36 AM
+    Author     : baqua
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/home.css">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -21,18 +25,21 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
         <script src="js/home.js"></script>
-        <title>EightShoes</title>
+        <title>Đăng Nhập</title>
         <link href="images/icon.png" rel="icon">
-        <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/login.css">
         <script src="https://kit.fontawesome.com/72eb2ee2e2.js" crossorigin="anonymous"></script>
         <script src="js/jquery-1.11.1.min.js"></script>
         <script src="js/header.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/login.css">
     </head>
     <body>
         <header>
@@ -79,7 +86,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="bottom-header">
                 <div class="container">
                     <div class="row">
@@ -107,17 +113,17 @@
                 <div class="card login-card">
                     <div class="row no-gutters">
                         <div class="col-md-5">
-                            <img src="assets/images/anh1.jpg" alt="login" class="login-card-img">
+                            <img src="images/anh1.jpg" alt="login" class="login-card-img">
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
                                 <div class="brand-wrapper">
-                                    <img src="assets/images/logo.png" alt="logo" class="logo" style="width: 150px">
+                                    <img src="images/logo.png" alt="logo" class="logo" style="width: 150px">
                                 </div>
                                 <p class="login-card-description">Sign into your account</p>
-                                <form action="#!">
+                                <form action="create">
                                     <div class="form-group">
-                                        <label for="email" class="sr-only">Email</label>
+                                        Email
                                         <input type="email" name="email" id="email" class="form-control" placeholder="Email address">
                                     </div>
                                     <div class="form-group">
@@ -156,38 +162,35 @@
         </main>
 
 
-
-
-    </body>
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
-                    <span>GIỚI THIỆU</span>
-                    <ul>
-                        <a href=""><li>Về Eight Shoes</li></a>
-                        <a href=""><li>Cửa hàng</li></a>
-                        <a href=""><li>Khuyến mãi</li></a>
-                    </ul>
-                </div>
-                <div class="col-sm-4">
-                    <span>Thông tin</span>
-                    <ul>
-                        <a href=""><li>Chính sách và quy định chung</li></a>
-                        <a href=""><li>Chính sách vận chuyển và giao nhận</li></a>
-                        <a href=""><li>Chính sách bảo hành - đổi/trả</li></a>
-                        <a href=""><li>Chính sách bảo mật</li></a>
-                    </ul>
-                </div>
-                <div class="col-sm-4">
-                    <span>Hỗ trợ</span>
-                    <ul>
-                        <a href=""><li>Hỗ trợ trực tuyến</li></a>
-                        <a href=""><li>Kiểm tra đơn hàng</li></a>
-                    </ul>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span>GIỚI THIỆU</span>
+                        <ul>
+                            <a href=""><li>Về Eight Shoes</li></a>
+                            <a href=""><li>Cửa hàng</li></a>
+                            <a href=""><li>Khuyến mãi</li></a>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <span>Thông tin</span>
+                        <ul>
+                            <a href=""><li>Chính sách và quy định chung</li></a>
+                            <a href=""><li>Chính sách vận chuyển và giao nhận</li></a>
+                            <a href=""><li>Chính sách bảo hành - đổi/trả</li></a>
+                            <a href=""><li>Chính sách bảo mật</li></a>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4">
+                        <span>Hỗ trợ</span>
+                        <ul>
+                            <a href=""><li>Hỗ trợ trực tuyến</li></a>
+                            <a href=""><li>Kiểm tra đơn hàng</li></a>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </body>
 </html>
