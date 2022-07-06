@@ -1,7 +1,9 @@
 
 package Controller;
 
+import Context.AccountDAO;
 import Model.User;
+
 import Context.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,18 +37,28 @@ public class LoginController extends HttpServlet {
             // nhờ model xử lý 
             String result = "";
             UserDAO u = new UserDAO();
-            
+            AccountDAO a = new AccountDAO();
             if(u.checlogin(account, pass)){
                 //login thanh cong
                 
                 ArrayList<User> list =new ArrayList<User>();
                 String name = u.getNameByAccount(account);
                 
-                HttpSession session = request.getSession();
+                if (Integer.parseInt(a.getRoleByUsername(account))== 2){
+                    HttpSession session = request.getSession();
+                    session.setAttribute("account", account);
+                    session.setAttribute("name", name);
+                
+                request.getRequestDispatcher("home.jsp").forward(request, response);
+                }
+                else {
+                    HttpSession session = request.getSession();
                 session.setAttribute("account", account);
                 session.setAttribute("name", name);
                 
-                request.getRequestDispatcher("home.jsp").forward(request, response);
+                request.getRequestDispatcher("newjsp.jsp").forward(request, response);
+                }
+                
                 
                 
             }

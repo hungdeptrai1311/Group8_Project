@@ -112,13 +112,15 @@ public class UserDAO {
         return false;
     }
 
-    public void addUser(User p, Account a) {
+    public void addUser(User u, Account a) {
 
         try {
             stm = cnn.createStatement();
-            stm.execute("insert into [User](UserID, Name, Email, Address, Phone)"
-                    + " values('"+p.getUserid()+"','"+p.getName()+"','"+p.getEmail()+"','"+p.getAddress()+"','"+p.getPhone()+"')"
-                            + "insert into Account( Username,Password,Role) values('"+a.getUsername()+"','"+a.getPassword()+"','2')");
+            stm.execute("INSERT INTO [Account]([Username], [Password], [Role]) \n" +
+"	VALUES ('" + a.getUsername() + "', '" + a.getPassword() + "', '" + a.getRole() + "')\n" +
+"\n" +
+"	INSERT INTO [User]([UserID], [Name], [Email], [Address], [Phone]) \n" +
+"	VALUES ((SELECT [UserID] FROM [Account] WHERE [Username] = '" + a.getUsername() + "'), '" + u.getName() + "', '" + u.getEmail() + "', '" + u.getAddress() + "', '" + u.getPhone() + "')");
         } catch (SQLException e) {
             e.printStackTrace();
         }

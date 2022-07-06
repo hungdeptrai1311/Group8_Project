@@ -25,7 +25,7 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
         <script src="js/home.js"></script>
-        <title>Đăng Nhập</title>
+        <title>Đăng Ký</title>
         <link href="images/icon.png" rel="icon">
         <script src="https://kit.fontawesome.com/72eb2ee2e2.js" crossorigin="anonymous"></script>
         <script src="js/jquery-1.11.1.min.js"></script>
@@ -113,46 +113,50 @@
                 <div class="card login-card">
                     <div class="row no-gutters">
                         <div class="col-md-5">
-                            <img src="images/anh1.jpg" alt="login" class="login-card-img">
+                            <img src="images/anh1.jpg"  alt="login" class="login-card-img" >
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
                                 <div class="brand-wrapper">
-                                    <img src="images/logo.png" alt="logo" class="logo" style="width: 150px">
+                                    <img src="images/logo.png" alt="logo" class="logo" style="width: auto">
                                 </div>
-                                <p class="login-card-description">Sign into your account</p>
+                                <p class="login-card-description">Đăng Ký </p>
                                 <form action="create">
+
                                     <div class="form-group">
-                                        Email
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email address">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email" class="sr-only">Email</label>
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email address">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email" class="sr-only">Email</label>
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email address">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email" class="sr-only">Email</label>
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email address">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email" class="sr-only">Email</label>
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email address">
+                                        <label for="username" >Tài khoản </label>
+                                        <input type="text" name="username" id="username" class="form-control" placeholder="Tên tài khoản">
                                     </div>
                                     <div class="form-group mb-4">
-                                        <label for="password" class="sr-only">Password</label>
+                                        <label for="password" >Mật khẩu</label>
                                         <input type="password" name="password" id="password" class="form-control" placeholder="***********">
                                     </div>
-                                    <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Login">
+                                    <div class="form-group">
+                                        <label for="name" >Họ và tên</label>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Họ và tên">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" >Email</label>
+                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address" >Address</label>
+                                        <input type="text" name="address" id="address" class="form-control" placeholder="Address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone" >Phone</label>
+                                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone">
+                                    </div>
+                                    
+
+                                    <input name="register" id="login" class="btn btn-block login-btn mb-4" type="button" value="Đăng Ký">
                                 </form>
-                                <a href="#!" class="forgot-password-link">Forgot password?</a>
-                                <p class="login-card-footer-text">Don't have an account? <a href="#!" class="text-reset">Register here</a></p>
+                                <a href="#!" class="forgot-password-link">Quên mật khẩu?</a>
+                                <p class="login-card-footer-text">Bạn đã có tài khoản? <a href="#!" class="text-reset">Đăng nhập đây</a></p>
                                 <nav class="login-card-footer-nav">
-                                    <a href="#!">Terms of use.</a>
-                                    <a href="#!">Privacy policy</a>
+                                    <a href="#!">Điều khoản sử dụng</a>
+                                    <br>
+                                    <a href="#!">Chính sách bảo mật</a>
                                 </nav>
                             </div>
                         </div>

@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author baqua
  */
-public class CreateController extends HttpServlet {
+public class RegisterController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -42,16 +42,18 @@ public class CreateController extends HttpServlet {
             String phone = request.getParameter("phone");
 
             String result = "Tài khoản của bạn đã tồn tại, vui lòng thử lại";
-            User u = new User("", name, email, address, phone);
-            Account a = new Account("", username, pass, "2");
+            User u = new User(name, email, address, phone);
+            Account a = new Account( username, pass, "2");
 
             if (ud.checkAccount(username)) {
                 request.setAttribute("result", result);
-                request.getRequestDispatcher("CreateAccount.jsp").forward(request, response);
+                request.getRequestDispatcher("Register.jsp").forward(request, response);
 
             } else {
                 ud.addUser(u,a);
-                request.getRequestDispatcher("home.jsp").forward(request, response);
+                String Result = "Bạn đã đăng ký thành công, vui lòng đăng nhập lại!!"; 
+                request.setAttribute("Result", Result);
+                request.getRequestDispatcher("Register.jsp").forward(request, response);
             }
         }
     } 

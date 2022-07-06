@@ -107,14 +107,11 @@ CREATE PROCEDURE [sp_create_account]
 AS 
 BEGIN
 	INSERT INTO [Account]([Username], [Password], [Role]) 
-	VALUES (@Username, @Password, @Role);
+	VALUES ('admin', '123', '1')
 
 	INSERT INTO [User]([UserID], [Name], [Email], [Address], [Phone]) 
-	VALUES (
-		(SELECT [UserID] FROM [Account] WHERE [Username] = @Username),
-		@Name,
-		@Email,
-		@Address,
-		@Phone
-	);
+	VALUES ((SELECT [UserID] FROM [Account] WHERE [Username] = 'admin'), 'Ba Quan', 'Baquan@gmail.com', 'Vinh', '0912851955')
 END
+select * from Account
+select * from [User]
+select Account.Role from Account where Account.Username = 'admin'

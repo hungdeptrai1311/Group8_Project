@@ -3,7 +3,7 @@
     Created on : Jul 4, 2022, 9:05:36 AM
     Author     : baqua
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,7 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
         <script src="js/home.js"></script>
-        <title>Đăng Nhập</title>
+        <title>Đăng Ký</title>
         <link href="images/icon.png" rel="icon">
         <script src="https://kit.fontawesome.com/72eb2ee2e2.js" crossorigin="anonymous"></script>
         <script src="js/jquery-1.11.1.min.js"></script>
@@ -113,30 +113,49 @@
                 <div class="card login-card">
                     <div class="row no-gutters">
                         <div class="col-md-5">
-                            <img src="images/anh1.jpg" alt="login" class="login-card-img">
+                            <img src="images/anh1.jpg"  alt="login" class="login-card-img" >
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
                                 <div class="brand-wrapper">
-                                    <img src="images/logo.png" alt="logo" class="logo" style="width: 150px">
+                                    <img src="images/logo.png" alt="logo" class="logo" style="width: auto">
                                 </div>
-                                <p class="login-card-description">Đăng nhập </p>
+                                <p class="login-card-description">Đăng Ký </p>
                                 
-                                
-                                <form action="login" method = "post">
-                                    <div class="text-danger" style="margin-bottom: 20px">${result}</div>
+                                <form action="register" method="post">
+                                <div class="text-danger" style="margin-bottom: 20px">${result}</div>
+                                <div class="text-success" style="margin-bottom: 20px">${Result}</div>
                                     <div class="form-group">
-
-                                        <input type="text" name="account"  class="form-control" placeholder="Email address">
+                                        <label for="username" >Tài khoản </label>
+                                        <input type="text" name="username" id="username" class="form-control" placeholder="Tên tài khoản">
                                     </div>
                                     <div class="form-group mb-4">
-
-                                        <input type="password" name="pass"  class="form-control" placeholder="***********">
+                                        <label for="password" >Mật khẩu</label>
+                                        <input type="password" name="pass" id="pass" class="form-control" placeholder="***********">
                                     </div>
-                                    <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Đăng nhập">
+                                    <div class="form-group">
+                                        <label for="name" >Họ và tên</label>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Họ và tên">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email" >Email</label>
+                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address" >Address</label>
+                                        <input type="text" name="address" id="address" class="form-control" placeholder="Address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone" >Phone</label>
+                                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone">
+                                    </div>
+                                    
+
+                                    <input name="register" id="register" class="btn btn-block login-btn mb-4" type="submit" value="Đăng Ký">
                                 </form>
+                                    
                                 <a href="#!" class="forgot-password-link">Quên mật khẩu?</a>
-                                <p class="login-card-footer-text">Không có tài khoản? <a href="Register.jsp" class="text-reset">Đăng ký ngay</a></p>
+                                <p class="login-card-footer-text">Bạn đã có tài khoản? <a href="Login.jsp" class="text-reset">Đăng nhập đây</a></p>
                                 <nav class="login-card-footer-nav">
                                     <a href="#!">Điều khoản sử dụng</a>
                                     <br>
@@ -147,7 +166,7 @@
                     </div>
                 </div>
             </div>
-        </main>     
+        </main>
 
 
         <footer>

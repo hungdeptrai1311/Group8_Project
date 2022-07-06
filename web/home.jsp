@@ -50,7 +50,7 @@
                                 <i class="fa-solid fa-lock"></i> Đăng xuất </a>     
                             </c:if>
                             <c:if test="${sessionScope.account == null}">
-                                <a href="CreateAccount.jsp">
+                                <a href="Register.jsp">
                                 <i class="fa-solid fa-lock"></i> Đăng ký</a> 
                                 | 
                                 <a href="Login.jsp"><i class="fa-solid fa-user"></i>
