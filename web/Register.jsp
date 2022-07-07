@@ -42,71 +42,7 @@
         <link rel="stylesheet" href="assets/css/login.css">
     </head>
     <body>
-        <header>
-            <div class="top-header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6"></div>
-                        <div class="col-md-6 col-sm-12">
-                            Hotline: <a href="tel: 123456789" style="font-weight: bold">0123456789</a> | <a href="Register.jsp"><i
-                                    class="fa-solid fa-lock"></i> Đăng ký</a> | <a href="Login.jsp"><i class="fa-solid fa-user"></i>
-                                Đăng
-                                nhập</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="mid-header">
-                <div class="mid1-header container">
-                    <div class="row">
-                        <div class="col-sm-3"></div>
-                        <div class="col-sm-6">
-                            <a href="home.jsp">
-                                <img class="logo" src="images/logo.png">
-                            </a>
-                        </div>
-                        <div class="col-sm-3 text-right">
-                            <a title="Danh sách yêu thích" href="">
-                                <i class="fa-solid fa-heart"></i>
-                            </a>
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="mid2-header">
-                    <div class="popup-box">
-                        <div class="popup-box__stage">
-                            <div class="popup-box__item">Email hỗ trợ : linhtinh@gmail.com</div>
-                            <div class="popup-box__item">Miễn phí vận chuyển toàn quốc</div>
-                            <div class="popup-box__item">Đăng ký hoặc gọi 0123456789 để cập nhật chương trình khuyến mãi
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bottom-header">
-                <div class="container">
-                    <div class="row">
-                        <div class="menu">
-                            <nav><a href="converse.jsp">CONVERSE</a></nav>
-                            <nav><a href="vans.jsp">VANS</a></nav>
-                            <nav><a href="puma.jsp">PUMA</a></nav>
-                            <nav><a href="adidas.jsp">ADIDAS</a></nav>
-                            <nav><a href="nike.jsp">NIKE</a></nav>
-                            <nav><a href="bitis.jsp">BITIS</a></nav>
-                            <nav><a style="color: red" href="">KHUYẾN MÃI</a></nav>
-                            <nav><a href="">CỬA HÀNG</a></nav>
-                        </div>
-                        <div class="search">
-                            <input name="search" class="sb-search-input" placeholder="Tìm kiếm" type="text" value="">
-                            <button type="button"><i class="fa fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+        <%@include file="header.jsp" %>
 
         <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
             <div class="container">
@@ -169,35 +105,6 @@
         </main>
 
 
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-4">
-                        <span>GIỚI THIỆU</span>
-                        <ul>
-                            <a href=""><li>Về Eight Shoes</li></a>
-                            <a href=""><li>Cửa hàng</li></a>
-                            <a href=""><li>Khuyến mãi</li></a>
-                        </ul>
-                    </div>
-                    <div class="col-sm-4">
-                        <span>Thông tin</span>
-                        <ul>
-                            <a href=""><li>Chính sách và quy định chung</li></a>
-                            <a href=""><li>Chính sách vận chuyển và giao nhận</li></a>
-                            <a href=""><li>Chính sách bảo hành - đổi/trả</li></a>
-                            <a href=""><li>Chính sách bảo mật</li></a>
-                        </ul>
-                    </div>
-                    <div class="col-sm-4">
-                        <span>Hỗ trợ</span>
-                        <ul>
-                            <a href=""><li>Hỗ trợ trực tuyến</li></a>
-                            <a href=""><li>Kiểm tra đơn hàng</li></a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <%@include file="footer.jsp" %>     
     </body>
 </html>
