@@ -67,7 +67,7 @@ CREATE TABLE [Product] (
 	[ProductID]		INT IDENTITY (1, 1),
 	[Name]			NVARCHAR (150),
 	[Description]	NTEXT,
-	[Price]			REAL,
+	[Price]			INT,
 	[Quantity]		INT,
 	[Status]		BIT,
 	[Image]			VARCHAR(MAX),
@@ -79,6 +79,13 @@ CREATE TABLE [Product] (
 	CHECK			([Quantity] >= 0),
 );
 
+CREATE TABLE [Size](
+	[ProductID] INT,
+	[Size] VARCHAR(150),
+	[Quantity] INT
+
+	FOREIGN KEY		([ProductID])	REFERENCES [Product]([ProductID])
+);
 
 CREATE TABLE [Order](
 	[OrderID]		INT IDENTITY (1, 1),
@@ -107,11 +114,33 @@ CREATE PROCEDURE [sp_create_account]
 AS 
 BEGIN
 	INSERT INTO [Account]([Username], [Password], [Role]) 
-	VALUES ('admin', '123', '1')
+	VALUES (@Username, @Password, @Role);
 
 	INSERT INTO [User]([UserID], [Name], [Email], [Address], [Phone]) 
-	VALUES ((SELECT [UserID] FROM [Account] WHERE [Username] = 'admin'), 'Ba Quan', 'Baquan@gmail.com', 'Vinh', '0912851955')
+	VALUES (
+		(SELECT [UserID] FROM [Account] WHERE [Username] = @Username),
+		@Name,
+		@Email,
+		@Address,
+		@Phone
+	);
 END
-select * from Account
-select * from [User]
-select Account.Role from Account where Account.Username = 'admin'
+
+/*GO
+CREATE VIEW [ProductView]
+AS
+SELECT 
+[ProductID], [Name], [Description], [Price], 
+(SELECT * FROM [Size] WHERE [ProductID] = ProductID) AS [Quantity], 
+[Status], [Image], [BrandID]
+FROM Product;
+*/
+
+GO
+CREATE TRIGGER [shoes_quantity] ON [Size]
+FOR INSERT, UPDATE, DELETE
+AS
+	BEGIN
+		UPDATE [Product]
+		SET [Product].Quantity = (SELECT SUM([Size].Quantity) FROM [Size] WHERE [Product].ProductID = [Size].ProductID)
+	END

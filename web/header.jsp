@@ -4,6 +4,7 @@
     Author     : vuman
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <header>
     <div class="top-header">
@@ -11,10 +12,24 @@
             <div class="row">
                 <div class="col-md-6"></div>
                 <div class="col-md-6 col-sm-12">
-                    Hotline: <a href="tel: 123456789" style="font-weight: bold">0123456789</a> | <a href="CreateAccount.jsp"><i
-                            class="fa-solid fa-lock"></i> Đăng ký</a> | <a href="Login.jsp"><i class="fa-solid fa-user"></i>
-                        Đăng
-                        nhập</a>
+                    Hotline: <a href="tel: 123456789" style="font-weight: bold">0123456789</a> | 
+                    <c:if test="${sessionScope.account != null}">
+
+                        <a href="">
+                            <i class="fa-solid fa-user"></i>
+                            ${name} </a>
+                        |
+                        <a href="logout">
+                            <i class="fa-solid fa-lock"></i> Đăng xuất </a>     
+                        </c:if>
+                        <c:if test="${sessionScope.account == null}">
+                        <a href="Register.jsp">
+                            <i class="fa-solid fa-lock"></i> Đăng ký</a> 
+                        | 
+                        <a href="Login.jsp"><i class="fa-solid fa-user"></i>
+                            Đăng
+                            nhập</a>    
+                        </c:if>
                 </div>
             </div>
         </div>
@@ -31,9 +46,6 @@
                     </a>
                 </div>
                 <div class="col-sm-3 text-right">
-                    <a title="Danh sách yêu thích" href="">
-                        <i class="fa-solid fa-heart"></i>
-                    </a>
                     <i class="fa-solid fa-cart-shopping"></i>
                 </div>
             </div>
@@ -54,12 +66,12 @@
         <div class="container">
             <div class="row">
                 <div class="menu">
-                    <nav><a href="brand?brand=converse">CONVERSE</a></nav>
-                    <nav><a href="brand?brand=vans">VANS</a></nav>
-                    <nav><a href="brand?brand=puma">PUMA</a></nav>
-                    <nav><a href="brand?brand=adidas">ADIDAS</a></nav>
-                    <nav><a href="brand?brand=nike">NIKE</a></nav>
-                    <nav><a href="brand?brand=bitis">BITIS</a></nav>
+                    <nav><a href="brand?brand=Converse">CONVERSE</a></nav>
+                    <nav><a href="brand?brand=Vans">VANS</a></nav>
+                    <nav><a href="brand?brand=Puma">PUMA</a></nav>
+                    <nav><a href="brand?brand=Adidas">ADIDAS</a></nav>
+                    <nav><a href="brand?brand=Nike">NIKE</a></nav>
+                    <nav><a href="brand?brand=Bitis">BITIS</a></nav>
                     <nav><a style="color: red" href="">KHUYẾN MÃI</a></nav>
                     <nav><a href="">CỬA HÀNG</a></nav>
                 </div>

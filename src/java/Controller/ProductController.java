@@ -6,6 +6,7 @@
 package Controller;
 
 import Context.ProductDAO;
+import Context.SizeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -20,9 +21,13 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductDAO p = new ProductDAO();    
-        request.setAttribute("list", p.getAllproducts());
-        request.getRequestDispatcher("converse.jsp").forward(request, response);
+        SizeDAO sd = new SizeDAO();
+        ProductDAO pd = new ProductDAO();
+        int productId = Integer.parseInt(request.getParameter("productid"));
+        int brandId = Integer.parseInt(request.getParameter("brandid"));
+        request.setAttribute("size", sd.getAllSizeByProductId(productId));
+        request.setAttribute("product", pd.getProductByBrandIdAndProductId(brandId, productId));
+        request.getRequestDispatcher("product.jsp").forward(request, response);
     } 
 
     @Override
