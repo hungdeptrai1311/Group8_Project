@@ -25,7 +25,7 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
         <script src="js/home.js"></script>
-        <title>Quên Mật Khẩu</title>
+        <title>Đăng Ký</title>
         <link href="images/icon.png" rel="icon">
         <script src="https://kit.fontawesome.com/72eb2ee2e2.js" crossorigin="anonymous"></script>
         <script src="js/jquery-1.11.1.min.js"></script>
@@ -56,16 +56,16 @@
                                 <div class="brand-wrapper">
                                     <img src="images/logo.png" alt="logo" class="logo" style="width: auto">
                                 </div>
-                                <p class="login-card-description">Quên Mật Khẩu </p>
+                                <p class="login-card-description">Đăng Ký </p>
 
-                                <form action="VerifyForgot" method="post">
+                                <form action="newpass" method="post">
                                     <div class="text-success" style="margin-bottom: 20px; font-size: 20px ;font-weight: 20px">Xác nhận qua Email!!</div>
-                                    
+                                    <div class="text-success" style="margin-bottom: 20px; font-size: 20px ;font-weight: 20px">${result}</div>
                                     <div class="text-danger" style="margin-bottom: 20px">${result}</div>
                                     <div class="text-success" style="margin-bottom: 20px">${Result}</div>
                                     <div class="form-group">
-                                        <label for="phone" >Authcode</label>
-                                        <input type="text" name="authcode" id="authcode" class="form-control" placeholder="Authcode">
+                                        <label for="pass" >NewPassword</label>
+                                        <input type="text" name="pass" id="authcode" class="form-control" placeholder="NewPassword">
                                     </div>
                                     
                                     
@@ -73,7 +73,7 @@
                                     <input name="verify" id="verify" class="btn btn-block login-btn mb-4" type="submit" value="Xác Nhận">
                                 </form>
 
-                                <a href="Register.jsp" class="text-reset">Đăng ký ngay</a><br>
+                                <a href="#!" class="forgot-password-link">Quên mật khẩu?</a>
                                 <p class="login-card-footer-text">Bạn đã có tài khoản? <a href="Login.jsp" class="text-reset">Đăng nhập đây</a></p>
                                 <nav class="login-card-footer-nav">
                                     <a href="#!">Điều khoản sử dụng</a>

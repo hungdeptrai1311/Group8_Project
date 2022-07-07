@@ -1,4 +1,4 @@
-package Controller;
+package Context;
 
 import Model.UserCode;
 import java.util.Properties;

@@ -1,7 +1,7 @@
 package Controller;
 
 import Context.UserDAO;
-import Controller.SendEmail;
+import Context.SendEmail;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;

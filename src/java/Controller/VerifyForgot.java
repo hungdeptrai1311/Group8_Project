@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import Model.UserCode;
 
-public class VerifyCode extends HttpServlet {
+public class VerifyForgot extends HttpServlet {
 
    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -27,23 +27,9 @@ public class VerifyCode extends HttpServlet {
             
             
             if(code.equals(user.getCode())){
+
                     
-                    Account a = new Account(session.getAttribute("username").toString(),
-                            session.getAttribute("pass").toString(),
-                            "2");
-                    
-                    User u = new User( session.getAttribute("name").toString(),
-                            session.getAttribute("email").toString(),
-                            session.getAttribute("address").toString(),
-                            session.getAttribute("phone").toString());
-                      
-                    UserDAO ud = new UserDAO();
-                    ud.addUser(u,a);
-                    
-                    String Result = "Bạn đã đăng ký thành công, vui lòng đăng nhập lại!!"; 
-                    request.setAttribute("Result", Result);
-                    
-                    request.getRequestDispatcher("verify.jsp").forward(request, response);
+                    request.getRequestDispatcher("NewPass.jsp").forward(request, response);
                     
             }else{
                 

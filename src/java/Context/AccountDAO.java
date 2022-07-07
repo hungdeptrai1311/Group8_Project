@@ -6,6 +6,7 @@ package Context;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -59,5 +60,15 @@ public class AccountDAO {
         } catch (Exception e) {
         }
         return role;
+    }
+    public void UpdatePass(String a, String pass) {
+        try {
+            Statement stmt = cnn.createStatement();
+            String sql = "UPDATE Account SET Password = '"+pass+"' WHERE Username =  '"+a+"'";
+            stmt.executeUpdate(sql);
+            System.out.println("Update pass success");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

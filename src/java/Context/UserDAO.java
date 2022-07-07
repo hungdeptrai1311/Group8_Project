@@ -84,18 +84,7 @@ public class UserDAO {
         return false;
     }
 
-    public void UpdatePass(String account, String newPass) {
-
-        try {
-            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strUpdate = "update tblUser set pass ='" + newPass + "' where account ='" + account + "'";
-            stm.execute(strUpdate);
-            System.out.println("Update pass success");
-
-        } catch (Exception e) {
-        }
-
-    }
+    
 
     public boolean checkAccountEmail(String account, String email) {
         try {
@@ -121,7 +110,7 @@ public class UserDAO {
                     + "	VALUES ('" + a.getUsername() + "', '" + a.getPassword() + "', '" + a.getRole() + "')\n"
                     + "\n"
                     + "	INSERT INTO [User]([UserID], [Name], [Email], [Address], [Phone]) \n"
-                    + "	VALUES ((SELECT [UserID] FROM [Account] WHERE [Username] = '" + a.getUsername() + "'), '" + u.getName() + "', '" + u.getEmail() + "', '" + u.getAddress() + "', '" + u.getPhone() + "')");
+                    + "	VALUES ((SELECT [UserID] FROM [Account] WHERE [Username] = '" + a.getUsername() + "'), N'" + u.getName() + "', '" + u.getEmail() + "', '" + u.getAddress() + "', '" + u.getPhone() + "')");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -159,12 +148,12 @@ public class UserDAO {
         return list;
     }
 
-    public void deleteResult(User n) {
+    public void UpdatePass(String a, String pass) {
         try {
             Statement stmt = cnn.createStatement();
-            //String sql = "delete from tblUser where account = '"+n.getAccount()+"'";
-            //stmt.executeUpdate(sql);
-
+            String sql = "UPDATE Account SET Password = '"+pass+"' WHERE Username =  '"+a+"'";
+            stmt.executeUpdate(sql);
+            System.out.println("Update pass success");
         } catch (SQLException e) {
             e.printStackTrace();
         }

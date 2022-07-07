@@ -64,7 +64,7 @@
                                     <div class="text-danger" style="margin-bottom: 20px">${result}</div>
                                     <div class="text-success" style="margin-bottom: 20px">${Result}</div>
                                     <div class="form-group">
-                                        <label for="phone" >Authcode</label>
+                                        <label for="authcode" >Authcode</label>
                                         <input type="text" name="authcode" id="authcode" class="form-control" placeholder="Authcode">
                                     </div>
                                     
