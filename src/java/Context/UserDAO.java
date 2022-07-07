@@ -31,7 +31,7 @@ public class UserDAO {
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String strSelect = "select * from Account where Username ='" + Username + "'and Password ='" + Password + "'";
-            
+
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
                 return true;
@@ -57,7 +57,7 @@ public class UserDAO {
         String name = "";
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "select [User].Name from [User] join [Account] on [User].UserID = [Account].UserID where [Account].Username = '"+account+"' ";
+            String strSelect = "select [User].Name from [User] join [Account] on [User].UserID = [Account].UserID where [Account].Username = '" + account + "' ";
 
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
@@ -73,7 +73,7 @@ public class UserDAO {
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String strSelect = "select * from Account where Account.Username = '" + username + "'";
-            
+
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
                 return true;
@@ -97,10 +97,11 @@ public class UserDAO {
 
     }
 
-    public boolean checkAccountDOB(String account, String dob) {
+    public boolean checkAccountEmail(String account, String email) {
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "select * from tblUser where account ='" + account + "'and dateofbirth ='" + dob + "'";
+            String strSelect = "select [Account].Username ,[User].Email from [User] join [Account] on [User].UserID = [Account].UserID \n"
+                    + "where [Account].Username = '"+ account +"' and [User].Email = '"+ email +"'";
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
                 return true;
@@ -116,11 +117,11 @@ public class UserDAO {
 
         try {
             stm = cnn.createStatement();
-            stm.execute("INSERT INTO [Account]([Username], [Password], [Role]) \n" +
-"	VALUES ('" + a.getUsername() + "', '" + a.getPassword() + "', '" + a.getRole() + "')\n" +
-"\n" +
-"	INSERT INTO [User]([UserID], [Name], [Email], [Address], [Phone]) \n" +
-"	VALUES ((SELECT [UserID] FROM [Account] WHERE [Username] = '" + a.getUsername() + "'), '" + u.getName() + "', '" + u.getEmail() + "', '" + u.getAddress() + "', '" + u.getPhone() + "')");
+            stm.execute("INSERT INTO [Account]([Username], [Password], [Role]) \n"
+                    + "	VALUES ('" + a.getUsername() + "', '" + a.getPassword() + "', '" + a.getRole() + "')\n"
+                    + "\n"
+                    + "	INSERT INTO [User]([UserID], [Name], [Email], [Address], [Phone]) \n"
+                    + "	VALUES ((SELECT [UserID] FROM [Account] WHERE [Username] = '" + a.getUsername() + "'), '" + u.getName() + "', '" + u.getEmail() + "', '" + u.getAddress() + "', '" + u.getPhone() + "')");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -147,7 +148,7 @@ public class UserDAO {
                 String dob = f.format(rs.getDate(6));
                 //list.add(new User(account, pass, name, gender, address, dob));
                 for (User a : list) {
-                   // System.out.println("name:" + a.getAccount());
+                    // System.out.println("name:" + a.getAccount());
 
                 }
             }

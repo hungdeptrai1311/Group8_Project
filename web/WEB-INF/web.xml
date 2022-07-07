@@ -40,6 +40,10 @@
         <servlet-name>VerifyCode</servlet-name>
         <servlet-class>Controller.VerifyCode</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ForgotController</servlet-name>
+        <servlet-class>Controller.ForgotController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProductController</servlet-name>
         <url-pattern>/ProductController</url-pattern>
@@ -80,9 +84,18 @@
         <servlet-name>VerifyCode</servlet-name>
         <url-pattern>/VerifyCode</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ForgotController</servlet-name>
+        <url-pattern>/forgot</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>
+            home
+        </welcome-file>
+    </welcome-file-list>
 </web-app>

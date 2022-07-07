@@ -93,7 +93,7 @@
                                     <input name="register" id="register" class="btn btn-block login-btn mb-4" type="submit" value="Đăng Ký">
                                 </form>
 
-                                <a href="#!" class="forgot-password-link">Quên mật khẩu?</a>
+                                <a href="Forgot.jsp" class="forgot-password-link">Quên mật khẩu?</a>
                                 <p class="login-card-footer-text">Bạn đã có tài khoản? <a href="Login.jsp" class="text-reset">Đăng nhập đây</a></p>
                                 <nav class="login-card-footer-nav">
                                     <a href="#!">Điều khoản sử dụng</a>
