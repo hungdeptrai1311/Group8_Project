@@ -58,39 +58,19 @@
                                 </div>
                                 <p class="login-card-description">Đăng Ký </p>
 
-                                <form action="UserVerify" method="post">
+                                <form action="VerifyCode" method="post">
+                                    <div class="text-success" style="margin-bottom: 20px; font-size: 20px ;font-weight: 20px">Xác nhận qua Email!!</div>
+                                    
                                     <div class="text-danger" style="margin-bottom: 20px">${result}</div>
                                     <div class="text-success" style="margin-bottom: 20px">${Result}</div>
                                     <div class="form-group">
-                                        <label for="username" >Tài khoản </label>
-                                        <input type="text" name="username" id="username" class="form-control" placeholder="Tên tài khoản">
+                                        <label for="phone" >Authcode</label>
+                                        <input type="text" name="authcode" id="authcode" class="form-control" placeholder="Authcode">
                                     </div>
-                                    <div class="form-group mb-4">
-                                        <label for="password" >Mật khẩu</label>
-                                        <input type="password" name="pass" id="pass" class="form-control" placeholder="***********">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="name" >Họ và tên</label>
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Họ và tên">
-                                    </div>
+                                    
+                                    
 
-                                    <div class="form-group" >
-                                        <label for="email" >Email</label>
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label for="address" >Address</label>
-                                        <input type="text" name="address" id="address" class="form-control" placeholder="Address">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="phone" >Phone</label>
-                                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone">
-                                    </div>
-
-
-                                    <input name="register" id="register" class="btn btn-block login-btn mb-4" type="submit" value="Đăng Ký">
+                                    <input name="verify" id="verify" class="btn btn-block login-btn mb-4" type="submit" value="Xác Nhận">
                                 </form>
 
                                 <a href="#!" class="forgot-password-link">Quên mật khẩu?</a>
@@ -108,6 +88,12 @@
         </main>
 
 
-        <%@include file="footer.jsp" %>     
+          <%@include file="footer.jsp" %>  
     </body>
 </html>
+
+
+
+
+
+
