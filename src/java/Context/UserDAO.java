@@ -169,4 +169,26 @@ public class UserDAO {
         }
     }
 
+    public User getUserInforByUsername(String username) {
+        User u = new User();
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strSelect = "SELECT [User].UserID, [User].Name, [User].Email, [User].Address, [User].Phone FROM [User], [Account] WHERE [User].UserId = [Account].UserID AND [Account].Username = '" + username + "'";
+
+            rs = stm.executeQuery(strSelect);
+            
+            while(rs.next()){
+                int id = rs.getInt(1);
+                String name = rs.getNString(2);
+                String email = rs.getNString(3);
+                String address = rs.getNString(4);
+                String phone = rs.getString(5);
+                
+                u = new User(id, name, email, address, phone);
+            }
+        } catch (Exception e) {
+        }
+        return u;
+    }
+
 }

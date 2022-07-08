@@ -64,12 +64,12 @@
 
                             <form action="checkout" method="POST" onsubmit="return notAllowToOrder()">
                                 <div class="choose_size">
-                                    <select name="size" id="size" onclick="sizeChanged(this)">
+                                    <select name="size" id="size"" onchange="sizeChanged()">
                                         <option>
                                             Vui lòng chọn size
                                         </option>
                                         <c:forEach  items="${size}" var="s">
-                                            <option value="${s.getId()}">
+                                            <option>
                                                 ${s.getSize()}
                                             </option>
                                         </c:forEach>
@@ -107,12 +107,16 @@
             var login = document.getElementById("alert_login");
             login.style.display = 'none';
 
+            function sizeChanged() {
+                x.value = 1;
+            }
+
             function decrease() {
-                if (x.value == 0) {
+                if (x.value <= 1) {
+                    x.value = 1;
                     return;
-                } else {
-                    x.value--;
                 }
+                x.value--;
             }
             ;
 
@@ -120,18 +124,13 @@
                 var value = document.getElementById("size").value;
             <c:forEach items="${size}" var="s">
                 if (value == '${s.getSize()}') {
-                    if (x.value == ${s.getQuantity()}) {
+                    if (x.value >= ${s.getQuantity()}) {
                         x.value = ${s.getQuantity()};
                         return;
                     }
                 }
             </c:forEach>
                 x.value++;
-            }
-            ;
-
-            function sizeChanged() {
-                x.value = 1;
             }
             ;
 
@@ -142,10 +141,10 @@
                     please.style.display = 'inline-block';
                     return false;
                 }
-                <c:if test="${sessionScope.account == null}">
-                    login.style.display = 'inline-block';
-                    return false;
-                </c:if>
+            <c:if test="${sessionScope.account == null}">
+                login.style.display = 'inline-block';
+                return false;
+            </c:if>
                 return;
             }
             ;
@@ -154,8 +153,12 @@
                 var value = document.getElementById("size").value;
             <c:forEach items="${size}" var="s">
                 if (value == '${s.getSize()}') {
-                    if (x.value >= ${s.getQuantity()}) {
+                    if (x.value > ${s.getQuantity()}) {
                         x.value = ${s.getQuantity()};
+                        return;
+                    }
+                    if (x.value < 1) {
+                        x.value = 1;
                     }
                 }
             </c:forEach>

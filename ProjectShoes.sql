@@ -48,6 +48,7 @@ CREATE TABLE [Bill] (
 	[BillID]		INT IDENTITY (1, 1),
 	[CustomerID]	INT,
 	[Date]			DATETIME NOT NULL,
+	[Address]		NVARCHAR(MAX)
 	
 	PRIMARY KEY		([BillID]),
 	FOREIGN KEY		([CustomerID]) REFERENCES [Account]([UserID]) ON DELETE SET NULL,

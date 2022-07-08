@@ -63,7 +63,7 @@
                                     <div class="text-danger" style="margin-bottom: 20px">${result}</div>
                                     <div class="form-group">
 
-                                        <input type="text" name="account"  class="form-control" placeholder="Email address">
+                                        <input type="text" name="account"  class="form-control" placeholder="* Username">
                                     </div>
                                     <div class="form-group mb-4">
 
