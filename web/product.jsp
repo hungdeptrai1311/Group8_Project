@@ -57,7 +57,7 @@
                                     ${product.getDescrip()}
                                 </div>
                                 <div class="col-sm-8">
-                                    <p><span>Price: </span><span style="color: red; font-size: 32px; font-weight: 500">${product.getPrice()} đ</span></p>
+                                    <p><span>Price: </span><span style="color: red; font-size: 32px; font-weight: 500">${product.getPrice2()} đ</span></p>
                                     <p style="font-size: 11px; font-weight: bold">MIỄN PHÍ VẬN CHUYỂN TOÀN QUỐC VÀ TẶNG VỚ CHÍNH HÃNG KHI ĐẶT HÀNG ONLINE  </p>
                                 </div>
                             </div>
@@ -88,6 +88,10 @@
 
                                 <input type="submit" value="Đặt hàng" id="order" onclick="notAllowToOrder()">
                             </form>
+
+                            <div id="alert_login">
+                                Vui lòng đăng nhập trước khi đặt hàng
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -99,10 +103,9 @@
         <script>
             var x = document.getElementsByClassName("input-qty")[0];
             var please = document.getElementById("alert_choose_size");
-
-            window.onload = function () {
-                please.style.display = 'none';
-            };
+            please.style.display = 'none';
+            var login = document.getElementById("alert_login");
+            login.style.display = 'none';
 
             function decrease() {
                 if (x.value == 0) {
@@ -139,6 +142,10 @@
                     please.style.display = 'inline-block';
                     return false;
                 }
+                <c:if test="${sessionScope.account == null}">
+                    login.style.display = 'inline-block';
+                    return false;
+                </c:if>
                 return;
             }
             ;
@@ -153,8 +160,10 @@
                 }
             </c:forEach>
             }
+            ;
+
+
         </script>
 
     </body>
 </html>
-66

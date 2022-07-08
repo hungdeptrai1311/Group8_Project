@@ -44,7 +44,7 @@ public class ProductDAO {
                 int productId = rs.getInt(1);
                 String name = rs.getString(2);
                 String descrip = rs.getNString(3);
-                String price = rs.getString(4);
+                int price = rs.getInt(4);
                 int quantity = rs.getInt(5);
                 String status = "Còn hàng";
                 if(!rs.getBoolean(6)){
@@ -70,7 +70,7 @@ public class ProductDAO {
             while (rs.next()) {
                 String name = rs.getString(2);
                 String descrip = rs.getNString(3);
-                String price = rs.getString(4);
+                int price = rs.getInt(4);
                 int quantity = rs.getInt(5);
                 String status = "Còn hàng";
                 if(!rs.getBoolean(6)){
@@ -96,7 +96,7 @@ public class ProductDAO {
                 int productId = rs.getInt(1);
                 String name = rs.getString(2);
                 String descrip = rs.getNString(3);
-                String price = rs.getString(4);
+                int price = rs.getInt(4);
                 int quantity = rs.getInt(5);
                 String status = "Còn hàng";
                 if(!rs.getBoolean(6)){
@@ -123,7 +123,7 @@ public class ProductDAO {
                 int productId = rs.getInt(1);
                 String name = rs.getString(2);
                 String descrip = rs.getNString(3);
-                String price = rs.getString(4);
+                int price = rs.getInt(4);
                 int quantity = rs.getInt(5);
                 String status = "Còn hàng";
                 if(!rs.getBoolean(6)){

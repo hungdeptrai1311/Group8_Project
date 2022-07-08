@@ -12,7 +12,7 @@ public class Product {
     private int productId;
     private String name;
     private String descrip;
-    private String price;
+    private int price;
     private int quantity;
     private String status;
     private String img;
@@ -21,7 +21,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int productId, String name, String descrip, String price, int quantity, String status, String img, int brandId) {
+    public Product(int productId, String name, String descrip, int price, int quantity, String status, String img, int brandId) {
         this.productId = productId;
         this.name = name;
         this.descrip = descrip;
@@ -56,11 +56,16 @@ public class Product {
         this.descrip = descrip;
     }
 
-    public String getPrice() {
+    public int getPrice() {
+        return price;
+    }
+    
+    public String getPrice2() {
+        String str = String.valueOf(price);
         int count = 0;
         String tmp = "";
-        for(int i = price.length() - 1; i >= 0; i--){
-            tmp += price.charAt(i);
+        for(int i = str.length() - 1; i >= 0; i--){
+            tmp += str.charAt(i);
         }
         String s = "";
         for(int i = 0; i < tmp.length(); i++){
@@ -69,14 +74,14 @@ public class Product {
             }
             s += tmp.charAt(i);
         }
-        price = "";
+        str = "";
         for(int i = s.length() - 1; i >= 0; i--){
-            price += s.charAt(i);
+            str += s.charAt(i);
         }
-        return price;
+        return str;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

@@ -70,7 +70,7 @@
                             <div class="col-sm-3">
                                 <a href="ProductController?productid=${x.getProductId()}&brandid=${x.getBrandId()}&brand=<%= request.getParameter("brand") %>"><img class="img-responsive img-fluid" src="${x.getImg()}"/></a><br>
                                 <p style="text-align: center; text-transform: uppercase; font-size: 15px">${x.getName()}</p>
-                                <p style="text-align: center; font-size: 14px">Price: <span style="font-size: 20px">${x.getPrice()} đ</span></p>
+                                <p style="text-align: center; font-size: 14px">Price: <span style="font-size: 20px">${x.getPrice2()} đ</span></p>
                             </div>
                         </c:forEach>
                     </div>
