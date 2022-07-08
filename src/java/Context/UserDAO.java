@@ -26,7 +26,17 @@ public class UserDAO {
     Statement stm;//thực thi các câu lệnh sql
     PreparedStatement ps;
     ResultSet rs;//lưu trữ và xử lý dữu liệu 
+    
+    private void connectDB() {
+        try {
+            cnn = (new DBContext()).getConnection();
+            System.out.println("Connect successfully");
+        } catch (Exception e) {
+            System.out.println("Connect error:" + e.getMessage());
+        }
 
+    }
+    
     public boolean checlogin(String Username, String Password) {
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -43,15 +53,7 @@ public class UserDAO {
         return false;
     }
 
-    private void connectDB() {
-        try {
-            cnn = (new DBContext()).getConnection();
-            System.out.println("Connect successfully");
-        } catch (Exception e) {
-            System.out.println("Connect error:" + e.getMessage());
-        }
-
-    }
+    
 
     public String getNameByAccount(String account) {
         String name = "";
@@ -117,36 +119,7 @@ public class UserDAO {
 
     }
 
-    public ArrayList<User> getAllUser() {
-        ArrayList<User> list = new ArrayList<User>();
-        try {
-            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "select * from tblUser ";
-
-            rs = stm.executeQuery(strSelect);
-            while (rs.next()) {
-                String account = rs.getString(1);
-                String pass = rs.getString(2);
-                String name = rs.getString(3);
-                String gender = "Male";
-                if (rs.getBoolean(4) == false) {
-                    gender = "Female";
-                }
-                String address = rs.getString(5);
-                SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyu");
-                String dob = f.format(rs.getDate(6));
-                //list.add(new User(account, pass, name, gender, address, dob));
-                for (User a : list) {
-                    // System.out.println("name:" + a.getAccount());
-
-                }
-            }
-
-        } catch (Exception e) {
-            System.out.println("Login Error:" + e.getMessage());
-        }
-        return list;
-    }
+    
 
     public void UpdatePass(String a, String pass) {
         try {

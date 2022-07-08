@@ -56,24 +56,17 @@
                                 <div class="brand-wrapper">
                                     <img src="images/logo.png" alt="logo" class="logo" style="width: auto">
                                 </div>
-                                <p class="login-card-description">Nhập mật khẩu mới! </p>
+                                
 
-                                <form action="newpass" method="post">
-                                    
-                                    
-                                    
-                                    
-                                    <div class="form-group">
-                                        <label for="pass" >NewPassword</label>
-                                        <input type="text" name="pass" id="pass" class="form-control" placeholder="NewPassword">
-                                    </div>
-                                    
-                                    
+                                <form action="updatepass" method="post">
 
-                                    <input name="verify" id="verify" class="btn btn-block login-btn mb-4" type="submit" value="Xác Nhận">
+                                    <div class="text-success" style="margin-bottom: 20px; font-size: 20px ;font-weight: 20px">Bạn đã thay đổi mật khẩu thành công!!</div>
+
+                                    <input name="verify" id="verify" class="btn btn-block login-btn mb-4" type="submit" value="Trang chính ">
                                 </form>
 
-                                <a href="Forgot" class="forgot-password-link">Quên mật khẩu?</a>
+                                <a href="Forgot" class="forgot-password-link">Quên mật khẩu?</a><br>
+                                <a href="register" class="forgot-password-link">Đăng ký</a>
                                 <p class="login-card-footer-text">Bạn đã có tài khoản? <a href="Login.jsp" class="text-reset">Đăng nhập đây</a></p>
                                 <nav class="login-card-footer-nav">
                                     <a href="#!">Điều khoản sử dụng</a>
@@ -88,7 +81,7 @@
         </main>
 
 
-          <%@include file="footer.jsp" %>  
+        <%@include file="footer.jsp" %>  
     </body>
 </html>
 

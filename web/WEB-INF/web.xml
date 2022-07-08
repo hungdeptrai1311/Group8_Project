@@ -52,6 +52,10 @@
         <servlet-name>NewPassController</servlet-name>
         <servlet-class>Controller.NewPassController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdatePassController</servlet-name>
+        <servlet-class>Controller.UpdatePassController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProductController</servlet-name>
         <url-pattern>/ProductController</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>NewPassController</servlet-name>
         <url-pattern>/newpass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePassController</servlet-name>
+        <url-pattern>/updatepass</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
