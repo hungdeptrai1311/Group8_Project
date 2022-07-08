@@ -36,7 +36,7 @@ public class NewPassController extends HttpServlet {
             a.UpdatePass(session.getAttribute("username").toString(), pass);
             String result = "Bạn đã thay đổi mật khẩu thành công!! ";
             request.setAttribute("result", result);
-            request.getRequestDispatcher("verify.jsp").forward(request, response);
+            request.getRequestDispatcher("NewPass.jsp").forward(request, response);
         }
     } 
 

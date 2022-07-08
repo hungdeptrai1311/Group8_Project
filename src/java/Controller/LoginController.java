@@ -61,14 +61,14 @@ public class LoginController extends HttpServlet {
 
             } else {
                 if (u.checkAccount(account)) { // account ton tai nhung pass sai 
-                    result = "Wrong password, please try again!";
+                    result = "Sai mật khẩu, vui lòng nhập lại!";
                     request.setAttribute("result", result);
                     request.getRequestDispatcher("Login.jsp").forward(request, response);
                     //request.getRequestDispatcher("ForgetPass.jsp").forward(request, response);
 
                 } else {
                     //that bai
-                    result = "Login Failed, your account does not exist!!";
+                    result = "Đăng nhập thất bại, tài khoản của bạn không tồn tại!!";
                     request.setAttribute("result", result);
 
                     request.getRequestDispatcher("Login.jsp").forward(request, response);

@@ -35,7 +35,7 @@ public class VerifyForgot extends HttpServlet {
                 
                 String result = "Bạn đã nhập sai code, vui lòng nhập lại!!"; 
                 request.setAttribute("result", result);
-                request.getRequestDispatcher("verify.jsp").forward(request, response);
+                request.getRequestDispatcher("VerifyForgot.jsp").forward(request, response);
             }
             
         }

@@ -56,15 +56,15 @@
                                 <div class="brand-wrapper">
                                     <img src="images/logo.png" alt="logo" class="logo" style="width: auto">
                                 </div>
-                                <p class="login-card-description">Đăng Ký </p>
+                                <p class="login-card-description">Nhập mật khẩu mới! </p>
 
                                 <form action="newpass" method="post">
-                                    <div class="text-success" style="margin-bottom: 20px; font-size: 20px ;font-weight: 20px">Xác nhận qua Email!!</div>
+                                    
                                     <div class="text-success" style="margin-bottom: 20px; font-size: 20px ;font-weight: 20px">${result}</div>
-                                    <div class="text-danger" style="margin-bottom: 20px">${result}</div>
-                                    <div class="text-success" style="margin-bottom: 20px">${Result}</div>
+                                    
+                                    
                                     <div class="form-group">
-                                        <label for="pass" >NewPassword</label>
+                                        <label for="pass" >New Password</label>
                                         <input type="text" name="pass" id="authcode" class="form-control" placeholder="NewPassword">
                                     </div>
                                     

@@ -43,7 +43,7 @@
     </head>
     <body>
         
-
+        <%@include file="header.jsp" %>    
         <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
             <div class="container">
                 <div class="card login-card">
@@ -90,6 +90,6 @@
         </main>
 
 
-            
+         <%@include file="footer.jsp" %>        
     </body>
 </html>
