@@ -64,8 +64,10 @@
                     <nav><a href="">CỬA HÀNG</a></nav>
                 </div>
                 <div class="search">
-                    <input name="search" class="sb-search-input" placeholder="Tìm kiếm" type="text" value="">
-                    <button type="button"><i class="fa fa-search"></i></button>
+                    <form action="search" method="get">
+                    <input name="search" class="sb-search-input" placeholder="Tìm kiếm" type="text">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
                 </div>
             </div>
         </div>
