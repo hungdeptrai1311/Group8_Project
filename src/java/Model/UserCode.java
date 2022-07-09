@@ -6,25 +6,21 @@ package Model;
 
 /**
  *
- * @author baqua
+ * @author ASUS
  */
-public class User {
-    String  name, email, address, phone;
+public class UserCode {
+    String name;
+    String email ;
+    String code;
 
-    public User() {
+    public UserCode() {
     }
 
-    public User( String name, String email, String address, String phone) {
-        
+    public UserCode(String name, String email, String code) {
         this.name = name;
         this.email = email;
-        this.address = address;
-        this.phone = phone;
+        this.code = code;
     }
-
-    
-
-    
 
     public String getName() {
         return name;
@@ -42,20 +38,12 @@ public class User {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+    public String getCode() {
+        return code;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setCode(String code) {
+        this.code = code;
     }
     
 }

@@ -24,6 +24,42 @@
         <servlet-name>CheckoutController</servlet-name>
         <servlet-class>Controller.CheckoutController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterController</servlet-name>
+        <servlet-class>Controller.RegisterController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>Controller.LogoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserVerify</servlet-name>
+        <servlet-class>Controller.UserVerify</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VerifyCode</servlet-name>
+        <servlet-class>Controller.VerifyCode</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ForgotController</servlet-name>
+        <servlet-class>Controller.ForgotController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VerifyForgot</servlet-name>
+        <servlet-class>Controller.VerifyForgot</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewPassController</servlet-name>
+        <servlet-class>Controller.NewPassController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdatePassController</servlet-name>
+        <servlet-class>Controller.UpdatePassController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProfileController</servlet-name>
+        <servlet-class>Controller.ProfileController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProductController</servlet-name>
         <url-pattern>/ProductController</url-pattern>
@@ -38,19 +74,60 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
-        <url-pattern>/Login</url-pattern>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateController</servlet-name>
-        <url-pattern>/Create</url-pattern>
+        <url-pattern>/create</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CheckoutController</servlet-name>
         <url-pattern>/checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterController</servlet-name>
+        <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserVerify</servlet-name>
+        <url-pattern>/UserVerify</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerifyCode</servlet-name>
+        <url-pattern>/VerifyCode</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ForgotController</servlet-name>
+        <url-pattern>/forgot</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerifyForgot</servlet-name>
+        <url-pattern>/VerifyForgot</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewPassController</servlet-name>
+        <url-pattern>/newpass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePassController</servlet-name>
+        <url-pattern>/updatepass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileController</servlet-name>
+        <url-pattern>/profile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>
+            home
+        </welcome-file>
+    </welcome-file-list>
 </web-app>

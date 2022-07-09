@@ -6,6 +6,7 @@ package Context;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -30,5 +31,44 @@ public class AccountDAO {
             System.out.println("Connect error:" + e.getMessage());
         }
 
+    }
+    public boolean checkAdmin(String Username) {
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strSelect = "select Account.Role from Account where Account.Username = '" + Username + "'";
+            
+            rs = stm.executeQuery(strSelect);
+            while (rs.next()) {
+                return true;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Login Error:" + e.getMessage());
+        }
+        return false;
+    }
+    public String getRoleByUsername(String Username) {
+        String role = "";
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strSelect = "select Account.Role from Account where Account.Username = '" + Username + "' ";
+
+            rs = stm.executeQuery(strSelect);
+            while (rs.next()) {
+                role = rs.getString(1);
+            }
+        } catch (Exception e) {
+        }
+        return role;
+    }
+    public void UpdatePass(String a, String pass) {
+        try {
+            Statement stmt = cnn.createStatement();
+            String sql = "UPDATE Account SET Password = '"+pass+"' WHERE Username =  '"+a+"'";
+            stmt.executeUpdate(sql);
+            System.out.println("Update pass success");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

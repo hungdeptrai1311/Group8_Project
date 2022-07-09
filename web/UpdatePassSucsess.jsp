@@ -3,7 +3,7 @@
     Created on : Jul 4, 2022, 9:05:36 AM
     Author     : baqua
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,7 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
         <script src="js/home.js"></script>
-        <title>Đăng Nhập</title>
+        <title>Đăng Ký</title>
         <link href="images/icon.png" rel="icon">
         <script src="https://kit.fontawesome.com/72eb2ee2e2.js" crossorigin="anonymous"></script>
         <script src="js/jquery-1.11.1.min.js"></script>
@@ -49,34 +49,25 @@
                 <div class="card login-card">
                     <div class="row no-gutters">
                         <div class="col-md-5">
-                            <img src="images/anh1.jpg" alt="login" class="login-card-img">
+                            <img src="images/anh1.jpg"  alt="login" class="login-card-img" >
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
                                 <div class="brand-wrapper">
-                                    <img src="images/logo.png" alt="logo" class="logo" style="width: 150px">
+                                    <img src="images/logo.png" alt="logo" class="logo" style="width: auto">
                                 </div>
-                                <p class="login-card-description">Đăng nhập </p>
                                 
-                                
-                                <form action="login" method = "post">
-                                    <div class="text-danger" style="margin-bottom: 20px">${result}</div>
-                                    <div class="form-group">
 
-                                        <label for="account" >Tài khoản </label>
-                                        <input type="text" name="account" id="account" class="form-control" placeholder="Tên tài khoản">
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label for="pass" >Mật khẩu</label>
-                                        <input type="password" name="pass" id="pass" class="form-control" placeholder="***********">
-                                        
-                                        
-                                        
-                                    </div>
-                                    <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Đăng nhập">
+                                <form action="updatepass" method="post">
+
+                                    <div class="text-success" style="margin-bottom: 20px; font-size: 20px ;font-weight: 20px">Bạn đã thay đổi mật khẩu thành công!!</div>
+
+                                    <input name="verify" id="verify" class="btn btn-block login-btn mb-4" type="submit" value="Trang chính ">
                                 </form>
-                                <a href="Forgot.jsp" class="forgot-password-link">Quên mật khẩu?</a>
-                                <p class="login-card-footer-text">Không có tài khoản? <a href="Register.jsp" class="text-reset">Đăng ký ngay</a></p>
+
+                                <a href="Forgot" class="forgot-password-link">Quên mật khẩu?</a><br>
+                                <a href="register" class="forgot-password-link">Đăng ký</a>
+                                <p class="login-card-footer-text">Bạn đã có tài khoản? <a href="Login.jsp" class="text-reset">Đăng nhập đây</a></p>
                                 <nav class="login-card-footer-nav">
                                     <a href="#!">Điều khoản sử dụng</a>
                                     <br>
@@ -87,9 +78,15 @@
                     </div>
                 </div>
             </div>
-        </main>     
+        </main>
 
 
-        <%@include file="footer.jsp" %>     
+        <%@include file="footer.jsp" %>  
     </body>
 </html>
+
+
+
+
+
+

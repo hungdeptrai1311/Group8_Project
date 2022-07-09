@@ -9,25 +9,19 @@ package Model;
  * @author baqua
  */
 public class Account {
-    String userid, username, password, role;
+    String username, password, role;
 
     public Account() {
     }
 
-    public Account(String userid, String username, String password, String role) {
-        this.userid = userid;
+    public Account( String username, String password, String role) {
+        
         this.username = username;
         this.password = password;
         this.role = role;
     }
 
-    public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
+    
 
     public String getUsername() {
         return username;

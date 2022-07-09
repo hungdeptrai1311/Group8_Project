@@ -1,9 +1,12 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package Controller;
 
-import Context.AccountDAO;
-import Model.User;
-
+import Context.SendEmail;
 import Context.UserDAO;
+import Model.UserCode;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,13 +14,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
 
 /**
  *
  * @author baqua
  */
-public class LoginController extends HttpServlet {
+public class ForgotController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,48 +34,39 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            // Nhận thông tin từ View
-            String account = request.getParameter("account");
-            String pass = request.getParameter("pass");
-            // nhờ model xử lý 
-            String result = "";
-            UserDAO u = new UserDAO();
-            AccountDAO a = new AccountDAO();
-            if (u.checlogin(account, pass)) {
-                //login thanh cong
+            UserDAO ud = new UserDAO();
+            String result = "Tài khoản của bạn hoặc email của bạn đã sai, vui lòng thử lại";
 
-                ArrayList<User> list = new ArrayList<User>();
-                String name = u.getNameByAccount(account);
+            String username = request.getParameter("username");
+            String email = request.getParameter("email");
+            HttpSession session= request.getSession();
+            session.setAttribute("username", username);
+            session.setAttribute("email", email);
 
-                if (Integer.parseInt(a.getRoleByUsername(account)) == 2) {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("account", account);
-                    session.setAttribute("name", name);
+            SendEmail sm = new SendEmail();
+            //get the 6-digit code
+            String code = sm.getRandom();
 
-                    request.getRequestDispatcher("home.jsp").forward(request, response);
+            //craete new user using all information
+            UserCode user = new UserCode(username, email, code);
+
+            //call the send email method
+            boolean test = sm.sendEmail(user);
+
+            //check if the email send successfully
+            if (ud.checkAccountEmail(username, email)) {
+                if (test) {
+                    
+                    session.setAttribute("authcode", user);
+                    response.sendRedirect("VerifyForgot.jsp");
                 } else {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("account", account);
-                    session.setAttribute("name", name);
-
-                    request.getRequestDispatcher("newjsp.jsp").forward(request, response);
+                    result = "";
+                    request.setAttribute("result", result);
+                    request.getRequestDispatcher("Forgot.jsp").forward(request, response);
                 }
-
             } else {
-                if (u.checkAccount(account)) { // account ton tai nhung pass sai 
-                    result = "Sai mật khẩu, vui lòng nhập lại!";
-                    request.setAttribute("result", result);
-                    request.getRequestDispatcher("Login.jsp").forward(request, response);
-                    //request.getRequestDispatcher("ForgetPass.jsp").forward(request, response);
-
-                } else {
-                    //that bai
-                    result = "Đăng nhập thất bại, tài khoản của bạn không tồn tại!!";
-                    request.setAttribute("result", result);
-
-                    request.getRequestDispatcher("Login.jsp").forward(request, response);
-                }
-
+                request.setAttribute("result", result);
+                request.getRequestDispatcher("Forgot.jsp").forward(request, response);
             }
 
         }
