@@ -145,3 +145,13 @@ AS
 		UPDATE [Product]
 		SET [Product].Quantity = (SELECT SUM([Size].Quantity) FROM [Size] WHERE [Product].ProductID = [Size].ProductID)
 	END
+
+CREATE TABLE [Cart] (
+	[UserID]		INT,
+	[ProductID]		INT,
+	[Quantity]		INT,
+	[Size]			VARCHAR(150),
+
+	FOREIGN KEY		([UserID]) REFERENCES [Account]([UserID]) ON DELETE CASCADE,
+	FOREIGN KEY		([ProductID])	REFERENCES [Product]([ProductID])
+);

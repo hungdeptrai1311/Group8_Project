@@ -64,12 +64,13 @@
 
                             <form action="checkout" method="POST" onsubmit="return notAllowToOrder()">
                                 <div class="choose_size">
+                                    <input type="hidden" name="productId" value="${product.getProductId()}">
                                     <select name="size" id="size"" onchange="sizeChanged()">
                                         <option>
                                             Vui lòng chọn size
                                         </option>
                                         <c:forEach  items="${size}" var="s">
-                                            <option>
+                                            <option value="${s.getSize()}">
                                                 ${s.getSize()}
                                             </option>
                                         </c:forEach>

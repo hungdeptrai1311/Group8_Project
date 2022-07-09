@@ -30,7 +30,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     text-decoration: none;
 }
 
-.user_address{
+.table{
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -46,4 +46,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .body{
     padding-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
+
+.m-row{
+    margin-right: -7.5px !important;
+    margin-left: -7.5px !important;
+}
+
+.m-row>.col, .m-row>[class*=col-]{
+    padding-left: 7.5px;
+    padding-right: 7.5px;
+}
+
+.container  label{
+    display: inline;
+}
+
+.container .col-sm-4{
+    max-width: 30%;
+    margin-right: 30px;
+}
+
+
+
