@@ -17,6 +17,16 @@ public class Product {
     private String status;
     private String img;
     private int brandId;
+    
+    private Brand brand;
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
 
     public Product() {
     }
@@ -31,7 +41,8 @@ public class Product {
         this.img = img;
         this.brandId = brandId;
     }
-
+    
+    
     public int getProductId() {
         return productId;
     }
