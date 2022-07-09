@@ -81,12 +81,9 @@ public class EditProductController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         String mame = request.getParameter("name");
         String description = request.getParameter("description");
-        Double price = Double.parseDouble(request.getParameter("price"));
+        String price = request.getParameter("price");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        boolean status = true;
-        if(quantity <= 0){
-            status = false;
-        }
+        String status = request.getParameter("status");
         String image = request.getParameter("image");
         int brand_id = Integer.parseInt(request.getParameter("brand"));
         ProductDAO pDB = new ProductDAO();
