@@ -112,7 +112,7 @@ public class UserDAO {
                     + "	VALUES ('" + a.getUsername() + "', '" + a.getPassword() + "', '" + a.getRole() + "')\n"
                     + "\n"
                     + "	INSERT INTO [User]([UserID], [Name], [Email], [Address], [Phone]) \n"
-                    + "	VALUES ((SELECT [UserID] FROM [Account] WHERE [Username] = '" + a.getUsername() + "'), N'" + u.getName() + "', '" + u.getEmail() + "', '" + u.getAddress() + "', '" + u.getPhone() + "')");
+                    + "	VALUES ((SELECT [UserID] FROM [Account] WHERE [Username] = '" + a.getUsername() + "'), N'" + u.getName() + "', '" + u.getEmail() + "', N'" + u.getAddress() + "', '" + u.getPhone() + "')");
         } catch (SQLException e) {
             e.printStackTrace();
         }

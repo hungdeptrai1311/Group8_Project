@@ -52,11 +52,9 @@ public class LoginController extends HttpServlet {
 
                     request.getRequestDispatcher("home.jsp").forward(request, response);
                 } else {
-                    HttpSession session = request.getSession();
-                    session.setAttribute("account", account);
-                    session.setAttribute("name", name);
+                    
 
-                    request.getRequestDispatcher("newjsp.jsp").forward(request, response);
+                    request.getRequestDispatcher("admin_dashboard.jsp").forward(request, response);
                 }
 
             } else {

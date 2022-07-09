@@ -66,10 +66,12 @@
                                         <label for="account" >Tài khoản </label>
                                         <input type="text" name="account" id="account" class="form-control" placeholder="Tên tài khoản">
                                     </div>
-                                    <div class="form-group mb-4">
+                                    <div class="form-group ">
                                         <label for="pass" >Mật khẩu</label>
                                         <input type="password" name="pass" id="pass" class="form-control" placeholder="***********">
-                                        
+                                        <div style="margin-left: 350px;" id="eye">
+                                            <i class="far fa-eye"></i>
+                                        </div>
                                         
                                         
                                     </div>
