@@ -56,9 +56,9 @@ public class FilterSearchDAO {
                 p.setProductId(rs.getInt("ProductID"));
                 p.setName(rs.getString("Name"));
                 p.setDescrip(rs.getString("Description"));
-                p.setPrice(rs.getString("Price"));
+                p.setPrice(rs.getDouble("Price"));
                 p.setQuantity(rs.getInt("Quantity"));
-                p.setStatus(rs.getString("Status"));
+                p.setStatus(rs.getBoolean("Status"));
                 p.setImg(rs.getString("Image"));
                 p.setBrandId(rs.getInt("BrandID"));
                 Brand b = new Brand();
@@ -125,9 +125,9 @@ public class FilterSearchDAO {
                 p.setProductId(rs.getInt("ProductID"));
                 p.setName(rs.getString("Name"));
                 p.setDescrip(rs.getString("Description"));
-                p.setPrice(rs.getString("Price"));
+                p.setPrice(rs.getDouble("Price"));
                 p.setQuantity(rs.getInt("Quantity"));
-                p.setStatus(rs.getString("Status"));
+                p.setStatus(rs.getBoolean("Status"));
                 p.setImg(rs.getString("Image"));
                 p.setBrandId(rs.getInt("BrandID"));
                 Brand b = new Brand();

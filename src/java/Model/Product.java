@@ -12,9 +12,9 @@ public class Product {
     private int productId;
     private String name;
     private String descrip;
-    private String price;
+    private double price;
     private int quantity;
-    private String status;
+    private boolean status;
     private String img;
     private int brandId;
     
@@ -27,11 +27,13 @@ public class Product {
     public void setBrand(Brand brand) {
         this.brand = brand;
     }
+    
+    
 
     public Product() {
     }
 
-    public Product(int productId, String name, String descrip, String price, int quantity, String status, String img, int brandId) {
+    public Product(int productId, String name, String descrip, double price, int quantity, boolean status, String img, int brandId) {
         this.productId = productId;
         this.name = name;
         this.descrip = descrip;
@@ -41,8 +43,7 @@ public class Product {
         this.img = img;
         this.brandId = brandId;
     }
-    
-    
+
     public int getProductId() {
         return productId;
     }
@@ -67,27 +68,11 @@ public class Product {
         this.descrip = descrip;
     }
 
-    public String getPrice() {
-        int count = 0;
-        String tmp = "";
-        for(int i = price.length() - 1; i >= 0; i--){
-            tmp += price.charAt(i);
-        }
-        String s = "";
-        for(int i = 0; i < tmp.length(); i++){
-            if(i % 3 == 0 && i != 0){
-                s += ".";
-            }
-            s += tmp.charAt(i);
-        }
-        price = "";
-        for(int i = s.length() - 1; i >= 0; i--){
-            price += s.charAt(i);
-        }
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -99,11 +84,11 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 

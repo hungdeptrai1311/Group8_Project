@@ -49,9 +49,9 @@ public class ProductDAO {
                 p.setProductId(rs.getInt(1));
                 p.setName(rs.getString(2));
                 p.setDescrip(rs.getString(3));
-                p.setPrice(rs.getString(4));
+                p.setPrice(rs.getDouble(4));
                 p.setQuantity(rs.getInt(5));
-                p.setStatus(rs.getString(6));
+                p.setStatus(rs.getBoolean(6));
                 p.setImg(rs.getString(7));
                 p.setBrandId(rs.getInt(8));
                 Brand b = new Brand();
@@ -84,9 +84,9 @@ public class ProductDAO {
                 p.setProductId(rs.getInt("ProductID"));
                 p.setName(rs.getString("Name"));
                 p.setDescrip(rs.getString("Description"));
-                p.setPrice(rs.getString("Price"));
+                p.setPrice(rs.getDouble("Price"));
                 p.setQuantity(rs.getInt("Quantity"));
-                p.setStatus(rs.getString("Status"));
+                p.setStatus(rs.getBoolean("Status"));
                 p.setImg(rs.getString("Image"));
                 p.setBrandId(rs.getInt("BrandID"));
                 Brand b = new Brand();
