@@ -59,7 +59,7 @@ public class DeleteProductController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("pid"));
         ProductDAO pDB = new ProductDAO();
         pDB.deleteProduct(id);
-        ArrayList<Product> products = pDB.getAllproducts();
+        ArrayList<Product> products = pDB.getAllproducts1();
         request.setAttribute("products", products);
         request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
     } 
@@ -77,7 +77,7 @@ public class DeleteProductController extends HttpServlet {
 //        int id = Integer.parseInt(request.getParameter("pid"));
 //        ProductDAO pDB = new ProductDAO();
 //        pDB.deleteProduct(id);
-//        ArrayList<Product> products = pDB.getAllproducts();
+//        ArrayList<Product> products = pDB.getAllproducts1();
 //        request.setAttribute("products", products);
 //        request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
     }

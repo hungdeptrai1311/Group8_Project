@@ -57,8 +57,8 @@ public class ProductDetails extends HttpServlet {
     throws ServletException, IOException {
         int pid = Integer.parseInt(request.getParameter("pid"));
         ProductDAO pDB = new ProductDAO();
-        //Product product = pDB.getProduct(pid);
-        //request.setAttribute("product", product);
+        Product product = pDB.getProduct(pid);
+        request.setAttribute("product", product);
         request.getRequestDispatcher("productDetails.jsp").forward(request, response);
     } 
 

@@ -142,69 +142,69 @@ public class ProductDAO {
         }
         return list;
     }
-    
-//    public ArrayList<Product> getAllproducts() {
-//        ArrayList<Product> list = new ArrayList<Product>();
-//        try {
-//            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-//            String strSelect = "SELECT * FROM Product";
-//
-//            rs = stm.executeQuery(strSelect);
-//            while (rs.next()) {
-//                Product p = new Product();
-//                p.setProductId(rs.getInt(1));
-//                p.setName(rs.getString(2));
-//                p.setDescrip(rs.getString(3));
-//                p.setPrice(rs.getDouble(4));
-//                p.setQuantity(rs.getInt(5));
-//                p.setStatus(rs.getBoolean(6));
-//                p.setImg(rs.getString(7));
-//                p.setBrandId(rs.getInt(8));
-//                Brand b = new Brand();
-//                BrandDAO bDB = new BrandDAO();
-//                b = bDB.getBrand(rs.getInt(8));
-//                p.setBrand(b);
-//                list.add(p);
-//            }
-//        } catch (Exception e) {
-//            System.err.println(e.getMessage());
-//        }
-//        return list;
-//    }
+    public ArrayList<Product> getAllproducts1() {
+        ArrayList<Product> list = new ArrayList<Product>();
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strSelect = "SELECT * FROM Product";
 
-//    public Product getProduct(int id) {
-//        Product p = new Product();
-//        try {
-//            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-//            String strGet = "SELECT [ProductID]\n"
-//                    + "      ,[Name]\n"
-//                    + "      ,[Description]\n"
-//                    + "      ,[Price]\n"
-//                    + "      ,[Quantity]\n"
-//                    + "      ,[Status]\n"
-//                    + "      ,[Image]\n"
-//                    + "      ,[BrandID]\n"
-//                    + "  FROM [Product] where ProductID = '" + id + "'";
-//            rs = stm.executeQuery(strGet);
-//            while (rs.next()) {
-//                p.setProductId(rs.getInt("ProductID"));
-//                p.setName(rs.getString("Name"));
-//                p.setDescrip(rs.getString("Description"));
-//                p.setPrice(rs.getDouble("Price"));
-//                p.setQuantity(rs.getInt("Quantity"));
-//                p.setStatus(rs.getBoolean("Status"));
-//                p.setImg(rs.getString("Image"));
-//                p.setBrandId(rs.getInt("BrandID"));
-//                Brand b = new Brand();
-//                BrandDAO bDB = new BrandDAO();
-//                b = bDB.getBrand(rs.getInt("BrandID"));
-//                p.setBrand(b);
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return p;
-//    }
+            rs = stm.executeQuery(strSelect);
+            while (rs.next()) {
+                Product p = new Product();
+                p.setProductId(rs.getInt(1));
+                p.setName(rs.getString(2));
+                p.setDescrip(rs.getString(3));
+                p.setPrice(rs.getString(4));
+                p.setQuantity(rs.getInt(5));
+                p.setStatus(rs.getString(6));
+                p.setImg(rs.getString(7));
+                p.setBrandId(rs.getInt(8));
+                Brand b = new Brand();
+                BrandDAO bDB = new BrandDAO();
+                b = bDB.getBrand(rs.getInt(8));
+                p.setBrand(b);
+                list.add(p);
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return list;
+    }
+
+    public Product getProduct(int id) {
+        Product p = new Product();
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strGet = "SELECT [ProductID]\n"
+                    + "      ,[Name]\n"
+                    + "      ,[Description]\n"
+                    + "      ,[Price]\n"
+                    + "      ,[Quantity]\n"
+                    + "      ,[Status]\n"
+                    + "      ,[Image]\n"
+                    + "      ,[BrandID]\n"
+                    + "  FROM [Product] where ProductID = '" + id + "'";
+            rs = stm.executeQuery(strGet);
+            while (rs.next()) {
+                p.setProductId(rs.getInt("ProductID"));
+                p.setName(rs.getString("Name"));
+                p.setDescrip(rs.getString("Description"));
+                p.setPrice(rs.getString("Price"));
+                p.setQuantity(rs.getInt("Quantity"));
+                p.setStatus(rs.getString("Status"));
+                p.setImg(rs.getString("Image"));
+                p.setBrandId(rs.getInt("BrandID"));
+                Brand b = new Brand();
+                BrandDAO bDB = new BrandDAO();
+                b = bDB.getBrand(rs.getInt("BrandID"));
+                p.setBrand(b);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return p;
+    }
+
 
     public void deleteProduct(int id) {
         try {

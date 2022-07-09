@@ -59,7 +59,7 @@ public class ProductListController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         ProductDAO pDB = new ProductDAO();
-        ArrayList<Product> products = pDB.getAllproducts();
+        ArrayList<Product> products = pDB.getAllproducts1();
         BrandDAO bDB = new BrandDAO();
         ArrayList<Brand> brands = bDB.getAllbrands();
         request.setAttribute("brands", brands);

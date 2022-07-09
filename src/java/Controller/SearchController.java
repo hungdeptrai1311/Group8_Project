@@ -60,11 +60,11 @@ public class SearchController extends HttpServlet {
     throws ServletException, IOException {
         String name = request.getParameter("search");
         FilterSearchDAO sDB = new FilterSearchDAO();
-        //ArrayList<Product> products = sDB.searchProductsByName(name);
+        ArrayList<Product> products = sDB.searchProductsByName(name);
         BrandDAO bDB = new BrandDAO();
         ArrayList<Brand> brands = bDB.getAllbrands();
         request.setAttribute("brands", brands);
-        //request.setAttribute("products", products);
+        request.setAttribute("products", products);
         request.getRequestDispatcher("search.jsp").forward(request, response);
     } 
 
@@ -100,9 +100,9 @@ public class SearchController extends HttpServlet {
             to = Double.parseDouble(request.getParameter("to"));
         }
         FilterSearchDAO fDB = new FilterSearchDAO();
-        //ArrayList<Product> products = fDB.filterSearch(name, brand_id, from, to);
+        ArrayList<Product> products = fDB.filterSearch(name, brand_id, from, to);
         request.setAttribute("brands", brands);
-        //request.setAttribute("products", products);
+        request.setAttribute("products", products);
         request.getRequestDispatcher("search.jsp").forward(request, response);
     }
 

@@ -170,7 +170,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProductListController</servlet-name>
-        <url-pattern>/product_list</url-pattern>
+        <url-pattern>/products_list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeleteProductController</servlet-name>

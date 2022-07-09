@@ -73,25 +73,22 @@ public class AddProductController extends HttpServlet {
     throws ServletException, IOException {
         String mame = request.getParameter("name");
         String description = request.getParameter("description");
-        Double price = Double.parseDouble(request.getParameter("price"));
+        String price = request.getParameter("price");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        boolean status = true;
-        if(quantity <= 0){
-            status = false;
-        }
+        String status = request.getParameter("status");
         String image = request.getParameter("image");
         int brand_id = Integer.parseInt(request.getParameter("brand"));
         ProductDAO pDB = new ProductDAO();
         Product p = new Product();
         p.setName(mame);
         p.setDescrip(description);
-        //p.setPrice(price);
+        p.setPrice(price);
         p.setQuantity(quantity);
-        //p.setStatus(status);
+        p.setStatus(status);
         p.setImg(image);
         p.setBrandId(brand_id);
         pDB.insert(p);
-        ArrayList<Product> products = pDB.getAllproducts();
+        ArrayList<Product> products = pDB.getAllproducts1();
         request.setAttribute("products", products);
         BrandDAO bDB = new BrandDAO();
         ArrayList<Brand> brands = bDB.getAllbrands();
