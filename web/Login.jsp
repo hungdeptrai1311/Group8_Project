@@ -63,11 +63,15 @@
                                     <div class="text-danger" style="margin-bottom: 20px">${result}</div>
                                     <div class="form-group">
 
-                                        <input type="text" name="account"  class="form-control" placeholder="Email address">
+                                        <label for="account" >Tài khoản </label>
+                                        <input type="text" name="account" id="account" class="form-control" placeholder="Tên tài khoản">
                                     </div>
                                     <div class="form-group mb-4">
-
-                                        <input type="password" name="pass"  class="form-control" placeholder="***********">
+                                        <label for="pass" >Mật khẩu</label>
+                                        <input type="password" name="pass" id="pass" class="form-control" placeholder="***********">
+                                        
+                                        
+                                        
                                     </div>
                                     <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Đăng nhập">
                                 </form>

@@ -15,7 +15,7 @@
                     Hotline: <a href="tel: 123456789" style="font-weight: bold">0123456789</a> | 
                     <c:if test="${sessionScope.account != null}">
 
-                        <a href="">
+                        <a href="profile">
                             <i class="fa-solid fa-user"></i>
                             ${name} </a>
                         |

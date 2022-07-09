@@ -66,7 +66,7 @@
                                         <input type="text" name="username" id="username" class="form-control" placeholder="Tên tài khoản">
                                     </div>
                                     <div class="form-group mb-4">
-                                        <label for="password" >Mật khẩu</label>
+                                        <label for="pass" >Mật khẩu</label>
                                         <input type="password" name="pass" id="pass" class="form-control" placeholder="***********">
                                     </div>
                                     <div class="form-group">
