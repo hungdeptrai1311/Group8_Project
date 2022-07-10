@@ -33,8 +33,10 @@ public class CheckoutController extends HttpServlet {
         int userId = ud.getUserInforByUsername(username).getId();
         int productId = Integer.parseInt(request.getParameter("productId"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        cd.addCart(userId, productId, quantity);
-
+        String size = request.getParameter("size");
+        cd.addCart(userId, productId, quantity, size);
+        
+        request.setAttribute("cart", cd.getCartListByUserId(userId));
         request.setAttribute("infor", ud.getUserInforByUsername(username));
         request.getRequestDispatcher("checkout.jsp").forward(request, response);
     }

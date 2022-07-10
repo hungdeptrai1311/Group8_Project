@@ -178,6 +178,43 @@
                 </div>
             </div>
         </div>
+                            
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-8 cart">
+                    <div class="table">
+                        <div class="head">
+                            <i class="fa-solid fa-cart-shopping"></i> Giỏ hàng
+                        </div>
+                        <div class="body">
+                            <table>
+				<thead>
+                                    <tr>
+                                        <td class="qc-image ">Hình ảnh:</td>
+                                        <td class="qc-name ">Tên sản phẩm:</td>
+                                        <td class="qc-model hidden-xs hidden">Dòng sản phẩm:</td>
+                                        <td class="qc-quantity ">Số lượng:</td>
+                                        <td class="qc-price hidden-xs ">Đơn Giá:</td>
+                                        <td class="qc-total ">Tổng cộng:</td>
+                                    </tr>
+				</thead>
+
+                                <tbody>				
+                                    <tr>
+                                        <c:forEach items="${cart}" var="cart"> 
+                                            <td class="qc-image ">
+                                                
+                                            </td>
+                                        </c:forEach>
+                                    </tr>
+				</tbody>
+			</table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <%@include file="footer.jsp" %>
 

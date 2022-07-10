@@ -34,15 +34,44 @@ public class CartDAO {
 
     }
     
-    public void addCart(int userId, int productId, int quantity){
+    public void addCart(int userId, int productId, int quantity, String size){
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strUpdate = "INSERT INTO Cart VALUES (" + userId + ", " + productId + ", " +quantity + ")";
+            String strSelect = "SELECT * FROM Cart WHERE UserID = " + userId + " AND ProductID = " + productId + " AND Size = '" + size + "'";
+            rs = stm.executeQuery(strSelect);
+            while(rs.next()){
+                String strUpdate = "UPDATE Cart SET Quantity = Quantity + " + quantity;
+                stm.execute(strUpdate);
+                return;
+            }
+            String strUpdate = "INSERT INTO Cart VALUES (" + userId + ", " + productId + ", " +quantity + ", '" + size + "')";
             
             stm.execute(strUpdate);
 
         } catch (Exception e) {
             System.err.println("" + e.getMessage());
         }
+    }
+    
+    public ArrayList<Cart> getCartListByUserId(int userId){
+        ArrayList<Cart> list = new ArrayList<Cart>();
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strSelect = "SELECT * FROM Cart WHERE UserID = " + userId;
+            rs = stm.executeQuery(strSelect);
+            
+            while(rs.next()){
+                int productId = rs.getInt(2);
+                int quantity = rs.getInt(3);
+                String size = rs.getString(4);
+                
+                list.add(new Cart(userId, productId, quantity, size));
+            }
+            
+            return list;
+        } catch (Exception e) {
+            System.err.println("" + e.getMessage());
+        }
+        return null;
     }
 }

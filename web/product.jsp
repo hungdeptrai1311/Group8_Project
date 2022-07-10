@@ -93,6 +93,10 @@
                             <div id="alert_login">
                                 Vui lòng đăng nhập trước khi đặt hàng
                             </div>
+                                    
+                            <div id="alert_cart_quantity">
+                                Số hàng của quý khách vượt quá số hàng trong kho
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,6 +111,8 @@
             please.style.display = 'none';
             var login = document.getElementById("alert_login");
             login.style.display = 'none';
+            var cart = document.getElementById("alert_cart_quantity");
+            cart.style.display = 'none';
 
             function sizeChanged() {
                 x.value = 1;
@@ -142,10 +148,28 @@
                     please.style.display = 'inline-block';
                     return false;
                 }
-            <c:if test="${sessionScope.account == null}">
-                login.style.display = 'inline-block';
-                return false;
-            </c:if>
+
+                <c:if test="${sessionScope.account == null}">
+                    login.style.display = 'inline-block';
+                    return false;
+                </c:if>
+
+                <c:if test="${sessionScope.account != null}">
+                    <c:forEach items="${size}" var="s">
+                    if (value == '${s.getSize()}') {
+                        <c:forEach items="${cart}" var="cart">
+                            if(value = ${cart.getSize()} && <%= request.getParameter("productid")%> == ${cart.getProductId()}){
+                                if (x.value > (${s.getQuantity()} - ${cart.getQuantity()})){
+                                    cart.style.display = 'block';
+                                    return false;
+                                }
+                            }
+                        </c:forEach>
+                    }
+                    </c:forEach>
+                </c:if>
+
+
                 return;
             }
             ;
