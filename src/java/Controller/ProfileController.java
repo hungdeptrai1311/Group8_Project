@@ -5,12 +5,16 @@
 
 package Controller;
 
+import Context.UserDAO;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  *
@@ -29,7 +33,15 @@ public class ProfileController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            request.getRequestDispatcher("UserProfile.jsp").forward(request, response);
+             HttpSession session = request.getSession();
+              UserDAO ud = new UserDAO();
+              User u = new User();
+            String account = session.getAttribute("account").toString();
+            u = ud.getUserDetails(account);
+           
+            
+           request.setAttribute("u", u);
+           request.getRequestDispatcher("UserProfile.jsp").forward(request, response);
         }
     } 
 

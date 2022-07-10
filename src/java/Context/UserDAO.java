@@ -131,5 +131,44 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+    
+    public String getUserByAccount(String account) {
+        String name = "";
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strSelect = "";
 
+            rs = stm.executeQuery(strSelect);
+            while (rs.next()) {
+                name = rs.getString(1);
+            }
+        } catch (Exception e) {
+        }
+        return name;
+    }
+    public User getUserDetails(String account) {
+        User p = new User();
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strSelect = "select  [User].Name,[User].Email, [User].Address, [User].Phone\n" +
+"	from [User] join [Account] on [User].UserID = [Account].UserID \n" +
+"                    where [Account].Username = '"+account+"' ";
+
+            rs = stm.executeQuery(strSelect);
+            
+            while (rs.next()) {
+                
+                p.setName(rs.getNString(1));
+                p.setEmail(rs.getString(2));
+                p.setAddress(rs.getNString(3));
+                p.setPhone(rs.getString(4));
+               
+                
+                
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return p ;
+    }
 }

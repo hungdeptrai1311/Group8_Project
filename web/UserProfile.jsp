@@ -5,6 +5,9 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList" %>
+<%@page import="Context.UserDAO" %>
+<%@page import="Model.User" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -40,7 +43,7 @@
     <body>
         <%@include file="header.jsp" %>
 
-               
+          
         <section class="py-5 my-5">
             
             <div class="container">
@@ -59,65 +62,65 @@
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                             <a class="nav-link active" id="account-tab" data-toggle="pill" href="#account" role="tab" aria-controls="account" aria-selected="true">
                                 <i class="fa fa-home text-center mr-1"></i> 
-                                Account
+                                Tài Khoản
                             </a>
                             <a class="nav-link" id="password-tab" data-toggle="pill" href="#password" role="tab" aria-controls="password" aria-selected="false">
                                 <i class="fa fa-key text-center mr-1"></i> 
-                                Password
+                                Mật Khẩu
                             </a>
                             <a class="nav-link" id="security-tab" data-toggle="pill" href="#security" role="tab" aria-controls="security" aria-selected="false">
                                 <i class="fa fa-user text-center mr-1"></i> 
-                                Security
+                                Bảo mật
                             </a>
                             <a class="nav-link" id="application-tab" data-toggle="pill" href="#history" role="tab" aria-controls="history" aria-selected="false">
                                 <i class="fa fa-tv text-center mr-1"></i> 
-                                History Shopping
+                                Lịch sử mua hàng
                             </a>
                             <a class="nav-link" id="notification-tab" data-toggle="pill" href="#notification" role="tab" aria-controls="notification" aria-selected="false">
                                 <i class="fa fa-bell text-center mr-1"></i> 
-                                Notification
+                                Thông báo
                             </a>
                         </div>
                     </div>
                     <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
-                            <h3 class="mb-4">Account Settings</h3>
+                            <h3 class="mb-4">Cài đặt tài khoản</h3>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input type="text" class="form-control" name="username" id="username" value="">
+                                        <label for="username">Tài Khoản</label>
+                                        <input type="text" class="form-control" name="username" id="username" value="${account}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" class="form-control" name="name" id="name" value="">
+                                        <label for="name">Họ và tên</label>
+                                        <input type="text" class="form-control" name="name" id="name" value="${u.name}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="email" class="form-control" name="email" id="email" value="">
+                                        <input type="email" class="form-control" name="email" id="email" value="${u.email}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="phone">Phone number</label>
-                                        <input type="text" class="form-control" name="phone" id="phone" value="">
+                                        <label for="phone">Số điện thoại</label>
+                                        <input type="text" class="form-control" name="phone" id="phone" value="${u.phone}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="address">Address</label>
-                                        <input type="text" class="form-control" name="address" id="address" value="">
+                                        <label for="address">Địa chỉ</label>
+                                        <input type="text" class="form-control" name="address" id="address" value="${u.address}">
                                     </div>
                                 </div>
                                 
                             </div>
                             <div>
-                                <button class="btn btn-primary">Update</button>
-                                <button class="btn btn-light">Cancel</button>
+                                <button class="btn btn-primary">Chỉnh sửa</button>
+                                
                             </div>
                         </div>
                         <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
@@ -125,28 +128,37 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Old password</label>
-                                        <input type="password" class="form-control">
+                                        <label for="oldpass" >Mật khẩu cũ</label>
+                                        <div style="margin-left: 335px; position: absolute; margin-top:10px; cursor: pointer" id="eye">
+                                            <i class="far fa-eye"></i>
+                                        </div>
+                                        <input type="password" name="oldpass" id="oldpass" class="form-control" placeholder="***********">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>New password</label>
-                                        <input type="password" class="form-control">
+                                        <label for="pass" >Mật khẩu mới</label>
+                                        <div style="margin-left: 335px; position: absolute; margin-top:10px; cursor: pointer" id="eye1">
+                                            <i class="far fa-eye"></i>
+                                        </div>
+                                        <input type="password" name="pass" id="pass" class="form-control" placeholder="***********">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Confirm new password</label>
-                                        <input type="password" class="form-control">
+                                        <label for="cfpass" >Xác nhận mật khẩu mới</label>
+                                        <div style="margin-left: 335px; position: absolute; margin-top:10px; cursor: pointer" id="eye2">
+                                            <i class="far fa-eye"></i>
+                                        </div>
+                                        <input type="password" name="cfpass" id="cfpass" class="form-control" placeholder="***********">
                                     </div>
                                 </div>
                             </div>
                             <div>
-                                <button class="btn btn-primary">Update</button>
-                                <button class="btn btn-light">Cancel</button>
+                                <button class="btn btn-primary">Cập nhật</button>
+                                <button class="btn btn-light">Hủy</button>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
@@ -243,6 +255,47 @@
 
 
 
-        <%@include file="footer.jsp" %>          
+        <%@include file="footer.jsp" %>   
+        
     </body>
+    <script>
+        $(document).ready(function(){
+    $('#eye').click(function(){
+        $(this).toggleClass('open');
+        $(this).children('i').toggleClass('fa-eye-slash fa-eye');
+        if($(this).hasClass('open')){
+            $(this).next().attr('type', 'text');
+        }else{
+            $(this).next().attr('type', 'password');
+        }
+    });
+});
+    </script>
+    <script>
+        $(document).ready(function(){
+    $('#eye1').click(function(){
+        $(this).toggleClass('open');
+        $(this).children('i').toggleClass('fa-eye-slash fa-eye');
+        if($(this).hasClass('open')){
+            $(this).next().attr('type', 'text');
+        }else{
+            $(this).next().attr('type', 'password');
+        }
+    });
+});
+    </script>
+    <script>
+        $(document).ready(function(){
+    $('#eye2').click(function(){
+        $(this).toggleClass('open');
+        $(this).children('i').toggleClass('fa-eye-slash fa-eye');
+        if($(this).hasClass('open')){
+            $(this).next().attr('type', 'text');
+        }else{
+            $(this).next().attr('type', 'password');
+        }
+    });
+});
+    </script>
+    
 </html>
