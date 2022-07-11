@@ -4,7 +4,7 @@
  */
 package Context;
 
-import Model.Size;
+import Model.Brand;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -14,9 +14,9 @@ import java.util.ArrayList;
  *
  * @author vuman
  */
-public class SizeDAO {
+public class BrandDAO {
 
-    public SizeDAO() {
+    public BrandDAO() {
         connectDB();
     }
 
@@ -33,21 +33,24 @@ public class SizeDAO {
         }
     }
 
-    public ArrayList<Size> getAllSizeByProductId(int id) {
-        ArrayList<Size> list = new ArrayList<Size>();
+    public ArrayList<Brand> getAllBrands() {
+        ArrayList<Brand> list = new ArrayList<Brand>();
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "SELECT * FROM Size WHERE ProductID = " + id;
+            String strSelect = "SELECT * FROM Brand";
 
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
-                String size = rs.getString(2);
-                int quantity = rs.getInt(3);
-                list.add(new Size(id, size, quantity));
+                int id = rs.getInt(1);
+                String name = rs.getString(2);
+
+                list.add(new Brand(id, name));
             }
+
+            return list;
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.err.println("" + e.getMessage());
         }
-        return list;
+        return null;
     }
 }

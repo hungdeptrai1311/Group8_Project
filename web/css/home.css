@@ -109,12 +109,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 @-webkit-keyframes slide {
-    20% {margin-left: 0px;}
-    30% {margin-left: -195vh;}
-    50% {margin-left: -195vh;}
-    60% {margin-left: -390vh;}
-    80% {margin-left: -390vh;}
-    90% {margin-left: -585vh;}
+    20% {
+        margin-left: 0px;
+    }
+    30% {
+        margin-left: -195vh;
+    }
+    50% {
+        margin-left: -195vh;
+    }
+    60% {
+        margin-left: -390vh;
+    }
+    80% {
+        margin-left: -390vh;
+    }
+    90% {
+        margin-left: -585vh;
+    }
 }
 
 .brand-logo img{

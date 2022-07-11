@@ -13,6 +13,7 @@ import java.sql.Statement;
  * @author baqua
  */
 public class AccountDAO {
+
     //tạo các thành phần kết nối xử lý dữ liệu
     public AccountDAO() {
         connectDB();
@@ -21,7 +22,7 @@ public class AccountDAO {
     Connection cnn;//kết nối đến db
     Statement stm;//thực thi các câu lệnh sql
     ResultSet rs;//lưu trữ và xử lý dữu liệu 
-    
+
     private void connectDB() {
         try {
             cnn = (new DBContext()).getConnection();
@@ -31,11 +32,12 @@ public class AccountDAO {
         }
 
     }
+
     public boolean checkAdmin(String Username) {
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String strSelect = "select Account.Role from Account where Account.Username = '" + Username + "'";
-            
+
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
                 return true;
@@ -46,6 +48,7 @@ public class AccountDAO {
         }
         return false;
     }
+
     public String getRoleByUsername(String Username) {
         String role = "";
         try {

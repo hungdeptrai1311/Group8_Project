@@ -9,6 +9,7 @@ package Model;
  * @author baqua
  */
 public class User {
+
     private int id;
     private String name;
     private String email;
@@ -18,8 +19,8 @@ public class User {
     public User() {
     }
 
-    public User( String name, String email, String address, String phone) {
-        
+    public User(String name, String email, String address, String phone) {
+
         this.name = name;
         this.email = email;
         this.address = address;
@@ -41,8 +42,6 @@ public class User {
     public void setId(int id) {
         this.id = id;
     }
-
-    
 
     public String getName() {
         return name;
@@ -75,5 +74,5 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    
+
 }

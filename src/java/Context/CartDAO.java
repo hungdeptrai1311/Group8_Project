@@ -19,11 +19,11 @@ public class CartDAO {
     public CartDAO() {
         connectDB();
     }
-    
+
     Connection cnn;//kết nối đến db
     Statement stm;//thực thi các câu lệnh sql
     ResultSet rs;//lưu trữ và xử lý dữu liệu 
-    
+
     private void connectDB() {
         try {
             cnn = (new DBContext()).getConnection();
@@ -33,41 +33,43 @@ public class CartDAO {
         }
 
     }
-    
-    public void addCart(int userId, int productId, int quantity, String size){
+
+    public void addCart(int userId, int productId, int quantity, String size) {
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "SELECT * FROM Cart WHERE UserID = " + userId + " AND ProductID = " + productId + " AND Size = '" + size + "'";
-            rs = stm.executeQuery(strSelect);
-            while(rs.next()){
-                String strUpdate = "UPDATE Cart SET Quantity = Quantity + " + quantity;
-                stm.execute(strUpdate);
+            rs = stm.executeQuery("SELECT *, (SELECT Quantity FROM Product WHERE Product.ProductID = Cart.ProductID) AS [StockQuantity] FROM Cart WHERE UserID = " + userId + " AND ProductID = " + productId + " AND Size = '" + size + "'");
+            if (rs.next()) {
+                int oldQuantity = rs.getInt("Quantity");
+                int stockQuantity = rs.getInt("StockQuantity");
+
+                if (oldQuantity + quantity > stockQuantity) {
+                    quantity = stockQuantity - oldQuantity;
+                }
+
+                stm.execute("UPDATE Cart SET Quantity = Quantity + " + quantity + " WHERE UserID = " + userId + " AND ProductID = " + productId + " AND Size = '" + size + "'");
                 return;
             }
-            String strUpdate = "INSERT INTO Cart VALUES (" + userId + ", " + productId + ", " +quantity + ", '" + size + "')";
-            
-            stm.execute(strUpdate);
-
+            stm.execute("INSERT INTO Cart VALUES (" + userId + ", " + productId + ", " + quantity + ", '" + size + "')");
         } catch (Exception e) {
-            System.err.println("" + e.getMessage());
+            e.printStackTrace();
         }
     }
-    
-    public ArrayList<Cart> getCartListByUserId(int userId){
-        ArrayList<Cart> list = new ArrayList<Cart>();
+
+    public ArrayList<Cart> getCartListByUserId(int userId) {
+        ArrayList<Cart> list = new ArrayList<>();
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String strSelect = "SELECT * FROM Cart WHERE UserID = " + userId;
             rs = stm.executeQuery(strSelect);
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 int productId = rs.getInt(2);
                 int quantity = rs.getInt(3);
                 String size = rs.getString(4);
-                
+
                 list.add(new Cart(userId, productId, quantity, size));
             }
-            
+
             return list;
         } catch (Exception e) {
             System.err.println("" + e.getMessage());

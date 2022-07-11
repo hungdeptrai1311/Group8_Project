@@ -57,10 +57,10 @@
                                     <img src="images/logo.png" alt="logo" class="logo" style="width: auto">
                                 </div>
                                 <p class="login-card-description">Đăng Ký </p>
-                                
+
                                 <form action="register" method="post">
-                                <div class="text-danger" style="margin-bottom: 20px">${result}</div>
-                                <div class="text-success" style="margin-bottom: 20px">${Result}</div>
+                                    <div class="text-danger" style="margin-bottom: 20px">${result}</div>
+                                    <div class="text-success" style="margin-bottom: 20px">${Result}</div>
                                     <div class="form-group">
                                         <label for="username" >Tài khoản </label>
                                         <input type="text" name="username" id="username" class="form-control" placeholder="Tên tài khoản">
@@ -85,11 +85,11 @@
                                         <label for="phone" >Phone</label>
                                         <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone">
                                     </div>
-                                    
+
 
                                     <input name="register" id="register" class="btn btn-block login-btn mb-4" type="submit" value="Đăng Ký">
                                 </form>
-                                    
+
                                 <a href="#!" class="forgot-password-link">Quên mật khẩu?</a>
                                 <p class="login-card-footer-text">Bạn đã có tài khoản? <a href="Login.jsp" class="text-reset">Đăng nhập đây</a></p>
                                 <nav class="login-card-footer-nav">

@@ -9,19 +9,18 @@ package Model;
  * @author baqua
  */
 public class Account {
+
     String username, password, role;
 
     public Account() {
     }
 
-    public Account( String username, String password, String role) {
-        
+    public Account(String username, String password, String role) {
+
         this.username = username;
         this.password = password;
         this.role = role;
     }
-
-    
 
     public String getUsername() {
         return username;
@@ -46,5 +45,5 @@ public class Account {
     public void setRole(String role) {
         this.role = role;
     }
-    
+
 }

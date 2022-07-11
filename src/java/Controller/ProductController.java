@@ -10,9 +10,7 @@ import Context.SizeDAO;
 import Context.UserDAO;
 import Model.Cart;
 import Model.User;
-import com.oracle.wls.shaded.org.apache.bcel.generic.AALOAD;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -32,29 +30,23 @@ public class ProductController extends HttpServlet {
         SizeDAO sd = new SizeDAO();
         ProductDAO pd = new ProductDAO();
         CartDAO cd = new CartDAO();
-        User u = new User();
         HttpSession session = request.getSession();
-        ArrayList<Cart> list = new ArrayList<Cart>();
+        ArrayList<Cart> list = null;
 
         int productId = Integer.parseInt(request.getParameter("productid"));
         int brandId = Integer.parseInt(request.getParameter("brandid"));
         if (session.getAttribute("account") != null) {
             String username = session.getAttribute("account").toString();
-            u = ud.getUserInforByUsername(username);
+            User u = ud.getUserInforByUsername(username);
             list = cd.getCartListByUserId(u.getId());
         }
 
         if (list != null) {
-            request.setAttribute("cart", cd.getCartListByUserId(u.getId()));
+            request.setAttribute("cart", list);
         }
+
         request.setAttribute("size", sd.getAllSizeByProductId(productId));
         request.setAttribute("product", pd.getProductByBrandIdAndProductId(brandId, productId));
         request.getRequestDispatcher("product.jsp").forward(request, response);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        super.doPost(request, response);
-    }
-
 }

@@ -31,7 +31,7 @@ public class UserDAO {
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String strSelect = "select * from Account where Username ='" + Username + "'and Password ='" + Password + "'";
-            
+
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
                 return true;
@@ -57,7 +57,7 @@ public class UserDAO {
         String name = "";
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "select [User].Name from [User] join [Account] on [User].UserID = [Account].UserID where [Account].Username = '"+account+"' ";
+            String strSelect = "select [User].Name from [User] join [Account] on [User].UserID = [Account].UserID where [Account].Username = '" + account + "' ";
 
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
@@ -73,7 +73,7 @@ public class UserDAO {
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String strSelect = "select * from Account where Account.Username = '" + username + "'";
-            
+
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
                 return true;
@@ -112,7 +112,7 @@ public class UserDAO {
         return false;
     }
 
-     public void addUser(User u, Account a) {
+    public void addUser(User u, Account a) {
 
         try {
             stm = cnn.createStatement();
@@ -147,7 +147,7 @@ public class UserDAO {
                 String dob = f.format(rs.getDate(6));
                 //list.add(new User(account, pass, name, gender, address, dob));
                 for (User a : list) {
-                   // System.out.println("name:" + a.getAccount());
+                    // System.out.println("name:" + a.getAccount());
 
                 }
             }
@@ -176,14 +176,14 @@ public class UserDAO {
             String strSelect = "SELECT [User].UserID, [User].Name, [User].Email, [User].Address, [User].Phone FROM [User], [Account] WHERE [User].UserId = [Account].UserID AND [Account].Username = '" + username + "'";
 
             rs = stm.executeQuery(strSelect);
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 int id = rs.getInt(1);
                 String name = rs.getNString(2);
                 String email = rs.getNString(3);
                 String address = rs.getNString(4);
                 String phone = rs.getString(5);
-                
+
                 u = new User(id, name, email, address, phone);
             }
         } catch (Exception e) {

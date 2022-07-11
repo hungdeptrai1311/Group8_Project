@@ -99,122 +99,175 @@
             </div>
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="table">
-                        <div class="head">
-                            <i class="fa-solid fa-location-dot"></i> Địa chỉ
-                        </div>
-                        <div class="body">
-                            <input type="radio" name="address" id="old_address" checked="true" onclick="hide()">
-                            <label for="old_address">${infor.getAddress()}</label><br>
-                            <input type="radio" name="address" id="new_address" onclick="show()">
-                            <label for="new_address">Tôi muốn dùng địa chỉ mới</label>
+        <form action="" method="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="table">
+                            <div class="head">
+                                <i class="fa-solid fa-location-dot"></i> Địa chỉ
+                            </div>
+                            <div class="body">
+                                <input type="radio" name="address" id="old_address" checked="true" onclick="hide()" value="old">
+                                <label for="old_address">${infor.getAddress()}</label><br>
 
-                            <div class="customer_new_address">
-                                <div class="row">
-                                    <div class="col-sm-5">
-                                        <span style="color: red">* </span>Tỉnh thành:
+                                <input type="radio" name="address" id="new_address" onclick="show()" value="new">
+                                <label for="new_address">Tôi muốn dùng địa chỉ mới</label>
+
+                                <div class="customer_new_address">
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <span style="color: red">* </span>Tỉnh thành:
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <select name="tinh" class="form-select" onchange="chonTinh(this)" style="width: 170px;">
+                                            </select>
+                                        </div><br><br>
+
+                                        <div class="col-sm-5">
+                                            <span style="color: red">* </span>Quận huyện:
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <select name="thanh-pho" class="form-select" onchange="chonThanhPho(this)" style="width: 170px;">
+                                            </select>
+                                        </div><br><br>
+
+                                        <div class="col-sm-5">
+                                            <span style="color: red">* </span>Phường xã:
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <select name="quan" class="form-select" style="width: 170px;">
+                                            </select>
+                                        </div><br><br>
+
+                                        <div class="col-sm-5">
+                                            <span style="color: red">* </span>Địa chỉ:
+                                        </div>
+                                        <div class="col-sm-7">
+                                            <input type="text" style="width: 170px;" placeholder="* Địa chỉ">
+                                        </div><br><br>
                                     </div>
-                                    <div class="col-sm-7">
-                                        <select name="tinh" class="form-select" onchange="chonTinh(this)" style="width: 190px;">
-                                        </select>
-                                    </div><br><br>
-
-                                    <div class="col-sm-5">
-                                        <span style="color: red">* </span>Quận huyện:
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <select name="thanh-pho" class="form-select" onchange="chonThanhPho(this)" style="width: 190px;">
-                                        </select>
-                                    </div><br><br>
-
-                                    <div class="col-sm-5">
-                                        <span style="color: red">* </span>Phường xã:
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <select name="quan" class="form-select" style="width: 190px;">
-                                        </select>
-                                    </div><br><br>
-
-                                    <div class="col-sm-5">
-                                        <span style="color: red">* </span>Địa chỉ:
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <input type="text" style="width: 190px;" placeholder="* Địa chỉ">
-                                    </div><br><br>
-                                </div>
-                            </div>  
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="table">
-                        <div class="head">
-                            <i class="fa-solid fa-truck-fast"></i>Phương thức giao hàng
-                        </div>
-                        <div class="body">
-                            <div class="row">
-                                <div class="col-sm-10">Free Ship</div>
-                                <div class="col-sm-2">0đ</div>
+                                </div>  
                             </div>
                         </div>
                     </div>
-                </div>
-                            
-                <div class="col-sm-4">
-                    <div class="table">
-                        <div class="head">
-                            <i class="fa-solid fa-truck-fast"></i>Phương thức thanh toán
+
+                    <div class="col-sm-4">
+                        <div class="table">
+                            <div class="head">
+                                <i class="fa-solid fa-truck-fast"></i>Phương thức giao hàng
+                            </div>
+                            <div class="body">
+                                <div class="row">
+                                    <div class="col-sm-10">Free Ship</div>
+                                    <div class="col-sm-2">0đ</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="body">
-                            <div class="row">
-                                Thanh toán khi nhận hàng
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="table">
+                            <div class="head">
+                                <i class="fa-solid fa-truck-fast"></i>Phương thức thanh toán
+                            </div>
+                            <div class="body">
+                                <div class="row">
+                                    Thanh toán khi nhận hàng
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-                            
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4"></div>
-                <div class="col-sm-8 cart">
+
+            <div class="container">
+                <div class="cart">
                     <div class="table">
                         <div class="head">
                             <i class="fa-solid fa-cart-shopping"></i> Giỏ hàng
                         </div>
-                        <div class="body">
-                            <table>
-				<thead>
-                                    <tr>
-                                        <td class="qc-image ">Hình ảnh:</td>
-                                        <td class="qc-name ">Tên sản phẩm:</td>
-                                        <td class="qc-model hidden-xs hidden">Dòng sản phẩm:</td>
-                                        <td class="qc-quantity ">Số lượng:</td>
-                                        <td class="qc-price hidden-xs ">Đơn Giá:</td>
-                                        <td class="qc-total ">Tổng cộng:</td>
-                                    </tr>
-				</thead>
 
-                                <tbody>				
-                                    <tr>
-                                        <c:forEach items="${cart}" var="cart"> 
-                                            <td class="qc-image ">
-                                                
-                                            </td>
+
+                        <table class="table-striped mt-5 mb-5">
+                            <thead>
+                                <tr>
+                                    <td class="qc-image">Hình ảnh</td>
+                                    <td class="qc-name">Tên sản phẩm</td>
+                                    <td class="qc-size">Size</td>
+                                    <td class="qc-quantity ">Số lượng</td>
+                                    <td class="qc-price">Đơn Giá</td>
+                                    <td class="qc-total">Tổng cộng</td>
+                                </tr>
+                            </thead>
+
+                            <tbody>				
+                                <c:forEach items="${cart}" var="c">
+                                    <c:forEach items="${productList}" var="p">
+                                        <c:forEach items="${brandList}" var="b">
+                                            <c:if test="${c.getProductId() == p.getProductId() && p.getBrandId() == b.getBrandId()}">
+                                                <tr>    
+                                                    <td class="qc-image">
+                                                        <a href="product?productid=${c.getProductId()}&brandid=${p.getBrandId()}&brand=${b.getBrandName()}"><img src="${p.getImg()}" style="width: 90px;"/></a>
+                                                    </td>
+
+                                                    <td class="qc-name">
+                                                        <a href="product?productid=${c.getProductId()}&brandid=${p.getBrandId()}&brand=${b.getBrandName()}">${p.getName()}</a>
+                                                    </td>
+
+                                                    <td class="qc-size">
+                                                        ${c.getSize()}
+                                                    </td>
+
+                                                    <td class="qc-quantity ">
+                                                        ${c.getQuantity()}
+                                                    </td>
+
+                                                    <td class="qc-price">
+                                                        ${p.getPrice()} đ
+                                                    </td>
+
+                                                    <td class="qc-total">
+                                                        ${c.getQuantity() * p.getPrice()} đ
+                                                    </td>
+                                                </tr>
+                                            </c:if>
                                         </c:forEach>
-                                    </tr>
-				</tbody>
-			</table>
+                                    </c:forEach>
+                                </c:forEach>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <%! int sum = 0; %> 
+            <div class="container">
+                <div  class="cart">
+                    <div class="table">
+                        <div class="head">
+                            <i class="fa-solid fa-money-bill"></i> Tổng cộng
+                        </div>
+
+                        <div class="body">
+                            <h1>Tổng giá tiền: <b>
+                                    <c:forEach items="${cart}" var="c">
+                                        <c:forEach items="${productList}" var="p">
+                                            <c:if test="${c.getProductId() == p.getProductId()}">
+                                                
+
+                                            </c:if>
+                                        </c:forEach>
+                                    </c:forEach>
+                                </b></h1>
+
+                            <button type="submit" class="btn btn-primary mt-4">Xác Nhận Đơn Hàng</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
 
         <%@include file="footer.jsp" %>
 

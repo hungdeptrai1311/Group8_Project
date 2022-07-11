@@ -9,6 +9,7 @@ package Model;
  * @author vuman
  */
 public class Cart {
+
     private int userId;
     private int productId;
     private int quantity;
@@ -20,8 +21,6 @@ public class Cart {
         this.quantity = quantity;
         this.size = size;
     }
-
-    
 
     public Cart() {
     }
@@ -57,6 +56,5 @@ public class Cart {
     public void setSize(String size) {
         this.size = size;
     }
-    
-    
+
 }

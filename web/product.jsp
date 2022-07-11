@@ -43,7 +43,7 @@
                 >
                 <a href="brand?brand=<%= request.getParameter("brand") %>">All <%= request.getParameter("brand") %></a>
                 >
-                <a href="ProductController?productid=${product.getProductId()}&brandid=${product.getBrandId()}&brand=<%= request.getParameter("brand") %>">${product.getName()}</a>
+                <a href="product?productid=${product.getProductId()}&brandid=${product.getBrandId()}&brand=<%= request.getParameter("brand") %>">${product.getName()}</a>
 
                 <div class="item">
                     <div class="row">
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
 
-                            <form action="checkout" method="POST" onsubmit="return notAllowToOrder()">
+                            <form action="checkout" method="post" onsubmit="return notAllowToOrder()">
                                 <div class="choose_size">
                                     <input type="hidden" name="productId" value="${product.getProductId()}">
                                     <select name="size" id="size"" onchange="sizeChanged()">
@@ -93,7 +93,7 @@
                             <div id="alert_login">
                                 Vui lòng đăng nhập trước khi đặt hàng
                             </div>
-                                    
+
                             <div id="alert_cart_quantity">
                                 Số hàng của quý khách vượt quá số hàng trong kho
                             </div>
@@ -149,25 +149,25 @@
                     return false;
                 }
 
-                <c:if test="${sessionScope.account == null}">
-                    login.style.display = 'inline-block';
-                    return false;
-                </c:if>
+            <c:if test="${sessionScope.account == null}">
+                login.style.display = 'inline-block';
+                return false;
+            </c:if>
 
-                <c:if test="${sessionScope.account != null}">
-                    <c:forEach items="${size}" var="s">
-                    if (value == '${s.getSize()}') {
-                        <c:forEach items="${cart}" var="cart">
-                            if(value = ${cart.getSize()} && <%= request.getParameter("productid")%> == ${cart.getProductId()}){
-                                if (x.value > (${s.getQuantity()} - ${cart.getQuantity()})){
-                                    cart.style.display = 'block';
-                                    return false;
-                                }
-                            }
-                        </c:forEach>
+            <c:if test="${sessionScope.account != null}">
+                <c:forEach items="${size}" var="s">
+                if (value == '${s.getSize()}') {
+                    <c:forEach items="${cart}" var="cart">
+                    if (value == '${cart.getSize()}' && <%= request.getParameter("productid")%> == ${cart.getProductId()}) {
+                        if (x.value > (${s.getQuantity()} - ${cart.getQuantity()})) {
+                            cart.style.display = 'block';
+                            return false;
+                        }
                     }
                     </c:forEach>
-                </c:if>
+                }
+                </c:forEach>
+            </c:if>
 
 
                 return;

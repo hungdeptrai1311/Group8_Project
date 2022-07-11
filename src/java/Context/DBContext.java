@@ -11,7 +11,6 @@ public class DBContext {
         return DriverManager.getConnection(url, userID, password);
     }
 
-
     private final String serverName = "localhost";
     private final String dbName = "ProjectShoes";
     private final String portNumber = "1433";

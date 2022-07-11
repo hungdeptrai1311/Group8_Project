@@ -70,4 +70,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 
+.cart{
+    margin-left: -15px;
+}
+
+.body thead{
+    border: 1px solid #ccc;
+}
+
+.cart table{
+    border: 1px solid #ccc;
+    margin-left: 90px;
+}
+
+.cart .body table thead{
+    color: #666;
+    font-weight: bold;
+    background-color: rgba(51, 51, 51, 0.1);
+}
+
+td{
+    border-right: 1px solid #ccc;
+}
 

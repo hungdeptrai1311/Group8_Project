@@ -42,9 +42,9 @@
                 <a href="home">Trang chủ</a>
                 >
                 <a href="brand?brand=<%= request.getParameter("brand") %>">All <%= request.getParameter("brand") %></a>
-                
+
                 <img src="images/banner2/<%= request.getParameter("brand") %>.jpg">
-                
+
                 <div class="sort">
                     <div class="row">
                         <div class="col-sm-10"></div>
@@ -63,12 +63,12 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="item">
                     <div class="row">
                         <c:forEach items="${list}" var="x">
                             <div class="col-sm-3">
-                                <a href="ProductController?productid=${x.getProductId()}&brandid=${x.getBrandId()}&brand=<%= request.getParameter("brand") %>"><img class="img-responsive img-fluid" src="${x.getImg()}"/></a><br>
+                                <a href="product?productid=${x.getProductId()}&brandid=${x.getBrandId()}&brand=<%= request.getParameter("brand") %>"><img class="img-responsive img-fluid" src="${x.getImg()}"/></a><br>
                                 <p style="text-align: center; text-transform: uppercase; font-size: 15px">${x.getName()}</p>
                                 <p style="text-align: center; font-size: 14px">Price: <span style="font-size: 20px">${x.getPrice2()} đ</span></p>
                             </div>
@@ -77,7 +77,7 @@
                 </div>
             </div>
         </div>
-        
+
         <%@include file="footer.jsp" %>
     </body>
 </html>

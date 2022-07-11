@@ -9,6 +9,7 @@ package Model;
  * @author baqua
  */
 public class Product {
+
     private int productId;
     private String name;
     private String descrip;
@@ -59,23 +60,23 @@ public class Product {
     public int getPrice() {
         return price;
     }
-    
+
     public String getPrice2() {
         String str = String.valueOf(price);
         int count = 0;
         String tmp = "";
-        for(int i = str.length() - 1; i >= 0; i--){
+        for (int i = str.length() - 1; i >= 0; i--) {
             tmp += str.charAt(i);
         }
         String s = "";
-        for(int i = 0; i < tmp.length(); i++){
-            if(i % 3 == 0 && i != 0){
+        for (int i = 0; i < tmp.length(); i++) {
+            if (i % 3 == 0 && i != 0) {
                 s += ".";
             }
             s += tmp.charAt(i);
         }
         str = "";
-        for(int i = s.length() - 1; i >= 0; i--){
+        for (int i = s.length() - 1; i >= 0; i--) {
             str += s.charAt(i);
         }
         return str;
@@ -116,6 +117,5 @@ public class Product {
     public void setBrandId(int brandId) {
         this.brandId = brandId;
     }
-    
-    
+
 }

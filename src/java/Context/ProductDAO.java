@@ -15,15 +15,15 @@ import java.util.ArrayList;
  * @author vuman
  */
 public class ProductDAO {
+
     public ProductDAO() {
         connectDB();
     }
-    
-    
-    Connection cnn; 
-    Statement stm; 
+
+    Connection cnn;
+    Statement stm;
     ResultSet rs;
-    
+
     private void connectDB() {
         try {
             cnn = (new DBContext()).getConnection();
@@ -32,7 +32,7 @@ public class ProductDAO {
             System.out.println("Connect error: " + e.getMessage());
         }
     }
-    
+
     public ArrayList<Product> getAllproducts() {
         ArrayList<Product> list = new ArrayList<Product>();
         try {
@@ -47,7 +47,7 @@ public class ProductDAO {
                 int price = rs.getInt(4);
                 int quantity = rs.getInt(5);
                 String status = "Còn hàng";
-                if(!rs.getBoolean(6)){
+                if (!rs.getBoolean(6)) {
                     status = "Hét hàng";
                 }
                 String img = rs.getString(7);
@@ -59,12 +59,12 @@ public class ProductDAO {
         }
         return list;
     }
-    
+
     public Product getProductByBrandIdAndProductId(int brandId, int productId) {
         Product p = new Product();
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "SELECT * FROM Product WHERE BrandID = " + brandId + "AND ProductID = " +productId;
+            String strSelect = "SELECT * FROM Product WHERE BrandID = " + brandId + "AND ProductID = " + productId;
 
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
@@ -73,7 +73,7 @@ public class ProductDAO {
                 int price = rs.getInt(4);
                 int quantity = rs.getInt(5);
                 String status = "Còn hàng";
-                if(!rs.getBoolean(6)){
+                if (!rs.getBoolean(6)) {
                     status = "Hét hàng";
                 }
                 String img = rs.getString(7);
@@ -84,7 +84,7 @@ public class ProductDAO {
         }
         return p;
     }
-    
+
     public ArrayList<Product> getProductByBrand(String brand) {
         ArrayList<Product> list = new ArrayList<Product>();
         try {
@@ -99,7 +99,7 @@ public class ProductDAO {
                 int price = rs.getInt(4);
                 int quantity = rs.getInt(5);
                 String status = "Còn hàng";
-                if(!rs.getBoolean(6)){
+                if (!rs.getBoolean(6)) {
                     status = "Hét hàng";
                 }
                 String img = rs.getString(7);
@@ -111,7 +111,7 @@ public class ProductDAO {
         }
         return list;
     }
-    
+
     public ArrayList<Product> getProductByProductId(int id) {
         ArrayList<Product> list = new ArrayList<Product>();
         try {
@@ -126,7 +126,7 @@ public class ProductDAO {
                 int price = rs.getInt(4);
                 int quantity = rs.getInt(5);
                 String status = "Còn hàng";
-                if(!rs.getBoolean(6)){
+                if (!rs.getBoolean(6)) {
                     status = "Hét hàng";
                 }
                 String img = rs.getString(7);
