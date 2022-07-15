@@ -4,7 +4,7 @@
  */
 
 package Controller;
-
+import Model.Account;
 import Context.UserDAO;
 import Model.User;
 import java.io.IOException;
@@ -36,12 +36,13 @@ public class ProfileController extends HttpServlet {
              HttpSession session = request.getSession();
               UserDAO ud = new UserDAO();
               User u = new User();
+              Account a = new Account();
             String account = session.getAttribute("account").toString();
             u = ud.getUserDetails(account);
-           
+            request.setAttribute("u", u);
+            request.getRequestDispatcher("UserProfile.jsp").forward(request, response);
             
-           request.setAttribute("u", u);
-           request.getRequestDispatcher("UserProfile.jsp").forward(request, response);
+            
         }
     } 
 

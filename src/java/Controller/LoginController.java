@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,10 +34,13 @@ public class LoginController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             // Nhận thông tin từ View
+
             String account = request.getParameter("account");
             String pass = request.getParameter("pass");
             // nhờ model xử lý 
             String result = "";
+
+
             UserDAO u = new UserDAO();
             AccountDAO a = new AccountDAO();
             if (u.checlogin(account, pass)) {
@@ -52,7 +56,6 @@ public class LoginController extends HttpServlet {
 
                     request.getRequestDispatcher("home.jsp").forward(request, response);
                 } else {
-                    
 
                     request.getRequestDispatcher("admin_dashboard.jsp").forward(request, response);
                 }

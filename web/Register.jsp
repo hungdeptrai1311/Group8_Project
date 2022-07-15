@@ -63,30 +63,30 @@
                                     <div class="text-success" style="margin-bottom: 20px">${Result}</div>
                                     <div class="form-group">
                                         <label for="username" >Tài khoản </label>
-                                        <input type="text" name="username" id="username" class="form-control" placeholder="Tên tài khoản">
+                                        <input type="text" name="username" id="username" class="form-control" placeholder="Tên tài khoản" required>
                                     </div>
                                     <div class="form-group mb-4">
                                         <label for="pass" >Mật khẩu</label>
-                                        <input type="password" name="pass" id="pass" class="form-control" placeholder="***********">
+                                        <input type="password" name="pass" id="pass" class="form-control" placeholder="***********" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" >Họ và tên</label>
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Họ và tên">
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Họ và tên" required> 
                                     </div>
 
                                     <div class="form-group" >
                                         <label for="email" >Email</label>
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
                                     </div>
 
 
                                     <div class="form-group">
                                         <label for="address" >Address</label>
-                                        <input type="text" name="address" id="address" class="form-control" placeholder="Address">
+                                        <input type="text" name="address" id="address" class="form-control" placeholder="Address" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="phone" >Phone</label>
-                                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone">
+                                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" required>
                                     </div>
 
 

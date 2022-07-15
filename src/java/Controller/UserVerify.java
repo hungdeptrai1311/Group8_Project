@@ -48,6 +48,7 @@ public class UserVerify extends HttpServlet {
             //check if the email send successfully
             if (test) {
                 if (ud.checkAccount(username)) {
+                    result = "Tài khoản của bạn đã tồn tại, vui lòng đăng ký tài khoản khác!!";
                     request.setAttribute("result", result);
                     request.getRequestDispatcher("Register.jsp").forward(request, response);
 

@@ -132,20 +132,18 @@ public class UserDAO {
         }
     }
     
-    public String getUserByAccount(String account) {
-        String name = "";
+    public void UpdatePass2(String username, String pass) {
         try {
-            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "";
-
-            rs = stm.executeQuery(strSelect);
-            while (rs.next()) {
-                name = rs.getString(1);
-            }
-        } catch (Exception e) {
+            Statement stmt = cnn.createStatement();
+            String sql = "UPDATE Account SET Password = '"+pass+"' WHERE Username =  '"+username+"' and Password = (select [Account].Password from Account where Account.Username = '"+username+"')";
+            stmt.executeUpdate(sql);
+            System.out.println("Update pass success");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return name;
     }
+    
+    
     public User getUserDetails(String account) {
         User p = new User();
         try {
@@ -170,5 +168,19 @@ public class UserDAO {
             System.err.println(e.getMessage());
         }
         return p ;
+    }
+    
+    public void UpdateUser(String username, String name, String email, String address, String phone) {
+        try {
+            Statement stmt = cnn.createStatement();
+            String sql = "delete from [User] where [User].UserID = (select [User].UserID from [User] join [Account] on [User].UserID = [Account].UserID \n" +
+"WHERE Account.Username = '"+username+"')\n" +
+"INSERT INTO [User]([UserID], [Name], [Email], [Address], [Phone]) \n" +
+"VALUES ((SELECT [UserID] FROM [Account] WHERE [Username] = '"+username+"'), N'"+name+"', '"+email+"', N'"+address+"', '"+phone+"')";
+            stmt.executeUpdate(sql);
+            System.out.println("Update User success");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

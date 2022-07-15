@@ -4,19 +4,23 @@
  */
 
 package Controller;
-
+import Model.Account;
+import Context.UserDAO;
+import Model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 /**
  *
  * @author baqua
  */
-public class CreateController extends HttpServlet {
+public class EditProfile extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -29,7 +33,28 @@ public class CreateController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+             HttpSession session = request.getSession();
+              UserDAO ud = new UserDAO();
+              User u = new User();
+              Account a = new Account();
+            String account = session.getAttribute("account").toString(); 
+            String username = request.getParameter("username");
+            String pass = request.getParameter("pass");
+            String name = request.getParameter("name");
+            String email = request.getParameter("email");
+            String address = request.getParameter("address");
+            String phone = request.getParameter("phone");
+
+            ud.UpdateUser(username, name, email, address, phone);
+            u = ud.getUserDetails(account);
+            request.setAttribute("u", u);
             
+            if (pass != ""  ){    
+               ud.UpdatePass2(username, pass); 
+            }
+              
+            //response.sendRedirect("UserProfile.jsp");
+            request.getRequestDispatcher("UserProfile.jsp").forward(request, response);
         }
     } 
 

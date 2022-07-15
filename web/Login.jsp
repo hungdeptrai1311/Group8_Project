@@ -61,21 +61,22 @@
                                 <p class="login-card-description">Đăng nhập </p>
                                 
                                 
-                                <form action="login" method = "post">
+                                <form action="login" method = "post" id="form">
                                     <div class="text-danger" style="margin-bottom: 20px">${result}</div>
-                                    <div class="form-group">
+                                    <div class="form-group " >
 
                                         <label for="account" >Tài khoản </label>
-                                        <input type="text" name="account" id="account" class="form-control" placeholder="Tên tài khoản">
+                                        <input type="text" name="account" id="account" class="form-control" placeholder="Tên tài khoản" required value="">
+                                        
                                     </div>
                                     
                                     <div class="form-group ">
                                         
                                         <label for="pass" >Mật khẩu</label>
-                                        <div style="margin-left: 335px; position: absolute; margin-top:10px; cursor: pointer" id="eye">
+                                        <div style="margin-left: 295px; position: absolute; margin-top:10px; cursor: pointer" id="eye" >
                                             <i class="far fa-eye"></i>
                                         </div>
-                                        <input type="password" name="pass" id="pass" class="form-control" placeholder="***********">
+                                        <input type="password" name="pass" id="pass" class="form-control" placeholder="***********" required value="">
                                         
                                         
                                         
@@ -100,6 +101,24 @@
         <%@include file="footer.jsp" %>     
         
     </body>
+    <script>src = "js/Validator.js"</script>
+        
+    <script>
+         Validator({
+          form: '#form',
+          formGroupSelector: '.form-group',
+          errorSelector: '.form-message',
+          rules: [
+            Validator.isEmail('#email'),
+            Validator.minLength('#pass', 6),
+          ],
+          onSubmit: function (data) {
+            // Call API
+            console.log(data);
+          }
+        });
+      });
+    </script>
     <script>
         $(document).ready(function(){
     $('#eye').click(function(){
