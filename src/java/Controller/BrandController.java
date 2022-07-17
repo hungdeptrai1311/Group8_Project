@@ -5,9 +5,7 @@
 package Controller;
 
 import Context.ProductDAO;
-import Model.Product;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,13 +22,6 @@ public class BrandController extends HttpServlet {
         ProductDAO p = new ProductDAO();
         String brand = request.getParameter("brand");
         request.setAttribute("list", p.getProductByBrand(brand));
-        
         request.getRequestDispatcher("brand.jsp").forward(request, response);
     }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        super.doPost(request, response);
-    }
-
 }

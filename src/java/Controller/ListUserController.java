@@ -5,23 +5,18 @@
 
 package Controller;
 
-import Context.BrandDAO;
-import Context.ProductDAO;
-import Model.Brand;
-import Model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 /**
  *
- * @author Loki
+ * @author baqua
  */
-public class AddProductController extends HttpServlet {
+public class ListUserController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,16 +29,8 @@ public class AddProductController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddProductController</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddProductController at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
+            request.getRequestDispatcher("ListUser.jsp").forward(request, response);
         }
     } 
 
@@ -71,29 +58,7 @@ public class AddProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String name = request.getParameter("name");
-        String description = request.getParameter("description");
-        int price = Integer.parseInt(request.getParameter("price"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-        
-        String image = request.getParameter("image");
-        int brand_id = Integer.parseInt(request.getParameter("brand"));
-        ProductDAO pDB = new ProductDAO();
-        Product p = new Product();
-        p.setName(name);
-        p.setDescrip(description);
-        p.setPrice(price);
-        p.setQuantity(quantity);
-        
-        p.setImg(image);
-        p.setBrandId(brand_id);
-        pDB.insert(p);
-        ArrayList<Product> products = pDB.getAllproducts1();
-        request.setAttribute("products", products);
-        BrandDAO bDB = new BrandDAO();
-        ArrayList<Brand> brands = bDB.getAllBrands();
-        request.setAttribute("brands", brands);
-        request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /** 

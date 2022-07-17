@@ -55,10 +55,9 @@
                         <li class="list-divider"></li>
                         <li class="submenu"> <a href="/Group8_Project/products_list"><i class="fas fa-suitcase"></i> <span> Manager Product </span> <span class="menu-arrow"></span></a>
                         </li>
-                        <li class="submenu"> <a href="#"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
+                        <li class="submenu"> <a href="/Group8_Project/userslist"><i class="fas fa-user"></i> <span> Customers </span> <span class="menu-arrow"></span></a>
                         </li>
-                        <li class="submenu"> <a href="#"><i class="fas fa-key"></i> <span> Rooms </span> <span class="menu-arrow"></span></a>
-                        </li>
+                        
                         <li class="submenu"> <a href="/Group8_Project/editEULA"><i class="fas fa-cog"></i> <span> Edit EULA </span> <span class="menu-arrow"></span></a>
                         </li>
                         <li> <a href="settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a> </li>

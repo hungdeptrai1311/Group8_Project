@@ -66,7 +66,7 @@
                             <tr>
                                 <td>${p.productId}</td>
                                 <td>${p.name}</td>
-                                <td>${p.brand.brand_name}</td>
+                                <td>${p.brand.brandName}</td>
                                 <td>
                                     <img src="${p.img}">
                                 </td>
@@ -120,8 +120,10 @@
                             </div>
                             <div class="form-group">
                                 <label>Quantity</label>
-                                <textarea name="quantity" class="form-control" required></textarea>
+                                <input name="quantity" type="text" class="form-control" required>
+                                
                             </div>
+                            
                             <div class="form-group">
                                 <label>Description</label>
                                 <textarea name="description" class="form-control" required></textarea>

@@ -158,8 +158,8 @@
                                 </div>
                             </div>
                             
-                            <div class="tab-pane fade" id="application" role="tabpanel" aria-labelledby="application-tab">
-                                <h3 class="mb-4">Application Settings</h3>
+                            <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
+                                <h3 class="mb-4">Lịch sử mua hàng</h3>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">

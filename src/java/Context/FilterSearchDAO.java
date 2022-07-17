@@ -56,9 +56,9 @@ public class FilterSearchDAO {
                 p.setProductId(rs.getInt("ProductID"));
                 p.setName(rs.getString("Name"));
                 p.setDescrip(rs.getString("Description"));
-                p.setPrice(rs.getString("Price"));
+                p.setPrice(rs.getInt("Price"));
                 p.setQuantity(rs.getInt("Quantity"));
-                p.setStatus(rs.getString("Status"));
+                
                 p.setImg(rs.getString("Image"));
                 p.setBrandId(rs.getInt("BrandID"));
                 Brand b = new Brand();
@@ -88,7 +88,7 @@ public class FilterSearchDAO {
                     + "      ,[Description]\n"
                     + "      ,[Price]\n"
                     + "      ,[Quantity]\n"
-                    + "      ,[Status]\n"
+
                     + "      ,[Image]\n"
                     + "      ,[BrandID]\n"
                     + "  FROM [Product] Where [Name] LIKE '%"+name+"%' ";
@@ -125,9 +125,9 @@ public class FilterSearchDAO {
                 p.setProductId(rs.getInt("ProductID"));
                 p.setName(rs.getString("Name"));
                 p.setDescrip(rs.getString("Description"));
-                p.setPrice(rs.getString("Price"));
+                p.setPrice(rs.getInt("Price"));
                 p.setQuantity(rs.getInt("Quantity"));
-                p.setStatus(rs.getString("Status"));
+
                 p.setImg(rs.getString("Image"));
                 p.setBrandId(rs.getInt("BrandID"));
                 Brand b = new Brand();

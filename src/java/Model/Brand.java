@@ -6,37 +6,44 @@ package Model;
 
 /**
  *
- * @author Loki
+ * @author vuman
  */
 public class Brand {
-    private int brand_id;
-    private String brand_name;
-    private String brand_description;
 
-    public int getBrand_id() {
-        return brand_id;
+    private int brandId;
+    private String brandName;
+    private String descrip;
+
+    public Brand() {
     }
 
-    public void setBrand_id(int brand_id) {
-        this.brand_id = brand_id;
+    public Brand(int brandId, String brandName) {
+        this.brandId = brandId;
+        this.brandName = brandName;
     }
 
-    public String getBrand_name() {
-        return brand_name;
+    public int getBrandId() {
+        return brandId;
     }
 
-    public void setBrand_name(String brand_name) {
-        this.brand_name = brand_name;
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
     }
 
-    public String getBrand_description() {
-        return brand_description;
+    public String getBrandName() {
+        return brandName;
     }
 
-    public void setBrand_description(String brand_description) {
-        this.brand_description = brand_description;
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
-    
-    
-    
+
+    public String getDescrip() {
+        return descrip;
+    }
+
+    public void setDescrip(String descrip) {
+        this.descrip = descrip;
+    }
+
 }

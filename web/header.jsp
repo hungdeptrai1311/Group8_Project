@@ -46,7 +46,7 @@
                     </a>
                 </div>
                 <div class="col-sm-3 text-right">
-                    <i class="fa-solid fa-cart-shopping"></i>
+                    <a href="cart" style="color:black"><i class="fa-solid fa-cart-shopping"></i></a>
                 </div>
             </div>
         </div>

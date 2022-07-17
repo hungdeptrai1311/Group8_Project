@@ -12,13 +12,14 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Loki
+ * @author vuman
  */
 public class BrandDAO {
 
     public BrandDAO() {
         connectDB();
     }
+
     Connection cnn;
     Statement stm;
     ResultSet rs;
@@ -32,28 +33,26 @@ public class BrandDAO {
         }
     }
 
-    public ArrayList<Brand> getAllbrands() {
-        ArrayList<Brand> list = new ArrayList<>();
+    public ArrayList<Brand> getAllBrands() {
+        ArrayList<Brand> list = new ArrayList<Brand>();
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "SELECT [BrandID]\n"
-                    + "      ,[Name]\n"
-                    + "      ,[Description]\n"
-                    + "  FROM [Brand]";
+            String strSelect = "SELECT * FROM Brand";
+
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
-                Brand b = new Brand();
-                b.setBrand_id(rs.getInt("BrandID"));
-                b.setBrand_name(rs.getString("Name"));
-                b.setBrand_description(rs.getString("Description"));
-                list.add(b);
+                int id = rs.getInt(1);
+                String name = rs.getString(2);
+
+                list.add(new Brand(id, name));
             }
+
+            return list;
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            System.err.println("" + e.getMessage());
         }
-        return list;
+        return null;
     }
-    
     public Brand getBrand(int id) {
         Brand brand = new Brand();
         try {
@@ -64,14 +63,13 @@ public class BrandDAO {
                     + "  FROM [Brand] Where BrandID = '" + id + "'";
             rs = stm.executeQuery(strSelect);
             while (rs.next()) {
-                brand.setBrand_id(rs.getInt("BrandID"));
-                brand.setBrand_name(rs.getString("Name"));
-                brand.setBrand_description(rs.getString("Description"));
+                brand.setBrandId(rs.getInt("BrandID"));
+                brand.setBrandName(rs.getString("Name"));
+                brand.setDescrip(rs.getString("Description"));
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
         return brand;
     }
-    
 }

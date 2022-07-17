@@ -61,7 +61,7 @@ public class ProductListController extends HttpServlet {
         ProductDAO pDB = new ProductDAO();
         ArrayList<Product> products = pDB.getAllproducts1();
         BrandDAO bDB = new BrandDAO();
-        ArrayList<Brand> brands = bDB.getAllbrands();
+        ArrayList<Brand> brands = bDB.getAllBrands();
         request.setAttribute("brands", brands);
         request.setAttribute("products", products);
         request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);

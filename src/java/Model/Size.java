@@ -9,6 +9,7 @@ package Model;
  * @author vuman
  */
 public class Size {
+
     private int id;
     private String size;
     private int quantity;
@@ -45,6 +46,5 @@ public class Size {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-    
-    
+
 }

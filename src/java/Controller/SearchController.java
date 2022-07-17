@@ -62,7 +62,7 @@ public class SearchController extends HttpServlet {
         FilterSearchDAO sDB = new FilterSearchDAO();
         ArrayList<Product> products = sDB.searchProductsByName(name);
         BrandDAO bDB = new BrandDAO();
-        ArrayList<Brand> brands = bDB.getAllbrands();
+        ArrayList<Brand> brands = bDB.getAllBrands();
         request.setAttribute("brands", brands);
         request.setAttribute("products", products);
         request.getRequestDispatcher("search.jsp").forward(request, response);
@@ -80,7 +80,7 @@ public class SearchController extends HttpServlet {
     throws ServletException, IOException {
         String name = request.getParameter("name");
         BrandDAO bDB = new BrandDAO();
-        ArrayList<Brand> brands = bDB.getAllbrands();
+        ArrayList<Brand> brands = bDB.getAllBrands();
         int[] brand_id = new int[brands.size()];
         
         for (int i = 1; i <= brands.size(); i++) {

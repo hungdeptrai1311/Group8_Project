@@ -62,7 +62,7 @@ public class EditProductController extends HttpServlet {
         ProductDAO pDB = new ProductDAO();
         Product product = pDB.getProduct(id);
         BrandDAO bDB = new BrandDAO();
-        ArrayList<Brand> brands = bDB.getAllbrands();
+        ArrayList<Brand> brands = bDB.getAllBrands();
         request.setAttribute("brands", brands);
         request.setAttribute("product", product);
         request.getRequestDispatcher("editProduct.jsp").forward(request, response);
@@ -81,9 +81,9 @@ public class EditProductController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         String mame = request.getParameter("name");
         String description = request.getParameter("description");
-        String price = request.getParameter("price");
+        int price = Integer.parseInt(request.getParameter("price"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        String status = request.getParameter("status");
+        
         String image = request.getParameter("image");
         int brand_id = Integer.parseInt(request.getParameter("brand"));
         ProductDAO pDB = new ProductDAO();
@@ -93,14 +93,14 @@ public class EditProductController extends HttpServlet {
         p.setDescrip(description);
         p.setPrice(price);
         p.setQuantity(quantity);
-        p.setStatus(status);
+        
         p.setImg(image);
         p.setBrandId(brand_id);
         pDB.editProduct(p);
         ArrayList<Product> products = pDB.getAllproducts1();
         request.setAttribute("products", products);
         BrandDAO bDB = new BrandDAO();
-        ArrayList<Brand> brands = bDB.getAllbrands();
+        ArrayList<Brand> brands = bDB.getAllBrands();
         request.setAttribute("brands", brands);
         request.getRequestDispatcher("ManagerProduct.jsp").forward(request, response);
     }

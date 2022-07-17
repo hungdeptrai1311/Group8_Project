@@ -183,4 +183,68 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+    
+    public ArrayList<User> getAllUser() {
+        ArrayList<User> list = new ArrayList<User>();
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strSelect = "select * from tblUser ";
+
+            rs = stm.executeQuery(strSelect);
+            while (rs.next()) {
+                String account = rs.getString(1);
+                String pass = rs.getString(2);
+                String name = rs.getString(3);
+                String gender = "Male";
+                if (rs.getBoolean(4) == false) {
+                    gender = "Female";
+                }
+                String address = rs.getString(5);
+                SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyu");
+                String dob = f.format(rs.getDate(6));
+                //list.add(new User(account, pass, name, gender, address, dob));
+                for (User a : list) {
+                    // System.out.println("name:" + a.getAccount());
+
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println("Login Error:" + e.getMessage());
+        }
+        return list;
+    }
+
+    public void deleteResult(User n) {
+        try {
+            Statement stmt = cnn.createStatement();
+            //String sql = "delete from tblUser where account = '"+n.getAccount()+"'";
+            //stmt.executeUpdate(sql);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public User getUserInforByUsername(String username) {
+        User u = new User();
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String strSelect = "SELECT [User].UserID, [User].Name, [User].Email, [User].Address, [User].Phone FROM [User], [Account] WHERE [User].UserId = [Account].UserID AND [Account].Username = '" + username + "'";
+
+            rs = stm.executeQuery(strSelect);
+
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String name = rs.getNString(2);
+                String email = rs.getNString(3);
+                String address = rs.getNString(4);
+                String phone = rs.getString(5);
+
+                u = new User(id, name, email, address, phone);
+            }
+        } catch (Exception e) {
+        }
+        return u;
+    }
 }

@@ -48,7 +48,7 @@ public class ProductDAO {
                 int productId = rs.getInt(1);
                 String name = rs.getString(2);
                 String descrip = rs.getNString(3);
-                String price = rs.getString(4);
+                int price = rs.getInt(4);
                 int quantity = rs.getInt(5);
                 String status = "Còn hàng";
                 if(!rs.getBoolean(6)){
@@ -56,7 +56,7 @@ public class ProductDAO {
                 }
                 String img = rs.getString(7);
                 int brandId = rs.getInt(8);
-                list.add(new Product(productId, name, descrip, price, quantity, status, img, brandId));
+                list.add(new Product(productId, name, descrip, price, quantity, img, brandId));
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -74,14 +74,14 @@ public class ProductDAO {
             while (rs.next()) {
                 String name = rs.getString(2);
                 String descrip = rs.getNString(3);
-                String price = rs.getString(4);
+                int price = rs.getInt(4);
                 int quantity = rs.getInt(5);
                 String status = "Còn hàng";
                 if(!rs.getBoolean(6)){
                     status = "Hét hàng";
                 }
                 String img = rs.getString(7);
-                p = new Product(productId, name, descrip, price, quantity, status, img, brandId);
+                p = new Product(productId, name, descrip, price, quantity, img, brandId);
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -100,7 +100,7 @@ public class ProductDAO {
                 int productId = rs.getInt(1);
                 String name = rs.getString(2);
                 String descrip = rs.getNString(3);
-                String price = rs.getString(4);
+                int price = rs.getInt(4);
                 int quantity = rs.getInt(5);
                 String status = "Còn hàng";
                 if(!rs.getBoolean(6)){
@@ -108,7 +108,7 @@ public class ProductDAO {
                 }
                 String img = rs.getString(7);
                 int brandId = rs.getInt(8);
-                list.add(new Product(productId, name, descrip, price, quantity, status, img, brandId));
+                list.add(new Product(productId, name, descrip, price, quantity, img, brandId));
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -116,8 +116,8 @@ public class ProductDAO {
         return list;
     }
     
-    public ArrayList<Product> getProductByProductId(int id) {
-        ArrayList<Product> list = new ArrayList<Product>();
+   public Product getProductByProductId(int id) {
+        Product p = new Product();
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String strSelect = "SELECT * FROM Product WHERE ProductID = '" + id + "'";
@@ -127,21 +127,18 @@ public class ProductDAO {
                 int productId = rs.getInt(1);
                 String name = rs.getString(2);
                 String descrip = rs.getNString(3);
-                String price = rs.getString(4);
+                int price = rs.getInt(4);
                 int quantity = rs.getInt(5);
-                String status = "Còn hàng";
-                if(!rs.getBoolean(6)){
-                    status = "Hét hàng";
-                }
                 String img = rs.getString(7);
                 int brandId = rs.getInt(8);
-                list.add(new Product(productId, name, descrip, price, quantity, status, img, brandId));
+                p = new Product(id, name, descrip, price, quantity, img, brandId);
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        return list;
-    }
+        return p;
+   }
+        
     public ArrayList<Product> getAllproducts1() {
         ArrayList<Product> list = new ArrayList<Product>();
         try {
@@ -154,14 +151,14 @@ public class ProductDAO {
                 p.setProductId(rs.getInt(1));
                 p.setName(rs.getString(2));
                 p.setDescrip(rs.getString(3));
-                p.setPrice(rs.getString(4));
+                p.setPrice(rs.getInt(4));
                 p.setQuantity(rs.getInt(5));
-                p.setStatus(rs.getString(6));
-                p.setImg(rs.getString(7));
-                p.setBrandId(rs.getInt(8));
+                
+                p.setImg(rs.getString(6));
+                p.setBrandId(rs.getInt(7));
                 Brand b = new Brand();
                 BrandDAO bDB = new BrandDAO();
-                b = bDB.getBrand(rs.getInt(8));
+                b = bDB.getBrand(rs.getInt(7));
                 p.setBrand(b);
                 list.add(p);
             }
@@ -180,7 +177,7 @@ public class ProductDAO {
                     + "      ,[Description]\n"
                     + "      ,[Price]\n"
                     + "      ,[Quantity]\n"
-                    + "      ,[Status]\n"
+
                     + "      ,[Image]\n"
                     + "      ,[BrandID]\n"
                     + "  FROM [Product] where ProductID = '" + id + "'";
@@ -189,9 +186,9 @@ public class ProductDAO {
                 p.setProductId(rs.getInt("ProductID"));
                 p.setName(rs.getString("Name"));
                 p.setDescrip(rs.getString("Description"));
-                p.setPrice(rs.getString("Price"));
+                p.setPrice(rs.getInt("Price"));
                 p.setQuantity(rs.getInt("Quantity"));
-                p.setStatus(rs.getString("Status"));
+                
                 p.setImg(rs.getString("Image"));
                 p.setBrandId(rs.getInt("BrandID"));
                 Brand b = new Brand();
@@ -224,7 +221,7 @@ public class ProductDAO {
                     + "           ,Description\n"
                     + "           ,Price\n"
                     + "           ,Quantity\n"
-                    + "           ,Status\n"
+
                     + "           ,Image\n"
                     + "           ,BrandID)\n"
                     + "     VALUES\n"
@@ -232,7 +229,7 @@ public class ProductDAO {
                     + "           ,'" + p.getDescrip() + "'\n"
                     + "           ,'" + p.getPrice() + "'\n"
                     + "           ,'" + p.getQuantity() + "'\n"
-                    + "           ,'" + p.getStatus() + "'\n"
+
                     + "           ,'" + p.getImg() + "'\n"
                     + "           ,'" + p.getBrandId() + "')";
             stm.executeQuery(strInsert);
@@ -249,7 +246,7 @@ public class ProductDAO {
                     + "      ,[Description] ='"+ p.getDescrip() +"'\n"
                     + "      ,[Price] = '"+ p.getPrice() +"'\n"
                     + "      ,[Quantity] = '"+ p.getQuantity() +"'\n"
-                    + "      ,[Status] = '"+ p.getStatus() +"'\n"
+
                     + "      ,[Image] = '"+ p.getImg() +"'\n"
                     + "      ,[BrandID] = '"+ p.getBrandId() +"'\n"
                     + " WHERE ProductID = '"+ p.getProductId() +"'";

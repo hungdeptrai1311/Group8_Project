@@ -12,11 +12,11 @@ public class Product {
     private int productId;
     private String name;
     private String descrip;
-    private String price;
+    private int price;
     private int quantity;
-    private String status;
+    
     private String img;
-    private int brandId;
+    private Integer brandId;
     
     private Brand brand;
 
@@ -31,13 +31,13 @@ public class Product {
     public Product() {
     }
 
-    public Product(int productId, String name, String descrip, String price, int quantity, String status, String img, int brandId) {
+    public Product(int productId, String name, String descrip, int price, int quantity,  String img, int brandId) {
         this.productId = productId;
         this.name = name;
         this.descrip = descrip;
         this.price = price;
         this.quantity = quantity;
-        this.status = status;
+        
         this.img = img;
         this.brandId = brandId;
     }
@@ -67,27 +67,12 @@ public class Product {
         this.descrip = descrip;
     }
 
-    public String getPrice() {
-        int count = 0;
-        String tmp = "";
-        for(int i = price.length() - 1; i >= 0; i--){
-            tmp += price.charAt(i);
-        }
-        String s = "";
-        for(int i = 0; i < tmp.length(); i++){
-            if(i % 3 == 0 && i != 0){
-                s += ".";
-            }
-            s += tmp.charAt(i);
-        }
-        price = "";
-        for(int i = s.length() - 1; i >= 0; i--){
-            price += s.charAt(i);
-        }
+    public int getPrice() {
+        
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -99,13 +84,28 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getStatus() {
-        return status;
+    public String getPrice2() {
+        String str = String.valueOf(price);
+        int count = 0;
+        String tmp = "";
+        for (int i = str.length() - 1; i >= 0; i--) {
+            tmp += str.charAt(i);
+        }
+        String s = "";
+        for (int i = 0; i < tmp.length(); i++) {
+            if (i % 3 == 0 && i != 0) {
+                s += ".";
+            }
+            s += tmp.charAt(i);
+        }
+        str = "";
+        for (int i = s.length() - 1; i >= 0; i--) {
+            str += s.charAt(i);
+        }
+        return str;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+    
 
     public String getImg() {
         return img;

@@ -43,7 +43,7 @@
                 >
                 <a href="brand?brand=<%= request.getParameter("brand") %>">All <%= request.getParameter("brand") %></a>
                 >
-                <a href="ProductController?productid=${product.getProductId()}&brandid=${product.getBrandId()}&brand=<%= request.getParameter("brand") %>">${product.getName()}</a>
+                <a href="product?productid=${product.getProductId()}&brandid=${product.getBrandId()}&brand=<%= request.getParameter("brand") %>">${product.getName()}</a>
 
                 <div class="item">
                     <div class="row">
@@ -57,21 +57,24 @@
                                     ${product.getDescrip()}
                                 </div>
                                 <div class="col-sm-8">
-                                    <p><span>Price: </span><span style="color: red; font-size: 32px; font-weight: 500">${product.getPrice()} đ</span></p>
+                                    <p><span>Price: </span><span style="color: red; font-size: 32px; font-weight: 500">${product.getPrice2()} đ</span></p>
                                     <p style="font-size: 11px; font-weight: bold">MIỄN PHÍ VẬN CHUYỂN TOÀN QUỐC VÀ TẶNG VỚ CHÍNH HÃNG KHI ĐẶT HÀNG ONLINE  </p>
                                 </div>
                             </div>
 
-                            <form action="checkout" method="POST" onsubmit="return notAllowToOrder()">
+                            <form action="checkout" method="post" onsubmit="return notAllowToOrder()">
                                 <div class="choose_size">
-                                    <select name="size" id="size" onclick="sizeChanged(this)">
+                                    <input type="hidden" name="productId" value="${product.getProductId()}">
+                                    <select name="size" id="size"" onchange="sizeChanged()">
                                         <option>
                                             Vui lòng chọn size
                                         </option>
                                         <c:forEach  items="${size}" var="s">
-                                            <option value="${s.getId()}">
-                                                ${s.getSize()}
-                                            </option>
+                                            <c:if test="${s.getQuantity() > 0}">
+                                                <option value="${s.getSize()}">
+                                                    ${s.getSize()}
+                                                </option>
+                                            </c:if>
                                         </c:forEach>
                                     </select><br>
                                     <div id="alert_choose_size">
@@ -88,6 +91,14 @@
 
                                 <input type="submit" value="Đặt hàng" id="order" onclick="notAllowToOrder()">
                             </form>
+
+                            <div id="alert_login">
+                                Vui lòng đăng nhập trước khi đặt hàng
+                            </div>
+
+                            <div id="alert_cart_quantity">
+                                Số hàng của quý khách vượt quá số hàng trong kho
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -99,17 +110,22 @@
         <script>
             var x = document.getElementsByClassName("input-qty")[0];
             var please = document.getElementById("alert_choose_size");
+            please.style.display = 'none';
+            var login = document.getElementById("alert_login");
+            login.style.display = 'none';
+            var cart = document.getElementById("alert_cart_quantity");
+            cart.style.display = 'none';
 
-            window.onload = function () {
-                please.style.display = 'none';
-            };
+            function sizeChanged() {
+                x.value = 1;
+            }
 
             function decrease() {
-                if (x.value == 0) {
+                if (x.value <= 1) {
+                    x.value = 1;
                     return;
-                } else {
-                    x.value--;
                 }
+                x.value--;
             }
             ;
 
@@ -117,18 +133,13 @@
                 var value = document.getElementById("size").value;
             <c:forEach items="${size}" var="s">
                 if (value == '${s.getSize()}') {
-                    if (x.value == ${s.getQuantity()}) {
+                    if (x.value >= ${s.getQuantity()}) {
                         x.value = ${s.getQuantity()};
                         return;
                     }
                 }
             </c:forEach>
                 x.value++;
-            }
-            ;
-
-            function sizeChanged() {
-                x.value = 1;
             }
             ;
 
@@ -139,6 +150,28 @@
                     please.style.display = 'inline-block';
                     return false;
                 }
+
+            <c:if test="${sessionScope.account == null}">
+                login.style.display = 'inline-block';
+                return false;
+            </c:if>
+
+            <c:if test="${sessionScope.account != null}">
+                <c:forEach items="${size}" var="s">
+                if (value == '${s.getSize()}') {
+                    <c:forEach items="${cart}" var="cart">
+                    if (value == '${cart.getSize()}' && <%= request.getParameter("productid")%> == ${cart.getProductId()}) {
+                        if (x.value > (${s.getQuantity()} - ${cart.getQuantity()})) {
+                            cart.style.display = 'block';
+                            return false;
+                        }
+                    }
+                    </c:forEach>
+                }
+                </c:forEach>
+            </c:if>
+
+
                 return;
             }
             ;
@@ -147,14 +180,20 @@
                 var value = document.getElementById("size").value;
             <c:forEach items="${size}" var="s">
                 if (value == '${s.getSize()}') {
-                    if (x.value >= ${s.getQuantity()}) {
+                    if (x.value > ${s.getQuantity()}) {
                         x.value = ${s.getQuantity()};
+                        return;
+                    }
+                    if (x.value < 1) {
+                        x.value = 1;
                     }
                 }
             </c:forEach>
             }
+            ;
+
+
         </script>
 
     </body>
 </html>
-66

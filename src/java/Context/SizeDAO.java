@@ -15,14 +15,15 @@ import java.util.ArrayList;
  * @author vuman
  */
 public class SizeDAO {
+
     public SizeDAO() {
         connectDB();
     }
-    
-    Connection cnn; 
-    Statement stm; 
+
+    Connection cnn;
+    Statement stm;
     ResultSet rs;
-    
+
     private void connectDB() {
         try {
             cnn = (new DBContext()).getConnection();
@@ -31,8 +32,8 @@ public class SizeDAO {
             System.out.println("Connect error: " + e.getMessage());
         }
     }
-    
-    public ArrayList<Size> getAllSizeByProductId(int id){
+
+    public ArrayList<Size> getAllSizeByProductId(int id) {
         ArrayList<Size> list = new ArrayList<Size>();
         try {
             stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -48,5 +49,15 @@ public class SizeDAO {
             System.err.println(e.getMessage());
         }
         return list;
+    }
+    
+    public void deleteSizeAfterBuy(int productId, String size, int quantity){
+        try {
+            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            
+            stm.executeUpdate("UPDATE Size SET Quantity = Quantity - " + quantity + "WHERE ProductID = " + productId + " AND Size = '" +size + "'");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
