@@ -10,40 +10,42 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/home.css">
-        <link rel="stylesheet" href="css/product.css"/>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-        <script src="js/home.js"></script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>${product.getName()}</title>
-        <link href="images/icon.png" rel="icon">
-        <script src="https://kit.fontawesome.com/72eb2ee2e2.js" crossorigin="anonymous"></script>
-        <script src="js/jquery-1.11.1.min.js"></script>
-        <script src="js/header.js"></script>
+
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+        <!-- MDB -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.css" rel="stylesheet" />
+
+        <!-- Owl Carousel -->
+        <link rel="stylesheet" href="lib/owlcarousel/assets/owl.carousel.min.css"/>
+        <link rel="stylesheet" href="lib/owlcarousel/assets/owl.theme.default.min.css"/>
+
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/product.css" />
     </head>
     <body>
         <%@include file="header.jsp" %>
 
         <div class="store">
             <div class="container">
-                <br>
-                <a href="home">Trang chủ</a>
-                >
-                <a href="brand?brand=<%= request.getParameter("brand") %>">All <%= request.getParameter("brand") %></a>
-                >
-                <a href="product?productid=${product.getProductId()}&brandid=${product.getBrandId()}&brand=<%= request.getParameter("brand") %>">${product.getName()}</a>
+                <nav aria-label="breadcrumb" class="mt-3">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href=".">Trang chủ</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <a href="">All ${brandName}</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <a href="product?productid=${product.getProductId()}">${product.getName()}</a>
+                        </li>
+                    </ol>
+                </nav>
 
                 <div class="item">
                     <div class="row">
@@ -149,16 +151,16 @@
                     return false;
                 }
 
-            <c:if test="${sessionScope.account == null}">
+            <c:if test="${sessionScope.username == null}">
                 login.style.display = 'inline-block';
                 return false;
             </c:if>
 
-            <c:if test="${sessionScope.account != null}">
+            <c:if test="${sessionScope.username != null}">
                 <c:forEach items="${size}" var="s">
-                if (value == '${s.getSize()}') {
+                if (value === '${s.getSize()}') {
                     <c:forEach items="${cart}" var="cart">
-                    if (value == '${cart.getSize()}' && <%= request.getParameter("productid")%> == ${cart.getProductId()}) {
+                    if (value === '${cart.getSize()}' && <%= request.getParameter("productid")%> == ${cart.getProductId()}) {
                         if (x.value > (${s.getQuantity()} - ${cart.getQuantity()})) {
                             cart.style.display = 'block';
                             return false;

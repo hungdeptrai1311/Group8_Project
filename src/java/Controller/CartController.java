@@ -4,12 +4,16 @@
  */
 package Controller;
 
+import Context.BrandDAO;
+import Context.CartDAO;
+import Context.ProductDAO;
+import Context.UserDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 /**
  *
@@ -19,12 +23,23 @@ public class CartController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        super.doGet(request, response);
-    }
+        UserDAO ud = new UserDAO();
+        CartDAO cd = new CartDAO();
+        ProductDAO pd = new ProductDAO();
+        BrandDAO bd = new BrandDAO();
+        HttpSession session = request.getSession();
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        super.doPost(request, response);
+        String username = (String) session.getAttribute("username");
+        if (username != null) {
+            int userId = ud.getUserInforByUsername(username).getId();
+            request.setAttribute("cart", cd.getCartListByUserId(userId));
+        } else {
+            request.setAttribute("cart", null);
+        }
+
+        request.setAttribute("brandList", bd.getAllBrands());
+        request.setAttribute("productList", pd.getAllproducts());
+        request.getRequestDispatcher("cart.jsp").forward(request, response);
     }
 
 }

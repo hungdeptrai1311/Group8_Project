@@ -10,13 +10,13 @@ package Model;
  */
 public class Account {
 
-    String username, password, role;
+    private String username, password;
+    private Integer role;
 
     public Account() {
     }
 
-    public Account(String username, String password, String role) {
-
+    public Account(String username, String password, Integer role) {
         this.username = username;
         this.password = password;
         this.role = role;
@@ -38,12 +38,11 @@ public class Account {
         this.password = password;
     }
 
-    public String getRole() {
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Integer role) {
         this.role = role;
     }
-
 }

@@ -5,51 +5,52 @@
 package Context;
 
 import Model.Brand;
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
  *
  * @author vuman
  */
-public class BrandDAO {
-
-    public BrandDAO() {
-        connectDB();
-    }
-
-    Connection cnn;
-    Statement stm;
-    ResultSet rs;
-
-    private void connectDB() {
-        try {
-            cnn = (new DBContext()).getConnection();
-            System.out.println("Connect successfully");
-        } catch (Exception e) {
-            System.out.println("Connect error: " + e.getMessage());
-        }
-    }
+public class BrandDAO extends DBContext {
 
     public ArrayList<Brand> getAllBrands() {
-        ArrayList<Brand> list = new ArrayList<Brand>();
-        try {
-            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "SELECT * FROM Brand";
+        try ( ResultSet rs = executeQuery("SELECT * FROM [Brand]")) {
+            ArrayList<Brand> list = new ArrayList<>();
 
-            rs = stm.executeQuery(strSelect);
             while (rs.next()) {
-                int id = rs.getInt(1);
-                String name = rs.getString(2);
-
+                int id = rs.getInt("BrandID");
+                String name = rs.getNString("Name");
                 list.add(new Brand(id, name));
             }
 
             return list;
         } catch (Exception e) {
-            System.err.println("" + e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Brand getBrandByName(String name) {
+        try ( ResultSet rs = executeQuery("SELECT * FROM [Brand] WHERE [Name] = ?", name)) {
+            if (rs.next()) {
+                int id = rs.getInt("BrandID");
+                return new Brand(id, name);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Brand getBrandByID(int id) {
+        try ( ResultSet rs = executeQuery("SELECT * FROM [Brand] WHERE [BrandID] = ?", id)) {
+            if (rs.next()) {
+                String name = rs.getNString("Name");
+                return new Brand(id, name);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }

@@ -8,86 +8,85 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/home.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-        <script src="js/home.js"></script>
-        <title>EightShoes</title>
-        <link href="images/icon.png" rel="icon">
-        <script src="https://kit.fontawesome.com/72eb2ee2e2.js" crossorigin="anonymous"></script>
-        <script src="js/jquery-1.11.1.min.js"></script>
-        <script src="js/header.js"></script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>8Shoes</title>
+
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+        <!-- MDB -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.css" rel="stylesheet" />
+
+        <!-- Owl Carousel -->
+        <link rel="stylesheet" href="lib/owlcarousel/assets/owl.carousel.min.css"/>
+        <link rel="stylesheet" href="lib/owlcarousel/assets/owl.theme.default.min.css"/>
+
+        <link rel="stylesheet" href="css/style.css" />
     </head>
 
     <body>
         <%@include file="header.jsp" %>
 
-        <div class="top-page ">
-            <div class="slide">
-                <a class="banner" href="brand?brand=Converse"><img src="images/banner/Chuck-70-banner.jpg" alt="This is Chuck taylor 70s banner"></a>
-                <a class="banner" href="brand?brand=Vans"><img src="images/banner/vans-banner.jpg" alt="This is Vans banner"></a>
-                <a class="banner" href="brand?brand=Adidas"><img src="images/banner/adidas-banner.jpg" alt="This is Addidas banner"></a>
-                <a class="banner" href="brand?brand=Nike"><img src="images/banner/nike-banner.jpeg" alt="This is Nike banner"></a>
+        <div class="container-fluid mb-5">
+            <div class="owl-carousel">
+                <img
+                    src="https://drake.vn/image/cache/catalog/banner/banner-l%E1%BB%9Bn/Chuck-70-banner-web-home1-1500x560.jpg"
+                    alt=""
+                    class="img-fluid w-100"
+                    />
+                <img
+                    src="https://drake.vn/image/cache/catalog/banner/banner-l%E1%BB%9Bn/web-converse-Keith-Haring-1500x560.jpg"
+                    alt=""
+                    class="img-fluid w-100"
+                    />
+                <img
+                    src="https://drake.vn/image/cache/catalog/banner/banner-l%E1%BB%9Bn/web-vans-classic-1500x560.jpg"
+                    alt=""
+                    class="img-fluid w-100"
+                    />
+                <img
+                    src="https://drake.vn/image/cache/catalog/banner/banner-l%E1%BB%9Bn/web-Palladium-Pallabrousse-Legion-1500x560.jpg"
+                    alt=""
+                    class="img-fluid w-100"
+                    />
+                <img
+                    src="https://drake.vn/image/cache/catalog/banner/banner-l%E1%BB%9Bn/web-converse-classic1-1500x560.jpg"
+                    alt=""
+                    class="img-fluid w-100"
+                    />
             </div>
         </div>
 
-        <div class="content">
-            <div class="brand-logo container">
+        <c:forEach items="${brands}" var="brand">
+            <div class="container mb-5">
                 <div class="row">
-                    <div class="col-sm-2">
-                        <a href="brand?brand=Converse"><img src="images/logo/converse-logo.jpg" alt="Converse-logo"></a>
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="brand?brand=Vans"><img src="images/logo/vans-logo.jpg" alt="Vans-logo"></a>
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="brand?brand=Puma"><img src="images/logo/puma-logo.jpg" alt="Puma-logo"></a>
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="brand?brand=Adidas"><img src="images/logo/adidas-logo.png" alt="Adidas-logo"></a>
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="brand?brand=Nike"><img src="images/logo/nike-logo.jpg" alt="Nike-logo"></a>
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="brand?brand=Bitis"><img src="images/logo/bitis-logo.png" alt="Bitis-logo"></a>
-                    </div>
+                    <img src="images/brand-banner/${brand.brandName}.jpg" class="img-fluid" alt=""/>
                 </div>
-            </div>
 
-            <div class="small-list container">
-                <div class="small-converse-list">
-                    <img src="images/banner2/Converse.jpg" alt="Converse-banner">
+                <c:set var="products" value="${productDAO.getProductsByBrand(brand.brandName)}" />
+
+                <div class="row">
+                    <c:forEach items="${products.size() < 8 ? products : products.subList(0, 8)}" var="product">
+                        <div class="col-12 col-sm-6 col-md-3" data-mdb-toggle="tooltip" title="${product.name}">
+                            <a href="product?productid=${product.getProductId()}">
+                                <img class="img-fluid" src="${product.img}" alt=""/>
+
+                                <p class="text-center text-truncate text-body">${product.name}</p>
+                            </a>
+                        </div>
+                    </c:forEach>
                 </div>
-                <div class="small-vans-list">
-                    <img src="images/banner2/Vans.jpg" alt="Vans-banner">
-                </div>
-                <div class="small-puma-list">
-                    <img src="images/banner2/Puma.jpg" alt="Puma-banner">
-                </div>
-                <div class="small-adidas-list">
-                    <img src="images/banner2/Adidas.jpg" alt="Adidas-banner">
-                </div>
-                <div class="small-nike-list">
-                    <img src="images/banner2/Nike.jpg" alt="Nike-banner">
-                </div>
-                <div class="small-bitis-list">
-                    <img src="images/banner2/Bitis.jpg" alt="Bitis-banner">
+
+                <div class="d-flex justify-content-center">
+                    <a href="brand?brand=converse" class="btn btn-outline-warning flex-fill">MORE</a>
                 </div>
             </div>
-        </div>
+        </c:forEach>
+
 
         <%@include file="footer.jsp" %>          
     </body>

@@ -5,49 +5,34 @@
 package Context;
 
 import Model.Size;
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
  *
  * @author vuman
  */
-public class SizeDAO {
+public class SizeDAO extends DBContext {
 
-    public SizeDAO() {
-        connectDB();
-    }
-
-    Connection cnn;
-    Statement stm;
-    ResultSet rs;
-
-    private void connectDB() {
-        try {
-            cnn = (new DBContext()).getConnection();
-            System.out.println("Connect successfully");
-        } catch (Exception e) {
-            System.out.println("Connect error: " + e.getMessage());
-        }
-    }
-
-    public ArrayList<Size> getAllSizeByProductId(int id) {
-        ArrayList<Size> list = new ArrayList<Size>();
-        try {
-            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "SELECT * FROM Size WHERE ProductID = " + id;
-
-            rs = stm.executeQuery(strSelect);
+    public ArrayList<Size> getAllSizeByProductId(int pid) {
+        ArrayList<Size> list = new ArrayList<>();
+        try ( ResultSet rs = executeQuery("SELECT * FROM Size WHERE ProductID = ?", pid)) {
             while (rs.next()) {
-                String size = rs.getString(2);
-                int quantity = rs.getInt(3);
-                list.add(new Size(id, size, quantity));
+                String size = rs.getString("Size");
+                int quantity = rs.getInt("Quantity");
+                list.add(new Size(pid, size, quantity));
             }
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
         return list;
+    }
+
+    public void deleteSizeAfterBuy(int pid, String size, int quantity) {
+        try {
+            executeUpdate("UPDATE Size SET Quantity = Quantity - ? WHERE ProductID = ? AND Size = ?", quantity, pid, size);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

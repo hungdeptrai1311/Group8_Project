@@ -4,63 +4,38 @@
  */
 package Context;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
 
 /**
  *
  * @author baqua
  */
-public class AccountDAO {
+public class AccountDAO extends DBContext {
 
-    //tạo các thành phần kết nối xử lý dữ liệu
-    public AccountDAO() {
-        connectDB();
-    }
-
-    Connection cnn;//kết nối đến db
-    Statement stm;//thực thi các câu lệnh sql
-    ResultSet rs;//lưu trữ và xử lý dữu liệu 
-
-    private void connectDB() {
-        try {
-            cnn = (new DBContext()).getConnection();
-            System.out.println("Connect successfully");
-        } catch (Exception e) {
-            System.out.println("Connect error:" + e.getMessage());
-        }
-
-    }
-
-    public boolean checkAdmin(String Username) {
-        try {
-            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "select Account.Role from Account where Account.Username = '" + Username + "'";
-
-            rs = stm.executeQuery(strSelect);
-            while (rs.next()) {
-                return true;
-            }
-
-        } catch (Exception e) {
-            System.out.println("Login Error:" + e.getMessage());
-        }
-        return false;
-    }
-
-    public String getRoleByUsername(String Username) {
-        String role = "";
-        try {
-            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "select Account.Role from Account where Account.Username = '" + Username + "' ";
-
-            rs = stm.executeQuery(strSelect);
-            while (rs.next()) {
-                role = rs.getString(1);
+    public Integer getRoleByUsername(String username) {
+        try ( ResultSet rs = executeQuery("SELECT * FROM [Account] WHERE [Username] = ?", username)) {
+            if (rs.next()) {
+                return rs.getInt("Role");
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
-        return role;
+        return null;
+    }
+
+    public void updatePassword(String username, String password) {
+        try {
+            executeUpdate("UPDATE Account SET [Password] = ? WHERE Username = ?", password, username);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteAccount(int id) {
+        try {
+            executeUpdate("DELETE FROM [Account] WHERE [UserID] = ?", id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

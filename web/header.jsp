@@ -6,80 +6,134 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<header>
-    <div class="top-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6"></div>
-                <div class="col-md-6 col-sm-12">
-                    Hotline: <a href="tel: 123456789" style="font-weight: bold">0123456789</a> | 
-                    <c:if test="${sessionScope.account != null}">
+<header class="eightshoes-header">
+    <nav class="eightshoes-header__top-nav-bar">
+        <ul class="container d-flex flex-row-reverse p-2 nav">
+            <c:if test="${sessionScope.name == null}">
+                <li class="small nav-item">
+                    <a href="login" class="text-body">
+                        <i class="fas fa-user"></i>
+                        <span class="ms-1">Đăng Nhập</span>
+                    </a>
+                </li>
 
-                        <a href="">
-                            <i class="fa-solid fa-user"></i>
-                            ${name} </a>
-                        |
-                        <a href="logout">
-                            <i class="fa-solid fa-lock"></i> Đăng xuất </a>     
-                        </c:if>
-                        <c:if test="${sessionScope.account == null}">
-                        <a href="Register.jsp">
-                            <i class="fa-solid fa-lock"></i> Đăng ký</a> 
-                        | 
-                        <a href="Login.jsp"><i class="fa-solid fa-user"></i>
-                            Đăng
-                            nhập</a>    
-                        </c:if>
+                <li class="small nav-item">
+                    <a href="register" class="text-body">
+                        <i class="fas fa-lock"></i>
+                        <span class="ms-1">Đăng Ký</span>
+                    </a>
+                </li>
+            </c:if>
+
+            <c:if test="${sessionScope.name != null}">
+                <li class="small nav-item">
+                    <a href="logout" class="text-body">
+                        <i class="fas fa-lock"></i>
+                        <span class="ms-1">Đăng xuất</span>
+                    </a>
+                </li>
+
+                <li class="small nav-item">
+                    <a href="user-profile" class="text-body">
+                        <i class="fas fa-user"></i>
+                        <span class="ms-1">${sessionScope.name}</span>
+                    </a>
+                </li>
+                
+                <li class="small nav-item">
+                    <a href="cart" class="text-body">
+                        <i class="fas fa-cart-shopping"></i>
+                        <span class="ms-1">Giỏ hàng</span>
+                    </a>
+                </li>
+            </c:if>
+
+            <li class="small nav-item">
+                Hotline: <b class="ms-1">0123456789</b>
+            </li>
+
+            <form action="search" method="get" class="me-5">
+                <div class="form-outline">
+                    <input name="name" type="text" class="form-control">
+                    <label class="form-label">Search</label>
                 </div>
+            </form>
+        </ul>
+    </nav>
+
+    <nav class="eightshoes-header__center-nav-bar">
+        <div class="d-flex justify-content-center p-3">
+            <a href=".">
+                <img src="images/logo.png" class="img-fluid" alt="" width="500"/>
+            </a>
+        </div>
+
+        <hr class="m-0" />
+
+        <div class="d-flex justify-content-center">
+            <div
+                style="cursor: pointer"
+                class="p-1"
+                id="owl-carousel__left"
+                >
+                <i class="fa fa-angle-left"></i>
+            </div>
+
+            <div class="owl-carousel w-50 p-1">
+                <div class="text-center">Email hỗ trợ : linhtinh@gmail.com</div>
+                <div class="text-center">Miễn phí vận chuyển toàn quốc</div>
+                <div class="text-center">Đăng ký hoặc gọi 0123456789 để cập nhật chương trình khuyến mãi</div>
+            </div>
+
+            <div
+                style="cursor: pointer"
+                class="p-1"
+                id="owl-carousel__right"
+                >
+                <i class="fa fa-angle-right"></i>
             </div>
         </div>
-    </div>
+    </nav>
 
-
-    <div class="mid-header">
-        <div class="mid1-header container">
+    <nav class="eightshoes-header__bottom-nav-bar">
+        <div class="container p-2">
             <div class="row">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-6">
-                    <a href="home">
-                        <img class="logo" src="images/logo.png">
+                <div class="col-2">
+                    <a href="brand?brand=converse" class="text-white text-uppercase">
+                        <strong class="ms-1">CONVERSE</strong>
                     </a>
                 </div>
-                <div class="col-sm-3 text-right">
-                    <a href="cart?"><i class="fa-solid fa-cart-shopping"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="mid2-header">
-            <div class="popup-box">
-                <div class="popup-box__stage">
-                    <div class="popup-box__item">Email hỗ trợ : linhtinh@gmail.com</div>
-                    <div class="popup-box__item">Miễn phí vận chuyển toàn quốc</div>
-                    <div class="popup-box__item">Đăng ký hoặc gọi 0123456789 để cập nhật chương trình khuyến mãi
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="bottom-header">
-        <div class="container">
-            <div class="row">
-                <div class="menu">
-                    <nav><a href="brand?brand=Converse">CONVERSE</a></nav>
-                    <nav><a href="brand?brand=Vans">VANS</a></nav>
-                    <nav><a href="brand?brand=Puma">PUMA</a></nav>
-                    <nav><a href="brand?brand=Adidas">ADIDAS</a></nav>
-                    <nav><a href="brand?brand=Nike">NIKE</a></nav>
-                    <nav><a href="brand?brand=Bitis">BITIS</a></nav>
-                    <nav><a style="color: red" href="">KHUYẾN MÃI</a></nav>
-                    <nav><a href="">CỬA HÀNG</a></nav>
+                <div class="col-2">
+                    <a href="brand?brand=vans" class="text-white text-uppercase">
+                        <strong class="ms-1">VANS</strong>
+                    </a>
                 </div>
-                <div class="search">
-                    <input name="search" class="sb-search-input" placeholder="Tìm kiếm" type="text" value="">
-                    <button type="button"><i class="fa fa-search"></i></button>
+
+                <div class="col-2">
+                    <a href="brand?brand=nike" class="text-white text-uppercase">
+                        <strong class="ms-1">NIKE</strong>
+                    </a>
+                </div>
+
+                <div class="col-2">
+                    <a href="brand?brand=puma" class="text-white text-uppercase">
+                        <strong class="ms-1">PUMA</strong>
+                    </a>
+                </div>
+
+                <div class="col-2">
+                    <a href="brand?brand=adidas" class="text-white text-uppercase">
+                        <strong class="ms-1">ADIDAS</strong>
+                    </a>
+                </div>
+
+                <div class="col-2">
+                    <a href="brand?brand=bitis" class="text-white text-uppercase">
+                        <strong class="ms-1">BITIS</strong>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
+    </nav>
 </header>

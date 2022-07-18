@@ -8,39 +8,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/home.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-        <script src="js/home.js"></script>
-        <title>Đăng Nhập</title>
-        <link href="images/icon.png" rel="icon">
-        <script src="https://kit.fontawesome.com/72eb2ee2e2.js" crossorigin="anonymous"></script>
-        <script src="js/jquery-1.11.1.min.js"></script>
-        <script src="js/header.js"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>8Shoes</title>
 
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 
-        <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/login.css">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+        <!-- MDB -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.css" rel="stylesheet" />
+
+        <!-- Owl Carousel -->
+        <link rel="stylesheet" href="lib/owlcarousel/assets/owl.carousel.min.css"/>
+        <link rel="stylesheet" href="lib/owlcarousel/assets/owl.theme.default.min.css"/>
+
+        <link rel="stylesheet" href="css/style.css" />
     </head>
+
     <body>
         <%@include file="header.jsp" %>
 
@@ -49,35 +36,39 @@
                 <div class="card login-card">
                     <div class="row no-gutters">
                         <div class="col-md-5">
-                            <img src="images/anh1.jpg" alt="login" class="login-card-img">
+                            <img src="images/anh1.jpg" alt="login" class="login-card-img img-fluid rounded rounded-4">
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
                                 <div class="brand-wrapper">
-                                    <img src="images/logo.png" alt="logo" class="logo" style="width: 150px">
+                                    <img src="images/logo.png" alt="logo" class="logo img-fluid" style="width: 150px">
                                 </div>
-                                <p class="login-card-description">Đăng nhập </p>
+                                <p class="login-card-description display-4">Đăng nhập </p>
 
 
                                 <form action="login" method = "post">
                                     <div class="text-danger" style="margin-bottom: 20px">${result}</div>
-                                    <div class="form-group">
 
-                                        <input type="text" name="account"  class="form-control" placeholder="* Username">
+                                    <div class="form-outline mb-3">
+                                        <input type="text" name="account" class="form-control">
+                                        <label class="form-label">Username</label>
                                     </div>
-                                    <div class="form-group mb-4">
 
-                                        <input type="password" name="pass"  class="form-control" placeholder="***********">
+                                    <div class="form-outline mb-3">
+                                        <input type="password" name="password"  class="form-control">
+                                        <label class="form-label">Password</label>
                                     </div>
-                                    <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Đăng nhập">
+
+                                    <button class="btn btn-block login-btn mb-4" type="submit">Đăng nhập</button>
                                 </form>
-                                <a href="#!" class="forgot-password-link">Quên mật khẩu?</a>
-                                <p class="login-card-footer-text">Không có tài khoản? <a href="Register.jsp" class="text-reset">Đăng ký ngay</a></p>
-                                <nav class="login-card-footer-nav">
-                                    <a href="#!">Điều khoản sử dụng</a>
-                                    <br>
-                                    <a href="#!">Chính sách bảo mật</a>
-                                </nav>
+                                <div class="float-end">
+                                    <a href="forgot-password" class="forgot-password-link">Quên mật khẩu?</a>
+                                    <nav class="login-card-footer-nav">
+                                        <a href="#!">Điều khoản sử dụng</a>
+                                        <br>
+                                        <a href="#!">Chính sách bảo mật</a>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>

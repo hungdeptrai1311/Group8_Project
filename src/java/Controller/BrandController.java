@@ -4,12 +4,14 @@
  */
 package Controller;
 
+import Context.BrandDAO;
 import Context.ProductDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  *
@@ -21,7 +23,14 @@ public class BrandController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductDAO p = new ProductDAO();
         String brand = request.getParameter("brand");
-        request.setAttribute("list", p.getProductByBrand(brand));
+
+        if (new BrandDAO().getBrandByName(brand) == null) {
+            response.sendError(404);
+            return;
+        }
+
+        request.setAttribute("brandName", brand.substring(0, 1).toUpperCase() + brand.substring(1));
+        request.setAttribute("list", p.getProductsByBrand(brand));
         request.getRequestDispatcher("brand.jsp").forward(request, response);
     }
 }

@@ -4,138 +4,122 @@
  */
 package Context;
 
+import Model.Brand;
 import Model.Product;
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  *
  * @author vuman
  */
-public class ProductDAO {
+public class ProductDAO extends DBContext {
 
-    public ProductDAO() {
-        connectDB();
-    }
+    public ArrayList<Map.Entry<Brand, Product>> getAllproductsEx() {
+        try ( ResultSet rs = executeQuery("SELECT *, (SELECT [Name] FROM [Brand] WHERE [Brand].[BrandID] = [Product].[BrandID]) AS [BrandName] FROM [Product]")) {
+            ArrayList<Map.Entry<Brand, Product>> list = new ArrayList<>();
 
-    Connection cnn;
-    Statement stm;
-    ResultSet rs;
+            while (rs.next()) {
+                int productId = rs.getInt("ProductID");
+                String name = rs.getString("Name");
+                String descrip = rs.getNString("Description");
+                int price = rs.getInt("Price");
+                String img = rs.getString("Image");
+                int brandId = rs.getInt("BrandID");
+                list.add(new AbstractMap.SimpleEntry<>(
+                        new Brand(brandId, rs.getNString("BrandName")),
+                        new Product(productId, name, descrip, price, img, brandId)
+                ));
+            }
 
-    private void connectDB() {
-        try {
-            cnn = (new DBContext()).getConnection();
-            System.out.println("Connect successfully");
+            return list;
         } catch (Exception e) {
-            System.out.println("Connect error: " + e.getMessage());
+            e.printStackTrace();
         }
+        return null;
     }
 
     public ArrayList<Product> getAllproducts() {
-        ArrayList<Product> list = new ArrayList<Product>();
-        try {
-            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "SELECT * FROM Product";
+        try ( ResultSet rs = executeQuery("SELECT * FROM [Product]")) {
+            ArrayList<Product> list = new ArrayList<>();
 
-            rs = stm.executeQuery(strSelect);
             while (rs.next()) {
-                int productId = rs.getInt(1);
-                String name = rs.getString(2);
-                String descrip = rs.getNString(3);
-                int price = rs.getInt(4);
-                int quantity = rs.getInt(5);
-                String status = "Còn hàng";
-                if (!rs.getBoolean(6)) {
-                    status = "Hét hàng";
-                }
-                String img = rs.getString(7);
-                int brandId = rs.getInt(8);
-                list.add(new Product(productId, name, descrip, price, quantity, status, img, brandId));
+                int productId = rs.getInt("ProductID");
+                String name = rs.getString("Name");
+                String descrip = rs.getNString("Description");
+                int price = rs.getInt("Price");
+                String img = rs.getString("Image");
+                int brandId = rs.getInt("BrandID");
+                list.add(new Product(productId, name, descrip, price, img, brandId));
             }
+
+            return list;
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
-        return list;
+        return null;
     }
 
-    public Product getProductByBrandIdAndProductId(int brandId, int productId) {
-        Product p = new Product();
-        try {
-            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "SELECT * FROM Product WHERE BrandID = " + brandId + "AND ProductID = " + productId;
-
-            rs = stm.executeQuery(strSelect);
+    public Product getProductByProductId(int productId) {
+        try ( ResultSet rs = executeQuery("SELECT * FROM [Product] WHERE [ProductID] = ?", productId)) {
             while (rs.next()) {
-                String name = rs.getString(2);
-                String descrip = rs.getNString(3);
-                int price = rs.getInt(4);
-                int quantity = rs.getInt(5);
-                String status = "Còn hàng";
-                if (!rs.getBoolean(6)) {
-                    status = "Hét hàng";
-                }
-                String img = rs.getString(7);
-                p = new Product(productId, name, descrip, price, quantity, status, img, brandId);
+                String name = rs.getString("Name");
+                String descrip = rs.getNString("Description");
+                int price = rs.getInt("Price");
+                String img = rs.getString("Image");
+                int brandId = rs.getInt("BrandID");
+                return new Product(productId, name, descrip, price, img, brandId);
             }
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
-        return p;
+        return null;
     }
 
-    public ArrayList<Product> getProductByBrand(String brand) {
-        ArrayList<Product> list = new ArrayList<Product>();
-        try {
-            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "SELECT * FROM Product, Brand WHERE Product.BrandID = Brand.BrandID AND Brand.Name = '" + brand + "'";
+    public ArrayList<Product> getProductsByBrand(String brand) {
+        try ( ResultSet rs = executeQuery("SELECT * FROM [Product], [Brand] WHERE Product.BrandID = Brand.BrandID AND Brand.Name = ?", brand)) {
+            ArrayList<Product> list = new ArrayList<>();
 
-            rs = stm.executeQuery(strSelect);
             while (rs.next()) {
-                int productId = rs.getInt(1);
-                String name = rs.getString(2);
-                String descrip = rs.getNString(3);
-                int price = rs.getInt(4);
-                int quantity = rs.getInt(5);
-                String status = "Còn hàng";
-                if (!rs.getBoolean(6)) {
-                    status = "Hét hàng";
-                }
-                String img = rs.getString(7);
-                int brandId = rs.getInt(8);
-                list.add(new Product(productId, name, descrip, price, quantity, status, img, brandId));
+                int productId = rs.getInt("ProductID");
+                String name = rs.getString("Name");
+                String descrip = rs.getNString("Description");
+                int price = rs.getInt("Price");
+                String img = rs.getString("Image");
+                int brandId = rs.getInt("BrandID");
+
+                list.add(new Product(productId, name, descrip, price, img, brandId));
             }
+            return list;
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-        return list;
+        return null;
     }
 
-    public ArrayList<Product> getProductByProductId(int id) {
-        ArrayList<Product> list = new ArrayList<Product>();
+    public void editProduct(Product p) {
         try {
-            stm = cnn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-            String strSelect = "SELECT * FROM Product WHERE ProductID = '" + id + "'";
-
-            rs = stm.executeQuery(strSelect);
-            while (rs.next()) {
-                int productId = rs.getInt(1);
-                String name = rs.getString(2);
-                String descrip = rs.getNString(3);
-                int price = rs.getInt(4);
-                int quantity = rs.getInt(5);
-                String status = "Còn hàng";
-                if (!rs.getBoolean(6)) {
-                    status = "Hét hàng";
-                }
-                String img = rs.getString(7);
-                int brandId = rs.getInt(8);
-                list.add(new Product(productId, name, descrip, price, quantity, status, img, brandId));
-            }
+            executeUpdate(
+                    "UPDATE Product SET [Name] = ?, [Description] = ?, [Price] = ?, [Image] = ?, [BrandID] = ? WHERE [ProductID] = ?",
+                    p.getName(),
+                    p.getDescrip(),
+                    p.getPrice(),
+                    p.getImg(),
+                    p.getBrandId(),
+                    p.getProductId()
+            );
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
-        return list;
+    }
+
+    public void deleteProductByID(int id) {
+        try {
+            executeUpdate("DELETE FROM [Product] WHERE [ProductID] = ?", id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

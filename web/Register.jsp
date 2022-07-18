@@ -3,107 +3,98 @@
     Created on : Jul 4, 2022, 9:05:36 AM
     Author     : baqua
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/home.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-        <script src="js/home.js"></script>
-        <title>Đăng Ký</title>
-        <link href="images/icon.png" rel="icon">
-        <script src="https://kit.fontawesome.com/72eb2ee2e2.js" crossorigin="anonymous"></script>
-        <script src="js/jquery-1.11.1.min.js"></script>
-        <script src="js/header.js"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>8Shoes</title>
 
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
 
-        <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/login.css">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+        <!-- MDB -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.css" rel="stylesheet" />
+
+        <!-- Owl Carousel -->
+        <link rel="stylesheet" href="lib/owlcarousel/assets/owl.carousel.min.css"/>
+        <link rel="stylesheet" href="lib/owlcarousel/assets/owl.theme.default.min.css"/>
+
+        <link rel="stylesheet" href="css/style.css" />
     </head>
+
     <body>
         <%@include file="header.jsp" %>
-
         <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
             <div class="container">
                 <div class="card login-card">
                     <div class="row no-gutters">
                         <div class="col-md-5">
-                            <img src="images/anh1.jpg"  alt="login" class="login-card-img" >
+                            <img src="images/anh1.jpg" alt="login" class="login-card-img img-fluid rounded rounded-4">
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
                                 <div class="brand-wrapper">
-                                    <img src="images/logo.png" alt="logo" class="logo" style="width: auto">
+                                    <img src="images/logo.png" alt="logo" class="logo img-fluid" style="width: 150px">
                                 </div>
-                                <p class="login-card-description">Đăng Ký </p>
+                                <p class="login-card-description display-4">Đăng Ký</p>
+
 
                                 <form action="register" method="post">
                                     <div class="text-danger" style="margin-bottom: 20px">${result}</div>
                                     <div class="text-success" style="margin-bottom: 20px">${Result}</div>
-                                    <div class="form-group">
-                                        <label for="username" >Tài khoản </label>
-                                        <input type="text" name="username" id="username" class="form-control" placeholder="Tên tài khoản">
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label for="password" >Mật khẩu</label>
-                                        <input type="password" name="pass" id="pass" class="form-control" placeholder="***********">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="name" >Họ và tên</label>
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Họ và tên">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email" >Email</label>
-                                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="address" >Address</label>
-                                        <input type="text" name="address" id="address" class="form-control" placeholder="Address">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="phone" >Phone</label>
-                                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone">
+
+                                    <div class="form-outline mb-3">
+                                        <input type="text" name="username" class="form-control">
+                                        <label class="form-label">Tài khoản</label>
                                     </div>
 
+                                    <div class="form-outline mb-3">
+                                        <input type="password" name="password" class="form-control">
+                                        <label class="form-label">Mật khẩu</label>
+                                    </div>
 
-                                    <input name="register" id="register" class="btn btn-block login-btn mb-4" type="submit" value="Đăng Ký">
+                                    <div class="form-outline mb-3">
+                                        <input type="text" name="name" class="form-control">
+                                        <label class="form-label">Họ và tên</label>
+                                    </div>
+
+                                    <div class="form-outline mb-3">
+                                        <input type="email" name="email" class="form-control">
+                                        <label class="form-label">Email</label>
+                                    </div>
+
+                                    <div class="form-outline mb-3">
+                                        <input type="text" name="address" class="form-control">
+                                        <label class="form-label">Address</label>
+                                    </div>
+
+                                    <div class="form-outline mb-3">
+                                        <input type="text" name="phone" class="form-control">
+                                        <label class="form-label">Phone</label>
+                                    </div>
+
+                                    <button class="btn btn-block login-btn mb-3" type="submit">Đăng Ký</button>
                                 </form>
 
-                                <a href="#!" class="forgot-password-link">Quên mật khẩu?</a>
-                                <p class="login-card-footer-text">Bạn đã có tài khoản? <a href="Login.jsp" class="text-reset">Đăng nhập đây</a></p>
-                                <nav class="login-card-footer-nav">
-                                    <a href="#!">Điều khoản sử dụng</a>
-                                    <br>
-                                    <a href="#!">Chính sách bảo mật</a>
-                                </nav>
+                                <div class="float-end mb-3">
+                                    <nav class="login-card-footer-nav">
+                                        <a href="#!">Điều khoản sử dụng</a>
+                                        <br>
+                                        <a href="#!">Chính sách bảo mật</a>
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-
+        </main>  
 
         <%@include file="footer.jsp" %>     
     </body>

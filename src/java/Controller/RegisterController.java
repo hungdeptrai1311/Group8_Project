@@ -8,7 +8,6 @@ import Context.UserDAO;
 import Model.User;
 import Model.Account;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,82 +19,33 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 public class RegisterController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            UserDAO ud = new UserDAO();
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("register.jsp").forward(request, response);
+    }
 
-            String username = request.getParameter("username");
-            String pass = request.getParameter("pass");
-            String name = request.getParameter("name");
-            String email = request.getParameter("email");
-            String address = request.getParameter("address");
-            String phone = request.getParameter("phone");
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserDAO userDAO = new UserDAO();
 
-            String result = "Tài khoản của bạn đã tồn tại, vui lòng thử lại";
-            User u = new User(name, email, address, phone);
-            Account a = new Account(username, pass, "2");
+        String username = request.getParameter("username");
+        String pass = request.getParameter("password");
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        String phone = request.getParameter("phone");
 
-            if (ud.checkAccount(username)) {
-                request.setAttribute("result", result);
-                request.getRequestDispatcher("Register.jsp").forward(request, response);
+        User user = new User(name, email, address, phone);
+        Account account = new Account(username, pass, 2);
 
-            } else {
-                ud.addUser(u, a);
-                String Result = "Bạn đã đăng ký thành công, vui lòng đăng nhập lại!!";
-                request.setAttribute("Result", Result);
-                request.getRequestDispatcher("Register.jsp").forward(request, response);
-            }
+        if (userDAO.isAccountExist(username)) {
+            request.setAttribute("result", "Tài khoản của bạn đã tồn tại, vui lòng thử lại");
+        } else {
+            userDAO.addUser(user, account);
+            request.setAttribute("Result", "Bạn đã đăng ký thành công, vui lòng đăng nhập lại!!");
         }
-    }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+        doGet(request, response);
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

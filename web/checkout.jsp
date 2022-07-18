@@ -16,23 +16,21 @@
         <link rel="stylesheet" href="css/home.css">
         <link rel="stylesheet" href="css/checkout.css">
         <link rel="stylesheet" href="css/product.css"/>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-        <script src="js/home.js"></script>
-        <title>Thanh toán</title>
-        <link href="images/icon.png" rel="icon">
-        <script src="https://kit.fontawesome.com/72eb2ee2e2.js" crossorigin="anonymous"></script>
-        <script src="js/jquery-1.11.1.min.js"></script>
-        <script src="js/header.js"></script>
+
+        <!-- Font Awesome -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+        <!-- MDB -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.css" rel="stylesheet" />
+
+        <!-- Owl Carousel -->
+        <link rel="stylesheet" href="lib/owlcarousel/assets/owl.carousel.min.css"/>
+        <link rel="stylesheet" href="lib/owlcarousel/assets/owl.theme.default.min.css"/>
+
+        <link rel="stylesheet" href="css/style.css" />
     </head>
     <body>
         <script>
@@ -54,6 +52,22 @@
                         );
 
                 chonTinh({value: data[0].Id});
+
+                document.querySelector('form[action="bill"]').onsubmit = function (e) {
+                    e.preventDefault();
+                    fetch('bill?' + new URLSearchParams({
+                        "address": e.target.querySelector('*[name="address"]:checked').value,
+                        "thanh-pho": e.target.querySelector('*[name="thanh-pho"]>option:checked').innerText,
+                        "quan": e.target.querySelector('*[name="quan"]>option:checked').innerText,
+                        "tinh": e.target.querySelector('*[name="tinh"]>option:checked').innerText,
+                        "dia-chi": e.target.querySelector('*[name="dia-chi"]').value
+                    }).toString(), {method: 'POST', redirect: 'follow'}).then(response => {
+
+                        if (response.redirected) {
+                            window.location.href = response.url;
+                        }
+                    });
+                };
             });
 
             function chonTinh(tinhSelector) {
@@ -99,7 +113,7 @@
             </div>
         </div>
 
-        <form action="" method="">
+        <form action="bill" method="post">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">
@@ -144,7 +158,7 @@
                                             <span style="color: red">* </span>Địa chỉ:
                                         </div>
                                         <div class="col-sm-7">
-                                            <input type="text" style="width: 170px;" placeholder="* Địa chỉ">
+                                            <input type="text" name="dia-chi" style="width: 170px;" placeholder="* Địa chỉ">
                                         </div><br><br>
                                     </div>
                                 </div>  
@@ -183,66 +197,58 @@
 
             <div class="container">
                 <div class="cart">
-                    <div class="table">
-                        <div class="head">
-                            <i class="fa-solid fa-cart-shopping"></i> Giỏ hàng
-                        </div>
+                    <table class="table table-striped m-0 mt-5 mb-5">
+                        <thead>
+                            <tr>
+                                <td class="qc-image">Hình ảnh</td>
+                                <td class="qc-name">Tên sản phẩm</td>
+                                <td class="qc-size">Size</td>
+                                <td class="qc-quantity ">Số lượng</td>
+                                <td class="qc-price">Đơn Giá</td>
+                                <td class="qc-total">Tổng cộng</td>
+                            </tr>
+                        </thead>
 
+                        <tbody>				
+                            <c:forEach items="${cart}" var="c">
+                                <c:forEach items="${productList}" var="p">
+                                    <c:forEach items="${brandList}" var="b">
+                                        <c:if test="${c.getProductId() == p.getProductId() && p.getBrandId() == b.getBrandId()}">
+                                            <tr>    
+                                                <td class="qc-image">
+                                                    <a href="product?productid=${c.getProductId()}&brandid=${p.getBrandId()}&brand=${b.getBrandName()}"><img src="${p.getImg()}" style="width: 90px;"/></a>
+                                                </td>
 
-                        <table class="table-striped mt-5 mb-5">
-                            <thead>
-                                <tr>
-                                    <td class="qc-image">Hình ảnh</td>
-                                    <td class="qc-name">Tên sản phẩm</td>
-                                    <td class="qc-size">Size</td>
-                                    <td class="qc-quantity ">Số lượng</td>
-                                    <td class="qc-price">Đơn Giá</td>
-                                    <td class="qc-total">Tổng cộng</td>
-                                </tr>
-                            </thead>
+                                                <td class="qc-name">
+                                                    <a href="product?productid=${c.getProductId()}&brandid=${p.getBrandId()}&brand=${b.getBrandName()}">${p.getName()}</a>
+                                                </td>
 
-                            <tbody>				
-                                <c:forEach items="${cart}" var="c">
-                                    <c:forEach items="${productList}" var="p">
-                                        <c:forEach items="${brandList}" var="b">
-                                            <c:if test="${c.getProductId() == p.getProductId() && p.getBrandId() == b.getBrandId()}">
-                                                <tr>    
-                                                    <td class="qc-image">
-                                                        <a href="product?productid=${c.getProductId()}&brandid=${p.getBrandId()}&brand=${b.getBrandName()}"><img src="${p.getImg()}" style="width: 90px;"/></a>
-                                                    </td>
+                                                <td class="qc-size">
+                                                    ${c.getSize()}
+                                                </td>
 
-                                                    <td class="qc-name">
-                                                        <a href="product?productid=${c.getProductId()}&brandid=${p.getBrandId()}&brand=${b.getBrandName()}">${p.getName()}</a>
-                                                    </td>
+                                                <td class="qc-quantity ">
+                                                    ${c.getQuantity()}
+                                                </td>
 
-                                                    <td class="qc-size">
-                                                        ${c.getSize()}
-                                                    </td>
+                                                <td class="qc-price">
+                                                    ${p.getPrice()} đ
+                                                </td>
 
-                                                    <td class="qc-quantity ">
-                                                        ${c.getQuantity()}
-                                                    </td>
-
-                                                    <td class="qc-price">
-                                                        ${p.getPrice()} đ
-                                                    </td>
-
-                                                    <td class="qc-total">
-                                                        ${c.getQuantity() * p.getPrice()} đ
-                                                    </td>
-                                                </tr>
-                                            </c:if>
-                                        </c:forEach>
+                                                <td class="qc-total">
+                                                    ${c.getQuantity() * p.getPrice()} đ
+                                                </td>
+                                            </tr>
+                                        </c:if>
                                     </c:forEach>
                                 </c:forEach>
+                            </c:forEach>
 
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <%! int sum = 0; %> 
             <div class="container">
                 <div  class="cart">
                     <div class="table">
@@ -251,16 +257,7 @@
                         </div>
 
                         <div class="body">
-                            <h1>Tổng giá tiền: <b>
-                                    <c:forEach items="${cart}" var="c">
-                                        <c:forEach items="${productList}" var="p">
-                                            <c:if test="${c.getProductId() == p.getProductId()}">
-                                                
-
-                                            </c:if>
-                                        </c:forEach>
-                                    </c:forEach>
-                                </b></h1>
+                            <h1>Tổng giá tiền: <b class="text-danger">${sum}₫</b></h1>
 
                             <button type="submit" class="btn btn-primary mt-4">Xác Nhận Đơn Hàng</button>
                         </div>

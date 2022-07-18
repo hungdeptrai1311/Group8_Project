@@ -4,11 +4,13 @@
  */
 package Controller;
 
+import Context.BrandDAO;
 import Context.CartDAO;
 import Context.ProductDAO;
 import Context.SizeDAO;
 import Context.UserDAO;
 import Model.Cart;
+import Model.Product;
 import Model.User;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -34,9 +36,8 @@ public class ProductController extends HttpServlet {
         ArrayList<Cart> list = null;
 
         int productId = Integer.parseInt(request.getParameter("productid"));
-        int brandId = Integer.parseInt(request.getParameter("brandid"));
-        if (session.getAttribute("account") != null) {
-            String username = session.getAttribute("account").toString();
+        if (session.getAttribute("username") != null) {
+            String username = session.getAttribute("username").toString();
             User u = ud.getUserInforByUsername(username);
             list = cd.getCartListByUserId(u.getId());
         }
@@ -45,8 +46,11 @@ public class ProductController extends HttpServlet {
             request.setAttribute("cart", list);
         }
 
+        Product p = pd.getProductByProductId(productId);
+
         request.setAttribute("size", sd.getAllSizeByProductId(productId));
-        request.setAttribute("product", pd.getProductByBrandIdAndProductId(brandId, productId));
+        request.setAttribute("brandName", new BrandDAO().getBrandByID(p.getBrandId()).getBrandName());
+        request.setAttribute("product", p);
         request.getRequestDispatcher("product.jsp").forward(request, response);
     }
 }
